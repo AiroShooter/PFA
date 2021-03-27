@@ -20,17 +20,27 @@
 											<div class="form-group form-focus">
 												<input type="text" name="name"  class="form-control floating" formControlName="name">
 												<label class="focus-label">Name<span class="required">*</span></label>
-											</div>
 
+												<span *ngIf="myForm.get('name')!.touched && myForm.get('name')!.hasError('required')" class="text-danger">Please Enter the name</span>
+												<span *ngIf="myForm.get('name')!.touched && myForm.get('name')!.hasError('minlength')" class="text-danger">Minimum character lenght required is 5</span>
+											</div>
+										
 											<div class="form-group form-focus">
 												<input type="text" name="mobile"  class="form-control floating" formControlName="mobile" max="9">
 												<label class="focus-label">Mobile Number<span class="required">*</span></label>
-											</div>
 
+												<span *ngIf="myForm.get('mobile')!.touched && myForm.get('mobile')!.hasError('required')" class="text-danger">Please Enter the mobile number</span>
+												<span *ngIf="myForm.get('mobile')!.touched && myForm.get('mobile')!.hasError('pattern')" class="text-danger">Please Enter a valid mobile number</span>
+											</div>
+										
 											<div class="form-group form-focus">
 												<input type="password" name="password" class="form-control floating"  formControlName="password">
 												<label class="focus-label">Create Password<span class="required">*</span></label>
+
+												<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('required')" class="text-danger">Please Enter the password</span>
+											<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('minlength')" class="text-danger">Minimum character lenght required is 8</span>
 											</div>
+											
 											<div class="text-right">
 												<a class="forgot-link" [routerLink]="'/login-page'">Already have an account?</a>
 											</div>
