@@ -13,6 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if($this->command->confirm("Do you refresh the database ?"))
+        {
+            $this->command->call('migrate:refresh');
+            $this->command->info('database was refreshed :)');
+        }
+
+        $this->call([UserTableSeeder::class]);
         // \App\Models\User::factory(10)->create();
     }
 }
