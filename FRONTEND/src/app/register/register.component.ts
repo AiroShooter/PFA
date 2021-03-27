@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     public commonService: CommonServiceService,
-    public router: Router
+    public router: Router,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -42,32 +44,14 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  myForm = this.fb.group({
+    name:['',[Validators.required, Validators.minLength(5)]],
+    mobile:['', [Validators.required, Validators.pattern('^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$')]],
+    password:[[Validators.required, Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')]]
+  });
+
   signup() {
-    if (this.name === '' || this.mobile === '' || this.password === '') {
-      this.toastr.error('', 'Please enter mandatory field!');
-    } else {
-      if (!this.isPatient) {
-        let params = {
-          id: this.doctors.length + 1,
-          doctor_name: this.name,
-          password: this.password,
-        };
-        this.commonService.createDoctor(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/login']);
-        });
-      } else {
-        let params = {
-          id: this.patients.length + 1,
-          name: this.name,
-          password: this.password,
-        };
-        this.commonService.createPatient(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/login']);
-        });
-      }
-    }
+   
   }
 
   getDoctors() {
