@@ -7,6 +7,7 @@ import { BlankPageComponent } from './blank-page.component';
 const routes: Routes = [
   {
     path: '',
+    
     component: BlankPageComponent
   }
 ]
