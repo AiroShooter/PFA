@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
   });
 
   signup() {
-   
+   console.log(this.myForm.value.name, this.myForm.value.mobile, this.myForm.value.password);
   }
 
   getDoctors() {

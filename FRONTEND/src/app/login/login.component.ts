@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,19 @@ export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
     public commonService: CommonServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fb:FormBuilder
   ) {
     this.username = '';
     this.password = '';
     this.doctors = [];
     this.patients = [];
   }
+
+  myForm = this.fb.group({
+    username:['',[Validators.required, Validators.minLength(5), Validators.email]],
+    password:['',[Validators.required, Validators.minLength(8)]]
+  });
 
   ngOnInit(): void {
     this.getpatients();
@@ -71,6 +78,11 @@ export class LoginComponent implements OnInit {
       this.doctors = res;
     });
   }
+  signup(){
+
+    console.log(this.myForm.value.username, this.myForm.value.password);
+  }
+
 
   getpatients() {
     this.commonService.getpatients().subscribe((res) => {
