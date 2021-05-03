@@ -46,12 +46,12 @@ export class RegisterComponent implements OnInit {
 
   myForm = this.fb.group({
     name:['',[Validators.required, Validators.minLength(5)]],
-    mobile:['', [Validators.required, Validators.pattern('^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$')]],
-    password:[[Validators.required, Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')]]
+    mobile:['', [Validators.required, Validators.pattern('^(06|07|2126|2127)[0-9]{8}$')]],
+    password:['',[Validators.required, Validators.minLength(8)]]
   });
 
   signup() {
-   
+   console.log(this.myForm.value.name, this.myForm.value.mobile, this.myForm.value.password);
   }
 
   getDoctors() {
