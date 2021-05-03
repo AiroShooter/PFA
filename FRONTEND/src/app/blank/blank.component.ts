@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonServiceService } from '../common-service.service';
 
 @Component({
   selector: 'app-blank',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlankComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonService: CommonServiceService) { }
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  users:any
+
+  loadUsers()
+  {
+    this.commonService.getUsers().subscribe(result => {
+      this.users = result;
+
+     
+    });
+
+    console.log(this.users);
   }
 
 }

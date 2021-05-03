@@ -55,10 +55,14 @@ export class CommonServiceService {
   ];
 
   messages: '';
-  SERVER_URL: string = 'http://localhost:8080/api/';
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   message: BehaviorSubject<String>;
   constructor(public http: HttpClient) {
     this.message = new BehaviorSubject(this.messages);
+  }
+
+  getUsers() {
+    return this.http.get(this.SERVER_URL + 'users');
   }
 
   nextmessage(data) {
@@ -96,6 +100,7 @@ export class CommonServiceService {
   getDoctors() {
     return this.http.get(this.SERVER_URL + 'doctors');
   }
+
 
   getDoctorDetails(id) {
     return this.http.get(`${this.SERVER_URL + 'doctors'}/${id}`);
