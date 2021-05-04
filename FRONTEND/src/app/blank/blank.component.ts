@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CommonServiceService } from '../common-service.service';
 
 @Component({
   selector: 'app-blank',
@@ -8,23 +8,19 @@ import { CommonServiceService } from '../common-service.service';
 })
 export class BlankComponent implements OnInit {
 
-  constructor(public commonService: CommonServiceService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
   users:any
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
 
   loadUsers()
   {
-    this.commonService.getUsers().subscribe(result => {
-      this.users = result;
-
-     
+    this.http.get(this.SERVER_URL + 'users').subscribe(result => {
+      this.users=result;
     });
-
-    console.log(this.users);
   }
-
 }

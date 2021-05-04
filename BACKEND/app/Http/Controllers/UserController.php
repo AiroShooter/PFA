@@ -14,6 +14,5 @@ class UserController extends Controller
         $users = DB::select('select * from users');
 
         return $users;
-
     }
 }
