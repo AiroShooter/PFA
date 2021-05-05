@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { CommonServiceService } from '../common-service.service';
-
-import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import {  FormBuilder,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,57 +9,47 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  name = '';
-  mobile = '';
-  password = '';
-  isPatient: boolean = true;
-  doctors: any = [];
-  patients: any = [];
+  
+  isPatient: string = "true";
   reg_type = 'Patient Register';
   doc_patient = 'Are you a Doctor?';
   constructor(
-    private toastr: ToastrService,
-    public commonService: CommonServiceService,
+    private http: HttpClient,
     public router: Router,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.getpatients();
-    this.getDoctors();
   }
 
   changeRegType() {
     if (this.reg_type === 'Doctor Register') {
       this.reg_type = 'Patient Register';
       this.doc_patient = 'Are you a Doctor?';
-      this.isPatient = true;
+      this.isPatient = "true";
     } else {
       this.reg_type = 'Doctor Register';
       this.doc_patient = 'Not a Doctor?';
-      this.isPatient = false;
+      this.isPatient = "false";
     }
   }
 
   myForm = this.fb.group({
-    name:['',[Validators.required, Validators.minLength(5)]],
-    mobile:['', [Validators.required, Validators.pattern('^(06|07|2126|2127)[0-9]{8}$')]],
+    email:['',[Validators.required, Validators.email]],
     password:['',[Validators.required, Validators.minLength(8)]]
   });
 
+
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   signup() {
-   console.log(this.myForm.value.name, this.myForm.value.mobile, this.myForm.value.password);
-  }
+  // console.log(this.myForm.value);
 
-  getDoctors() {
-    this.commonService.getDoctors().subscribe((res) => {
-      this.doctors = res;
-    });
-  }
+    let form = new FormData();
+    form.append("email",this.myForm.value.email);
+    form.append("password",this.myForm.value.password);
+    form.append("isPatient",this.isPatient);
 
-  getpatients() {
-    this.commonService.getpatients().subscribe((res) => {
-      this.patients = res;
-    });
+    console.log(form.get("email"), form.get("password"), form.get("isPatient"));
+    this.http.post(this.SERVER_URL + 'register', form).subscribe(result=>console.log(result));
   }
 }

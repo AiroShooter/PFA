@@ -22,5 +22,7 @@ export class BlankComponent implements OnInit {
     this.http.get(this.SERVER_URL + 'users').subscribe(result => {
       this.users=result;
     });
+
+    console.log(this.users);
   }
 }
