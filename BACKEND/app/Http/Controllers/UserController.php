@@ -17,10 +17,13 @@ class UserController extends Controller
     }
     public static function register(Request $request){
 
-       // if($request->isPatient == "true")
-        //   DB::insert('insert into users (`email`, `password`, `type`) values (?, ?, ?)', [$request->email, $request->password, 'patient']);
-       // elseif($request->isPatient == "false")
-         //   DB::insert('insert into users (`email`, `password`, `type`) values (?, ?, ?)', [$request->email, $request->password, 'medecin']);
-        return "fvrtgrtgrtgrtgrethe5he5jhtyhryh6";
+        if($request->isPatient == "true")
+            DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $request->password, 'patient']);
+        elseif($request->isPatient == "false")
+            DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $request->password, 'medecin']);
+            
+        return response()->json([
+            'Add' => 'Done'
+        ]);
     }
 }

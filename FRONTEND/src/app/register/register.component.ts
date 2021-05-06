@@ -42,14 +42,12 @@ export class RegisterComponent implements OnInit {
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   signup() {
-  // console.log(this.myForm.value);
-
     let form = new FormData();
     form.append("email",this.myForm.value.email);
     form.append("password",this.myForm.value.password);
     form.append("isPatient",this.isPatient);
 
     console.log(form.get("email"), form.get("password"), form.get("isPatient"));
-    this.http.post(this.SERVER_URL + 'register', form).subscribe(result=>console.log(result));
+    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => console.log(result));
   }
 }
