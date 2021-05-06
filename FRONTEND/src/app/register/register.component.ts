@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {  FormBuilder,Validators } from '@angular/forms';
+import { error } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-register',
@@ -48,6 +49,6 @@ export class RegisterComponent implements OnInit {
     form.append("isPatient",this.isPatient);
 
     console.log(form.get("email"), form.get("password"), form.get("isPatient"));
-    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => console.log(result));
+    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => console.log(result), error=>console.log(error));
   }
 }
