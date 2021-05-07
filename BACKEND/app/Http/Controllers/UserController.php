@@ -20,10 +20,6 @@ class UserController extends Controller
     }
     public static function register(Request $request){
 
-      
-      
-     
-           
         $count = User::where('email','=',$request->email)->count();
 
         if($count == 1)
@@ -31,7 +27,7 @@ class UserController extends Controller
             return response()->json([
                 'hasError' => true,
                 'success' => '',
-                'error' => 'Duplicate '
+                'error' => 'Cet e-mail existe déjà, veuillez en essayer un autre'
             ]);
         }
         if($count == 0){
@@ -45,10 +41,50 @@ class UserController extends Controller
         
                  return response()->json([
                     'hasError' => false,
-                    'success' => 'done ',
+                    'success' => 'Done ',
                     'error' => ''
                 ]);
         
+        }
+ 
+   
+
+        
+    }
+
+    public static function login(Request $request){
+
+        $users = DB::select('select * from users where email = ?',[$request->email]);
+
+        if($users)
+        {
+            $password = Crypt::decryptString($users[0]->password);  
+
+            if($password == $request->password)
+            {
+                return response()->json([
+                    'hasError' => false,
+                    'success' => 'Done',
+                    'error' => '',
+                    'user' =>$users[0],
+                ]);
+
+            }
+            else{
+                return response()->json([
+                    'hasError' => true,
+                    'success' => '',
+                    'error' => 'Ce mot de passe est incorrect, veuillez vérifier vos informations']);
+            }
+
+           
+        }
+        else{
+                
+                return response()->json([
+                    'hasError' => true,
+                    'success' => '',
+                    'error' => "Ce compte n'existe pas, veuillez essayer de vous inscrire d'abord"]);
         }
  
    

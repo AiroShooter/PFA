@@ -20,4 +20,5 @@ use App\Http\Controllers\UserController;
 //});
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
+Route::any('/login',[UserController::class, 'login'] );
 

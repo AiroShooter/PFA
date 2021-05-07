@@ -12,8 +12,8 @@ import { error } from 'selenium-webdriver';
 export class RegisterComponent implements OnInit {
   
   isPatient: string = "true";
-  reg_type = 'Patient Register';
-  doc_patient = 'Are you a Doctor?';
+  reg_type = 'Registre des patients';
+  doc_patient = 'Etes-vous un docteur ?';
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -24,13 +24,13 @@ export class RegisterComponent implements OnInit {
   }
 
   changeRegType() {
-    if (this.reg_type === 'Doctor Register') {
-      this.reg_type = 'Patient Register';
-      this.doc_patient = 'Are you a Doctor?';
+    if (this.reg_type === 'Registre des médecins') {
+      this.reg_type = 'Registre des patients';
+      this.doc_patient = 'Etes-vous un docteur ?';
       this.isPatient = "true";
     } else {
-      this.reg_type = 'Doctor Register';
-      this.doc_patient = 'Not a Doctor?';
+      this.reg_type = 'Registre des médecins';
+      this.doc_patient = 'Pas un docteur ?';
       this.isPatient = "false";
     }
   }
@@ -63,10 +63,6 @@ export class RegisterComponent implements OnInit {
 
           localStorage.setItem('userEmail',this.myForm.value.email);
           this.router.navigate(['/blank']);
-        }
-
-     
-
-    });
+        }});
   }
 }

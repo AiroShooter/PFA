@@ -11,50 +11,56 @@
 						</div>
 						<div class="col-md-12 col-lg-6 login-right">
 							<div class="login-header">
-								<h3>Login <span>Doccure</span></h3>
+								<h3>Connection</h3>
 							</div>
-							<form [formGroup]="myForm" (ngSubmit)="signup()" method="POST">
+							<form [formGroup]="myForm" (ngSubmit)="login()">
+								<div *ngIf="this.error != ''" class="alert alert-danger alert-dismissible fade show" role="alert">
+									{{this.error}}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
 								<div class="form-group form-focus">
-									<input type="text" name="name" id="username" class="form-control floating" formControlName="username">
-									<label class="focus-label">Username<span class="required">*</span></label>
+									<input type="email" name="name" id="username" class="form-control floating" formControlName="username">
+									<label class="focus-label">Email<span class="required">*</span></label>
 
-									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('required')" class="text-danger">Please Enter the email</span>
-									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('minlength')" class="text-danger">Minimum character lenght required is 5</span>
-									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('email')" class="text-danger">Please Enter a valid email</span>
+									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('required')" class="text-danger">Veuillez saisir l'e-mail</span>
+									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('minlength')" class="text-danger">La longueur minimale des caractères requise est de 5</span>
+									<span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('email')" class="text-danger">Veuillez saisir une adresse e-mail valide</span>
 
 								</div>
 								<div class="form-group form-focus">
 									<input type="password" name="password" id="password" class="form-control floating" formControlName="password">
-									<label class="focus-label">Password<span class="required">*</span></label>
+									<label class="focus-label">Mot de passe<span class="required">*</span></label>
 
-									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('required')" class="text-danger">Please Enter the password</span>
-									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('minlength')" class="text-danger">Minimum character lenght required is 5</span>
+									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('required')" class="text-danger">S'il vous plaît entrer le mot de passe</span>
+									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('minlength')" class="text-danger">La longueur minimale des caractères requise est de 8</span>
 								</div>
 
-								<div>
+							<!--	<div>
 									<label class="custom_check">
 										<input type="checkbox" name="gender_type" [(ngModel)]="isPatient" (click)="checkType($event)"  >
-										<span class="checkmark"></span> Patients
+										<span class="checkmark"></span> Patient
 									</label>
-								</div>
+								</div>-->
 
 								<div class="text-right">
-									<a class="forgot-link"  [routerLink]="'/forgot-password'">Forgot Password ?</a>
+									<a class="forgot-link"  [routerLink]="'/forgot-password'">Mot de passe oublié ?</a>
 								</div>
-								<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [disabled]="!myForm.valid" >Login</button>
+								<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [disabled]="!myForm.valid" >Se Connecter</button>
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">or</span>
 								</div>
 								<div class="row form-row social-login">
 									<div class="col-6">
-										<a href="javascript:void(0)" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+										<a href="javascript:void(0)" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i>Connecter</a>
 									</div>
 									<div class="col-6">
-										<a class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
+										<a class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i>Connecter</a>
 									</div>
 								</div>
-								<div class="text-center dont-have">Don’t have an account? <a  [routerLink]="'/Register'">Register</a></div>
+								<div class="text-center dont-have">Vous n’avez pas de compte? <a  [routerLink]="'/Register'">S'inscrire</a></div>
 							</form>
 						</div>
 					</div>
