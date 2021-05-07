@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 
 class UserController extends Controller
@@ -20,7 +21,7 @@ class UserController extends Controller
     public static function register(Request $request){
 
       
-
+      
      
            
         $count = User::where('email','=',$request->email)->count();
@@ -34,11 +35,13 @@ class UserController extends Controller
             ]);
         }
         if($count == 0){
+
+            $encrypted = Crypt::encryptString($request->password);  
         
             if($request->isPatient == "true")
-                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $request->password, 'patient']);
+                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'patient']);
              elseif($request->isPatient == "false")
-                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $request->password, 'medecin']);
+                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'medecin']);
         
                  return response()->json([
                     'hasError' => false,
