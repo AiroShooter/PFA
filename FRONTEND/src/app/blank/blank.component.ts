@@ -14,6 +14,8 @@ export class BlankComponent implements OnInit {
     this.loadUsers();
   }
 
+  email:string = localStorage.getItem('userEmail');
+
   users:any
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
 

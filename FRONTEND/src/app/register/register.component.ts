@@ -41,6 +41,10 @@ export class RegisterComponent implements OnInit {
   });
 
 
+  error: string = '';
+
+
+
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   signup() {
     let form = new FormData();
@@ -49,6 +53,20 @@ export class RegisterComponent implements OnInit {
     form.append("isPatient",this.isPatient);
 
     console.log(form.get("email"), form.get("password"), form.get("isPatient"));
-    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => console.log(result), error=>console.log(error));
+    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => {
+
+
+        if(result['hasError']){
+          this.error = result['error'];
+        }
+        else{
+
+          localStorage.setItem('userEmail',this.myForm.value.email);
+          this.router.navigate(['/blank']);
+        }
+
+     
+
+    });
   }
 }

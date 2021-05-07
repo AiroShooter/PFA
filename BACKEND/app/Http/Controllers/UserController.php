@@ -28,6 +28,7 @@ class UserController extends Controller
         if($count == 1)
         {
             return response()->json([
+                'hasError' => true,
                 'success' => '',
                 'error' => 'Duplicate '
             ]);
@@ -40,8 +41,9 @@ class UserController extends Controller
                  DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $request->password, 'medecin']);
         
                  return response()->json([
+                    'hasError' => false,
                     'success' => 'done ',
-                    'error' => ' '
+                    'error' => ''
                 ]);
         
         }
