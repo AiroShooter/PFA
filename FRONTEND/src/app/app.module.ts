@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-
+import { AppGuard } from './app.guard';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -30,7 +30,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NgbModule,
     Daterangepicker,
   ],
-  providers: [],
+  providers: [AppGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

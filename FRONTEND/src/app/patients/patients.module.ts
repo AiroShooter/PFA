@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { PatientGuard } from './patient.guard';
 import { PatientsRoutingModule } from './patients-routing.module';
 
 import { PatientsComponent } from './patients.component';
@@ -11,5 +11,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [PatientsComponent, SidemenuComponent],
   imports: [CommonModule, PatientsRoutingModule, NgbModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers:[PatientGuard]
 })
 export class PatientsModule {}
