@@ -14,8 +14,8 @@ class CreateCreneausTable extends Migration
     public function up()
     {
         Schema::create('creneaus', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements("creneau_id");
+            $table->string("heure");
         });
     }
 

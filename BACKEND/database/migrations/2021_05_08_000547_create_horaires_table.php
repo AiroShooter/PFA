@@ -14,8 +14,15 @@ class CreateHorairesTable extends Migration
     public function up()
     {
         Schema::create('horaires', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements("horaire_id");
+            $table->unsignedBigInteger('med_id');
+            $table->foreign("med_id")->references("med_id")
+                ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("jour");
+            $table->string('heureDebutMat');
+            $table->string('heureFinMat');
+            $table->string('heureDebutSoir');
+            $table->string('heureFinSoir');
         });
     }
 
