@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
                 ->on("users")->onDelete("cascade")->onUpdate("cascade");
             $table->string('nom');
             $table->string('prenom');
-            $table->timestamps();
+            
         });
     }
 
