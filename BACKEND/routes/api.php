@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MedecinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,5 @@ use App\Http\Controllers\UserController;
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
+Route::any('/doctor/start',[MedecinController::class, 'create'] );
 
