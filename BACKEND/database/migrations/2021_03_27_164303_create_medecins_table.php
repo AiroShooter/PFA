@@ -24,6 +24,7 @@ class CreateMedecinsTable extends Migration
             $table->string('titre');
             $table->string('nom');
             $table->string('prenom');
+            $table->string('sexe');
             $table->float('tarif');
             $table->string('siteWeb');
             $table->string('adresseCabinet');
