@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\SpecialiteController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +26,6 @@ use App\Http\Controllers\UserController;
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
-
+Route::any('/doctor/start',[MedecinController::class, 'store'] );
+Route::any('/specialities/show',[UserController::class, 'show'] );
+Route::any('admin/specialities/add',[UserController::class, 'create'] );

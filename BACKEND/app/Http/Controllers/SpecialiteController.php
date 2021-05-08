@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Specialite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SpecialiteController extends Controller
 {
@@ -12,9 +14,23 @@ class SpecialiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show()
     {
-        //
+        $spec = DB::select('select * from specialites');
+        if($spec)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '']);
+               
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
     }
 
     /**
@@ -22,9 +38,24 @@ class SpecialiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        DB::insert('INSERT INTO `specialites`(`libelle`) VALUES (?)', [$request->libelle]);
+
+        $spec = DB::select('select * from specialites where libelle = ?',[$request->libelle]);
+        if($spec)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '']);
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
     }
 
     /**
@@ -35,7 +66,7 @@ class SpecialiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -44,10 +75,7 @@ class SpecialiteController extends Controller
      * @param  \App\Models\Specialite  $specialite
      * @return \Illuminate\Http\Response
      */
-    public function show(Specialite $specialite)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -55,9 +83,25 @@ class SpecialiteController extends Controller
      * @param  \App\Models\Specialite  $specialite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specialite $specialite)
+    public function edit(Request $request)
     {
-        //
+    $spec = Specialite::where('spec_id', $request->oldlibelle)
+      ->update(['libelle' => $request->newlibelle]);
+       
+        if($spec)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '']);
+               
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
     }
 
     /**

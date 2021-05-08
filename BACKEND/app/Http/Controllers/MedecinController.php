@@ -24,9 +24,16 @@ class MedecinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        DB::insert('insert into medecins (`user_id`, `spec_id`, `titre`, `nom`, `prenom`, `tarif`, `siteWeb`, `adresseCabinet`, `ville`, `teleCabinet`, `telePerso`, `duree`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->spec_id, $request->titre, $request->nom, $request->prenom, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree]);
+        DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree]);
 
         $users = DB::select('select * from medecins where user_id = ?',[$request->user_id]);
         if($users)
@@ -43,19 +50,6 @@ class MedecinController extends Controller
                 'success' => '',
                 'error' => 'Error']);
         }
-        
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
