@@ -64,6 +64,9 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'doctorStart', 
+  loadChildren: () => import('./doctor-start/doctor-start.module').then(
+    m => m.DoctorStartModule) },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
