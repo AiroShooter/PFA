@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UpdaterService } from 'src/app/services/updater.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   isPatient: string = "false";
-  constructor(public router: Router,  private http: HttpClient, private fb:FormBuilder) {}
+  constructor(public router: Router,  private http: HttpClient, private fb:FormBuilder, private updater: UpdaterService) {}
 
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userEmail',result['user']['email']);
           localStorage.setItem('userType',result['user']['type']);
           localStorage.setItem('userId',result['user']['user_id']);
+
+          this.updater.sendUpdate(true);
           this.router.navigate(['/blank']);
         }});
   }
