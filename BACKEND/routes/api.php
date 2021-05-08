@@ -22,5 +22,5 @@ use App\Http\Controllers\MedecinController;
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
-Route::any('/doctor/start',[MedecinController::class, 'create'] );
+Route::any('/doctor/start',[MedecinController::class, 'store'] );
 
