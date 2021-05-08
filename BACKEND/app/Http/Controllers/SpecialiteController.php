@@ -75,10 +75,7 @@ class SpecialiteController extends Controller
      * @param  \App\Models\Specialite  $specialite
      * @return \Illuminate\Http\Response
      */
-    public function shows(Specialite $specialite)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -86,9 +83,25 @@ class SpecialiteController extends Controller
      * @param  \App\Models\Specialite  $specialite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specialite $specialite)
+    public function edit(Request $request)
     {
-        //
+    $spec = Specialite::where('spec_id', $request->oldlibelle)
+      ->update(['libelle' => $request->newlibelle]);
+       
+        if($spec)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '']);
+               
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
     }
 
     /**
