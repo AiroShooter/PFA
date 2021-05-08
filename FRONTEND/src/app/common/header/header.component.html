@@ -160,14 +160,14 @@
                         <p class="contact-info-header"> +1 315 369 5943</p>
                     </div>
                 </li>
-                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!isLoggedIn">
+                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!this.auth">
                     <a class="nav-link header-login"  [routerLink]="'login-page'">login / Signup </a>
                 </li>
-                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="isLoggedIn">
-                    <a class="nav-link header-login"  [routerLink]="'login-page'">Logout</a>
-                </li>
+                <!--  <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="this.auth">
+                    <a class="nav-link header-login"  (click)="Logout()">Logout</a>
+                </li>-->
                 <!-- User Menu -->
-                <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
+                <li class="nav-item dropdown has-arrow logged-item" *ngIf="this.auth">
                     <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img">
                             <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">

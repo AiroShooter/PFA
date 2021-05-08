@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {  FormBuilder,Validators } from '@angular/forms';
 import { error } from 'selenium-webdriver';
+import { UpdaterService } from 'src/app/services/updater.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private updater: UpdaterService
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +68,7 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem('userEmail',result['user']['email']);
             localStorage.setItem('userType',result['user']['type']);
             localStorage.setItem('userId',result['user']['user_id']);
+             this.updater.sendUpdate(true);
             this.router.navigate(['/blank']);
           }
           else this.error = "Il y a une erreur de connexion";
