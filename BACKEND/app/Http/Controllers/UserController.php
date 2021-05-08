@@ -39,6 +39,17 @@ class UserController extends Controller
              elseif($request->isPatient == "false")
                  DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'medecin']);
         
+
+                 $users = DB::select('select * from users where email = ?',[$request->email]);
+                 if($users)
+                 {
+                    return response()->json([
+                        'hasError' => false,
+                        'success' => 'Done ',
+                        'error' => '',
+                        'user' =>$users[0]
+                    ]);
+                 }
                  return response()->json([
                     'hasError' => false,
                     'success' => 'Done ',

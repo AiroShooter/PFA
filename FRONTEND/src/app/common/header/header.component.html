@@ -160,8 +160,11 @@
                         <p class="contact-info-header"> +1 315 369 5943</p>
                     </div>
                 </li>
-                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
+                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!isLoggedIn">
                     <a class="nav-link header-login"  [routerLink]="'login-page'">login / Signup </a>
+                </li>
+                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link header-login"  [routerLink]="'login-page'">Logout</a>
                 </li>
                 <!-- User Menu -->
                 <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { DoctorGuard } from './doctor.guard';
 import { DoctorComponent } from './doctor.component';
 
 const routes: Routes = [
   {
     path: '',
+    canLoad:[DoctorGuard],canActivateChild:[DoctorGuard],canActivate:[DoctorGuard],
     component: DoctorComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

@@ -7,7 +7,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DataService } from './../data.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AdminGuard } from './admin.guard';
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent],
   imports: [
@@ -17,5 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InMemoryWebApiModule.forRoot(DataService),
     ModalModule.forRoot(),
   ],
+  providers:[AdminGuard]
 })
 export class AdminModule {}

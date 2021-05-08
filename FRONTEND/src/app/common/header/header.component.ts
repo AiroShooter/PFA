@@ -22,11 +22,12 @@ import { CommonServiceService } from './../../common-service.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  isLoggedIn:boolean = false;
   auth: boolean = false;
   isPatient: boolean = false;
   page;
   splitVal;
-  headerTop: boolean = false;
+  headerTop: boolean = true;
   base;
   url1;
   constructor(
@@ -66,6 +67,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.checkLoging();
     if (localStorage.getItem('auth') === 'true') {
       this.auth = true;
       this.isPatient =
@@ -186,4 +189,16 @@ export class HeaderComponent implements OnInit {
       this.commonService.nextmessage('pharmacy-admin');
     }
   }
+
+
+
+
+checkLoging()
+{
+  this.isLoggedIn = !!localStorage.getItem('userEmail');
+}
+
+
+
+  
 }
