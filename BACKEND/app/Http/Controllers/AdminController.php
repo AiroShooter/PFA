@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
@@ -22,9 +27,51 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $count = User::where('email','=',$request->email)->count();
+
+        if($count == 1)
+        {
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Cet e-mail existe déjà, veuillez en essayer un autre'
+            ]);
+        }
+        if($count == 0){
+
+            $encrypted = Crypt::encryptString($request->password);  
+            DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'patient']);
+            $users = DB::select('select * from users where email = ?',[$request->email]);
+            if($users){
+                return response()->json([
+                    'hasError' => false,
+                    'success' => 'Done',
+                    'error' => '',
+                    'user' =>$users[0]
+                    ]);
+            }
+            DB::insert('insert into admins (`user_id`, `nom`, `prenom`) values (?, ?, ?)', [$users[0]->user_id, $request->nom, $request->prenom]);
+            $admin = DB::select('select * from admins where user_id = ?',[$users[0]->user_id]);
+            
+            if($admin){
+                return response()->json([
+                    'hasError' => false,
+                    'success' => 'Done',
+                    'error' => '',
+                    'user' =>$admin[0]
+                    ]);
+            }
+            
+            return response()->json([
+                    'hasError' => false,
+                    'success' => 'Done ',
+                    'error' => ''
+                ]);
+        
+        }
+ 
     }
 
     /**
