@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canLoad:[AdminGuard],canActivateChild:[AdminGuard],canActivate:[AdminGuard],
+   // canLoad:[AdminGuard],canActivateChild:[AdminGuard],canActivate:[AdminGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
