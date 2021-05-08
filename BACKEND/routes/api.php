@@ -29,4 +29,3 @@ Route::any('/login',[UserController::class, 'login'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/specialities/show',[UserController::class, 'show'] );
 Route::any('admin/specialities/add',[UserController::class, 'create'] );
-Route::any('/doctor/start',[MedecinController::class, 'create'] );
