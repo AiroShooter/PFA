@@ -31,7 +31,7 @@ class CreateMedecinsTable extends Migration
             $table->string('teleCabinet');
             $table->string('telePerso');
             $table->integer('duree');
-            $table->timestamps();
+            
         });
     }
 

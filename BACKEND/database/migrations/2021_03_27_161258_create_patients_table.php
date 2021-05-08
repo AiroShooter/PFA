@@ -23,7 +23,7 @@ class CreatePatientsTable extends Migration
             $table->string('telePerso');
             $table->string('pays');
             $table->date('dateNaiss');
-            $table->timestamps();
+            
         });
     }
 

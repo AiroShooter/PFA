@@ -17,8 +17,10 @@ class CreateLigneCalendriersTable extends Migration
             $table->unsignedBigInteger("creneau_id");
             $table->unsignedBigInteger('calen_id');
             $table->primary(array('creneau_id', 'calen_id'));
-            $table->string("etat");
-            $table->date("date");   
+            $table->foreign("calen_id")->references("calen_id")
+            ->on("calendriers")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("creneau_id")->references("creneau_id")
+                ->on("creneaus")->onDelete("cascade")->onUpdate("cascade");
             });
     }
 
