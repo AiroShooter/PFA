@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.checkLoging();
+    
     if (localStorage.getItem('auth') === 'true') {
       this.auth = true;
       this.isPatient =
