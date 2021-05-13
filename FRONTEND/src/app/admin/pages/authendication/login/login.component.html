@@ -12,15 +12,29 @@
                         <p class="account-subtitle">Accédez à notre tableau de bord</p>
                         
                         <!-- Form -->
-                        <form>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Email">
+                        <form [formGroup]="myForm" (ngSubmit)="login()">
+                            <div *ngIf="this.error != ''" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{this.error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password">
+                                <input class="form-control" type="text" placeholder="Email"  formControlName="username">
+
+                                <span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('required')" class="text-danger">Veuillez saisir l'e-mail</span>
+                                <span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('minlength')" class="text-danger">La longueur minimale des caractères requise est de 5</span>
+                                <span *ngIf="myForm.get('username')!.touched && myForm.get('username')!.hasError('email')" class="text-danger">Veuillez saisir une adresse e-mail valide</span>
+
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Se connecter</button>
+                                <input class="form-control" type="text" placeholder="Password" formControlName="password">
+
+                                <span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('required')" class="text-danger">S'il vous plaît entrer le mot de passe</span>
+									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('minlength')" class="text-danger">La longueur minimale des caractères requise est de 8</span>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit" [disabled]="!myForm.valid" >Se connecter</button>
                             </div>
                         </form>
                         <!-- /Form -->

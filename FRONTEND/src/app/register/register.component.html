@@ -29,7 +29,7 @@
 												<label class="focus-label">Email<span class="required">*</span></label>
 
 												<span *ngIf="myForm.get('email')!.touched && myForm.get('email')!.hasError('required')" class="text-danger">Veuillez saisir l'e-mail</span>
-												<span *ngIf="myForm.get('email')!.touched && myForm.get('email')!.hasError('email')" class="text-danger">La longueur minimale des caractères requise est de 5</span>
+												<span *ngIf="myForm.get('email')!.touched && myForm.get('email')!.hasError('email')" class="text-danger">Veuillez saisir une adresse e-mail valide</span>
 											</div>
 										
 											<div class="form-group form-focus">
