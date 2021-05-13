@@ -30,6 +30,7 @@ class CreateConsultationsTable extends Migration
             $table->string('etat');
             $table->string('raison');
             $table->string('heure');
+            $table->float('tarif');
             
            
         });
