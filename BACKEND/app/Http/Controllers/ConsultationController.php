@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\consultation;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class ConsultationController extends Controller
      */
     public function create()
     {
-        //
+        
+        
     }
 
     /**
@@ -44,9 +46,25 @@ class ConsultationController extends Controller
      * @param  \App\Models\consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function show(consultation $consultation)
+    public function show(Request $request)
     {
-        //
+        $cons = DB::select('select * from consultations where med_id = (?) ',$request->med_id);
+        if($cons)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done',
+               'data' => $cons,
+               'error' => '']);
+               
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'data' => 'empty',
+                'error' => 'Error']);
+        }
     }
 
     /**
