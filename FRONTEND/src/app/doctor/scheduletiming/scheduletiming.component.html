@@ -8,12 +8,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">               
                                 <label>Timing Slot Duration</label>
-                                <ng-select2  width="100%">
-                                    <option>-</option>
-                                    <option>15 mins</option>
-                                    <option selected="selected">30 mins</option>  
-                                    <option>45 mins</option>
-                                    <option>1 Hour</option>
+                                <ng-select2  width="100%" [(ngModel)]="select" [data]="DUR_DATA" (valueChanged)="CheckVal($event)">
                                 </ng-select2>
                             </div>
                         </div>
