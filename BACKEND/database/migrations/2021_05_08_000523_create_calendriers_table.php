@@ -18,8 +18,13 @@ class CreateCalendriersTable extends Migration
             $table->unsignedBigInteger('med_id');
             $table->foreign("med_id")->references("med_id")
                 ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
-            $table->string("etat");
             $table->date("date");
+            $table->string("jour");
+            $table->time("heureDebut");
+            $table->time("heureFin");
+            $table->Integer("patient_id");
+
+
         });
     }
 
