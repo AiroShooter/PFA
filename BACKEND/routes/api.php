@@ -27,5 +27,6 @@ Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
-Route::any('/specialities/show',[UserController::class, 'show'] );
-Route::any('admin/specialities/add',[UserController::class, 'create'] );
+Route::any('/patients/start',[PatientController::class, 'create'] );
+Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
+Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
