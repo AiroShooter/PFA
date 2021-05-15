@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem('userType',result['user']['type']);
             localStorage.setItem('userId',result['user']['user_id']);
              this.updater.sendUpdate(true);
-            this.router.navigate(['/blank']);
+            this.router.navigate(['/doctor/start']);
           }
           else this.error = "Il y a une erreur de connexion";
           

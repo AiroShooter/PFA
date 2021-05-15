@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+    <div class="col-md-8">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Poursuivre votre inscription</h4>
+        </div>
+        <div class="container mg-auto card-body">
+            <form [formGroup]="myForm" (ngSubmit)="signup()">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" class="form-control" formControlName="nom">
+                </div>
+                <div class="form-group">
+                    <label>Prenom</label>
+                    <input type="text" class="form-control" formControlName="prenom">
+                </div>
+                <div class="form-group">
+                    <label class="d-block">Sexe :</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender_male" value="m" formControlName="sexe" formControlName="sexe">
+                        <label class="form-check-label" for="gender_male">Masculin</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender_female" value="f" formControlName="sexe" formControlName="sexe">
+                        <label class="form-check-label" for="gender_female">Féminin</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Date de naissance</label>
+                    <input type="date" class="form-control" formControlName="dateNaiss">
+                </div>
+                <div class="form-group">
+                    <label>Telephone</label>
+                    <input type="text" class="form-control" formControlName="tele">
+                </div>
+                <div class="form-group">
+                    <label>Pays</label>
+                    <select class="select form-control" formControlName="pays">
+                        <option>Maroc</option>
+                        <option>France</option>
+                        <option>Espagne</option>
+                        <option>U.S.A</option>
+                    </select>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
