@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Carbon;
 
 use App\Models\Medecin;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +52,20 @@ class MedecinController extends Controller
                 'error' => 'Error']);
         }
     }
-
+    public function Appshow(Request $request)
+    {
+        $cons = DB::table('consultations')
+             ->select(DB::raw('count(*)'))
+             ->where('med_id', '=', $request->med_id)
+             ->where('patient_id', '=', $request->patient_id)
+             ->get();
+       
+        return response()->json([
+            'hasError' => false,
+            'success' => 'Done',
+            'Consultcount' => $cons
+            ]);
+    }
     /**
      * Display the specified resource.
      *

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\calendrier;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class CalendrierController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -22,9 +23,40 @@ class CalendrierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $celenders = $request;
+
+        foreach ($celenders as $item)
+        {
+            $inserted = DB::insert('insert into calendrier values (`med_id`, `date`, `jour`, `heureDebut`, `heureFin`, `patient_id`) values (?, ?, ?, ?, ?, ?)', [$item["med_id"] ,NULL,$item["jour"],$item["heureDebut"],$item["heureFin"],NULL]);
+             
+                if($inserted)
+                {
+                    return response()->json([
+                        'hasError' => false,
+                        'success' => 'Done',
+                        'error' => '']);
+                        
+                }
+                else
+                {
+                    return response()->json([
+                        'hasError' => true,
+                        'success' => '',
+                        'data' => 'empty',
+                        'error' => 'Error']);
+                }   
+        }
+    
+        
+
+           
+                
+            
+                  
+
+        
     }
 
     /**
@@ -57,7 +89,7 @@ class CalendrierController extends Controller
      */
     public function edit(calendrier $calendrier)
     {
-        //
+        
     }
 
     /**
@@ -67,9 +99,24 @@ class CalendrierController extends Controller
      * @param  \App\Models\calendrier  $calendrier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, calendrier $calendrier)
+    public function update(Request $request)
     {
-        //
+        $upda = DB::update('update calendrier set patient_id = (?) where med_id',[$request->patient_id, $request->med_id]);
+        if($upda)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done',
+               'error' => '']);
+               
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'data' => 'empty',
+                'error' => 'Error']);
+        }
     }
 
     /**

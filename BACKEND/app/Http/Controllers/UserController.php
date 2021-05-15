@@ -34,15 +34,22 @@ class UserController extends Controller
 
             $encrypted = Crypt::encryptString($request->password);  
         
-            if($request->isPatient == "true")
+            if($request->isPatient && $request->isPatient == "true")
                  DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'patient']);
-             elseif($request->isPatient == "false")
+             elseif($request->isPatient && $request->isPatient == "false")
                  DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'medecin']);
+            elseif($request->type == "admin")
+                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'admin']);
         
 
                  $users = DB::select('select * from users where email = ?',[$request->email]);
                  if($users)
                  {
+
+                    if($users[0]->type == 'admin')
+                    {
+                        DB::insert('INSERT INTO `admins`(`user_id`, `nom`, `prenom`) VALUES (?, ?, ?)', [$users[0]->user_id, $request->nom, $request->prenom]);
+                    }
                     return response()->json([
                         'hasError' => false,
                         'success' => 'Done ',

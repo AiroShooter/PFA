@@ -3,6 +3,7 @@ import {
   OnInit,
   ChangeDetectorRef,
   AfterViewInit,
+  OnDestroy ,
   Inject,
 } from '@angular/core';
 import {
@@ -13,6 +14,8 @@ import {
   NavigationEnd,
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { UpdaterService } from 'src/app/services/updater.service';
 
 import { CommonServiceService } from './../../common-service.service';
 
@@ -21,8 +24,7 @@ import { CommonServiceService } from './../../common-service.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  isLoggedIn:boolean = false;
+export class HeaderComponent implements OnInit, OnDestroy {
   auth: boolean = false;
   isPatient: boolean = false;
   page;
@@ -30,13 +32,24 @@ export class HeaderComponent implements OnInit {
   headerTop: boolean = true;
   base;
   url1;
+  private subscriptionName: Subscription; //important to create a subscription
+    
   constructor(
     @Inject(DOCUMENT) private document,
     private cdr: ChangeDetectorRef,
     public router: Router,
     private activeRoute: ActivatedRoute,
-    public commonService: CommonServiceService
+    public commonService: CommonServiceService,
+    private updater: UpdaterService
   ) {
+    // subscribe to sender component messages
+    this.subscriptionName= this.updater.getUpdate().subscribe
+    (auth => { //message contains the data sent from service
+      this.auth = auth;
+      if(localStorage.getItem('userType') == 'patient')
+        this.isPatient = true;
+       else this.isPatient = false;
+    });
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         var res = event.url.split('/');
@@ -69,12 +82,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.checkLoging();
-    
-    if (localStorage.getItem('auth') === 'true') {
-      this.auth = true;
-      this.isPatient =
-        localStorage.getItem('patient') === 'true' ? true : false;
-    }
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         $('html').removeClass('menu-opened');
@@ -170,7 +177,7 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.auth = false;
     this.isPatient = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login-page']);
   }
 
   home() {
@@ -193,10 +200,14 @@ export class HeaderComponent implements OnInit {
 
 
 
+  ngOnDestroy() { // It's a good practice to unsubscribe to ensure no memory leaks
+    this.subscriptionName.unsubscribe();
+}
+
 
 checkLoging()
 {
-  this.isLoggedIn = !!localStorage.getItem('userEmail');
+  this.auth = !!localStorage.getItem('userEmail');
 }
 
 
