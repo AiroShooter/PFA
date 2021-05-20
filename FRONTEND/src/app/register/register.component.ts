@@ -56,24 +56,22 @@ export class RegisterComponent implements OnInit {
 
     console.log(form.get("email"), form.get("password"), form.get("isPatient"));
     this.http.post(this.SERVER_URL + 'register', form).subscribe(result => {
-
-
         if(result['hasError']){
           this.error = result['error'];
         }
         else{
-
           if(result['user'])
           {
             localStorage.setItem('userEmail',result['user']['email']);
             localStorage.setItem('userType',result['user']['type']);
             localStorage.setItem('userId',result['user']['user_id']);
-             this.updater.sendUpdate(true);
-            this.router.navigate(['/doctor/start']);
+            this.updater.sendUpdate(true);
+            if(this.isPatient == "false")
+              this.router.navigate(['/doctor/start']);
+            else if(this.isPatient == "true")
+              this.router.navigate(['/patients/start']);
           }
-          else this.error = "Il y a une erreur de connexion";
-          
-          
+          else this.error = "Il y a une erreur de connexion";          
         }});
   }
 }
