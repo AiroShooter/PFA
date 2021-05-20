@@ -19,4 +19,12 @@ export class UpdaterService {
     return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
   }
 
+  sendData(data: string[]) { //the component that wants to update something, calls this fn
+    this.subjectName.next({ update: data }); //next() will feed the value in Subject
+  }
+
+  getData(): Observable<any> { //the receiver component calls this function 
+    return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
+  }
+
 }

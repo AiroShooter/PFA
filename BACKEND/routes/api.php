@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SpecialiteController;
+use App\Http\Controllers\CalendrierController;
 
 
 
@@ -30,3 +31,4 @@ Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
+Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );

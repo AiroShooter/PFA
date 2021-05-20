@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-scheduletiming',
@@ -55,13 +56,41 @@ export class ScheduletimingComponent implements OnInit {
 
 
   select: any;
-  constructor() { }
+  constructor(private appComponnet: AppComponent) { }
 
 
 
   ngOnInit(): void {
 
-    this.SLOT_DATA = this._15MIN
+    localStorage.setItem('SLOT', JSON.stringify(this._15MIN));
+  }
+
+  Sunday(){
+    this.appComponnet.jour = 'Sunday';
+  }
+
+  Monday(){
+    this.appComponnet.jour = 'Monday';
+  }
+
+  Tuesday(){
+    this.appComponnet.jour = 'Tuesday';
+  }
+
+  Wednesday(){
+    this.appComponnet.jour = 'Wednesday';
+  }
+
+  Thursday(){
+    this.appComponnet.jour = 'Thursday';
+  }
+
+  Friday(){
+    this.appComponnet.jour = 'Friday';
+  }
+
+  Saturday(){
+    this.appComponnet.jour = 'Saturday';
   }
 
  
@@ -70,29 +99,34 @@ export class ScheduletimingComponent implements OnInit {
 
     if(e == '15 min')
     {
-     this.SLOT_DATA = this._15MIN
+      localStorage.setItem('SLOT', JSON.stringify(this._15MIN));
     }
     if(e == '30 min')
     {
-      this.SLOT_DATA = this._30MIN
+      localStorage.setItem('SLOT', JSON.stringify(this._30MIN));
     }
 
     if(e == '45 min')
     {
-      this.SLOT_DATA = this._45MIN
+      localStorage.setItem('SLOT', JSON.stringify(this._45MIN));
     }
 
     if(e == '1 heure')
     {
-      this.SLOT_DATA = this._1H
+      localStorage.setItem('SLOT', JSON.stringify(this._1H));
     }
+
+    this.appComponnet.SLOT_DATA = JSON.parse(localStorage.getItem('SLOT'));
+
 
 
   }
 
 
 
-
+  Save(){
+    console.log('scadul component save')
+  }
 
 
 }
