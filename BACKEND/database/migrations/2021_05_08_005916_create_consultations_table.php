@@ -21,9 +21,7 @@ class CreateConsultationsTable extends Migration
             $table->unsignedBigInteger("med_id");
             $table->foreign("med_id")->references("med_id")
             ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
-            $table->unsignedBigInteger("doss_id");
-            $table->foreign("doss_id")->references("doss_id")
-            ->on("dossier_medicals")->onDelete("cascade")->onUpdate("cascade");
+            
             $table->date("date");
             $table->string("type");
             $table->string('desc');
