@@ -45,3 +45,4 @@ Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+Route::any('admin/specialities/show',[SpecialiteController::class, 'show'] );

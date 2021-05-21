@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecialitiesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
+  showspecialities:any 
+  getshowspecialities(){
+    this.http.get("http://127.0.0.1:8000/api/admin/specialities/show").subscribe(result => {
+      this.showspecialities = result;
+    });
+    console.log(this.showspecialities);
+  }; 
 
 }

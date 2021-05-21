@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonServiceService } from '../../../common-service.service';
 import * as $ from 'jquery';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-view',
@@ -17,11 +19,13 @@ export class ViewComponent implements OnInit {
   key;
   constructor(
     private commonService: CommonServiceService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private http: HttpClient, private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.getSpecialityList();
+    this.getshowspecialities();
   }
 
   getSpecialityList() {
@@ -101,7 +105,13 @@ export class ViewComponent implements OnInit {
   decline() {
     this.modalRef.hide();
   }
-
+  showspecialities:any 
+  getshowspecialities(){
+    this.http.get("http://127.0.0.1:8000/api/admin/specialities/show").subscribe(result => {
+      this.showspecialities = result;
+    });
+    console.log(this.showspecialities);
+  }; 
   btnColor() {
     document.getElementById('btn-yes').style.backgroundColor = '#00d0f1';
     document.getElementById('btn-yes').style.border = '1px solid #00d0f1';
@@ -120,5 +130,18 @@ export class ViewComponent implements OnInit {
     document.getElementById('btn-yes').style.backgroundColor = '#fff';
     document.getElementById('btn-yes').style.border = '1px solid #fff';
     document.getElementById('btn-yes').style.color = '#000';
+  }
+  myForm = this.fb.group({
+    libelle:[]
+  })
+
+  addspec()
+  { 
+    let form = new FormData();
+    form.append("libelle",this.myForm.value.libelle);
+    console.log(this.myForm.value.libelle);
+     this.http.post("http://127.0.0.1:8000/api/admin/insertSpec",form).subscribe(result =>{
+       console.log(result);
+     });
   }
 }

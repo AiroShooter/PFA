@@ -17,17 +17,7 @@ class SpecialiteController extends Controller
     public function show()
     {
         $spec = DB::select('select * from specialites');
-        if($spec)
-        {
-           return $spec;
-               
-        }
-        else{
-            return response()->json([
-                'hasError' => true,
-                'success' => '',
-                'error' => 'Error']);
-        }
+        return $spec;
     }
 
     /**

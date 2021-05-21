@@ -33,17 +33,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let special of speciality">
-                                        <td>{{special.key}}</td>
+                                    <tr *ngFor="let special of showspecialities">
+                                        <td>{{special.spec_id}}</td>
 
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img"
-                                                        [src]="special.img"
-                                                        alt="Speciality">
-                                                </a>
-                                                <a>{{special.speciality}}</a>
+                                               
+                                                <a>{{special.libelle}}</a>
                                             </h2>
                                         </td>
 
@@ -79,20 +75,20 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
+        <form [formGroup]="myForm" (ngSubmit)="addspec()" method="POST">
             <div class="row form-row">
-                <div class="col-12 col-sm-6">
+                <div class="d-inline-flex p-2">
                     <div class="form-group">
                         <label>Specialities</label>
-                        <input type="text" class="form-control" name="speciality" [(ngModel)]="name">
+                        <input type="text" class="form-control" name="speciality" formControlName="libelle">
                     </div>
                 </div>
-                <div class="col-12 col-sm-6">
+                <!-- <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label>Image</label>
                         <input type="file" class="form-control">
                     </div>
-                </div>
+                </div> -->
                 
             </div>
             <button type="submit" class="btn btn-primary btn-block" (click)="save()">Save Changes</button>
