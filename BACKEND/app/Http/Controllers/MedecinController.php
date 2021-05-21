@@ -38,12 +38,14 @@ class MedecinController extends Controller
         DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, sexe, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree,isSanteSpecialise) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->sexe, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree,1]);
 
         $users = DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+        $spec = DB::select('select libelle from specialites where spec_id = ?',[$users[0]->spec_id]);
         if($users)
         {
            return response()->json([
                'hasError' => false,
                'success' => 'Done ',
                'error' => '',
+               'spec' => $spec[0],
                'user' =>$users[0]]);
         }
         else{
