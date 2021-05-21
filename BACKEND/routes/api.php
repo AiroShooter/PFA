@@ -32,3 +32,8 @@ Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
+Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
+Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
+Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll'] );
+Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
