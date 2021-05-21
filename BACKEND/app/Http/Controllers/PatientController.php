@@ -26,7 +26,7 @@ class PatientController extends Controller
      */
     public function create(Request $request)
     {
-        DB::insert('insert into patients (`user_id`, `nom`, `prenom`, `telePerso`, `pays`, `dateNaiss`) values (?, ?, ?, ?, ?, ?)', [$request->user_id, $request->nom, $request->prenom, $request->telePerso, $request->pays, $request->dateNaiss]);
+        DB::insert('insert into patients (`user_id`, `nom`, `prenom`, `sexe`, `telePerso`, `pays`, `dateNaiss`) values (?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->nom, $request->prenom, $request->sexe, $request->telePerso, $request->pays, $request->dateNaiss]);
 
         $users = DB::select('select * from patients where user_id = ?',[$request->user_id]);
         if($users)

@@ -35,7 +35,7 @@ class MedecinController extends Controller
      */
     public function store(Request $request)
     {
-        DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree,isSanteSpecialise) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree,1]);
+        DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, sexe, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree,isSanteSpecialise) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->sexe, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree,1]);
 
         $users = DB::select('select * from medecins where user_id = ?',[$request->user_id]);
         if($users)
