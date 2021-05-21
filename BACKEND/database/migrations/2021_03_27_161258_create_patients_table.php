@@ -25,7 +25,7 @@ class CreatePatientsTable extends Migration
             $table->string('pays');
             $table->date('dateNaiss');
             $table->unsignedBigInteger("doss_id");
-            
+
         });
     }
 

@@ -32,6 +32,7 @@ class AdminController extends Controller
      */
     public function create(Request $request)
     {
+        
         $count = User::where('email','=',$request->email)->count();
 
         if($count == 1)

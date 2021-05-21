@@ -35,11 +35,11 @@ class UserController extends Controller
             $encrypted = Crypt::encryptString($request->password);  
         
             if($request->isPatient && $request->isPatient == "true")
-                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'patient']);
+                 DB::insert('insert into users (email, password, type, isActive) values (?, ?, ?, ?)', [$request->email, $encrypted, 'patient', 1]);
              elseif($request->isPatient && $request->isPatient == "false")
-                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'medecin']);
+                 DB::insert('insert into users (email, password, type, isActive) values (?, ?, ?, ?)', [$request->email, $encrypted, 'medecin', 1]);
             elseif($request->type == "admin")
-                 DB::insert('insert into users (email, password, type) values (?, ?, ?)', [$request->email, $encrypted, 'admin']);
+                 DB::insert('insert into users (email, password, type, isActive) values (?, ?, ?, ?)', [$request->email, $encrypted, 'admin', 1]);
         
 
                  $users = DB::select('select * from users where email = ?',[$request->email]);
@@ -72,7 +72,7 @@ class UserController extends Controller
 
     public static function login(Request $request){
 
-        $users = DB::select('select * from users where email = ?',[$request->email]);
+        $users = DB::select('select * from users where email = ? and isActive = ?',[$request->email,1]);
 
         if($users)
         {

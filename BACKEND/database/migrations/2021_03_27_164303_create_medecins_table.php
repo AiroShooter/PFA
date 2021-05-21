@@ -33,7 +33,8 @@ class CreateMedecinsTable extends Migration
             $table->string('telePerso');
             $table->integer('duree');
             $table->boolean('isSanteSpecialise');
-            
+             
+
         });
     }
 
