@@ -54,8 +54,17 @@ export class DoctorStartComponent implements OnInit {
     console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
     this.http.post(this.SERVER_URL + 'doctor/start', form).subscribe(result => {
       console.log(result);
+      if(result['user'])
+          {
+            localStorage.setItem('Mnom',result['user']['nom']);
+            localStorage.setItem('Mprenom',result['user']['prenom']);
+            localStorage.setItem('Tele',result['user']['telePerso']);
+            localStorage.setItem('Ville',result['user']['ville']);
+            if(result['spec'])
+              localStorage.setItem('Spec',result['spec']['libelle']);
+            this.router.navigate(['/doctor/dashboard']);
+          }
     });
-    this.router.navigate(['/doctor/dashboard']);
   }
 
 }

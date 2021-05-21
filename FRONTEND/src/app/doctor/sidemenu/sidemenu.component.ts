@@ -45,4 +45,6 @@ export class SidemenuComponent implements OnInit {
     this.name = name;
     this.commonService.nextmessage(name);
   }
+  nom = localStorage.getItem('Mnom') + ' ' + localStorage.getItem('Mprenom');
+  spec = localStorage.getItem('Spec');
 }
