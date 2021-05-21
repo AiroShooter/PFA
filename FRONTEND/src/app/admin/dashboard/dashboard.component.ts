@@ -1,10 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
   AfterViewInit,
   ViewEncapsulation,
 } from '@angular/core';
+
 declare var $: any;
+
 declare var Morris: any;
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +15,18 @@ declare var Morris: any;
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private http: HttpClient) {
+  }
+
 
   ngOnInit(): void {
+    this.getconsultationCount();
+    this.getallRevenue();
+    this.getPatientCount();
+    this.getDoctorsCount();
+    this.getDoctorsinfo();
+    this.showPatients();
+    this.getshowConsultations();
     let chartAreaData = [
       { y: '2006', a: 100, b: 90 },
       { y: '2007', a: 75, b: 65 },
@@ -79,5 +91,73 @@ export class DashboardComponent implements OnInit {
       resize: true,
       redraw: true,
     });
+
   }
+  
+  allRevenue:any 
+  getallRevenue(){
+    this.http.get("http://127.0.0.1:8000/api/admin/allRevenue").subscribe(result => {
+      this.allRevenue = result;
+    });
+    console.log(this.allRevenue);
+  };
+  doctorsCount:any 
+  getDoctorsCount(){
+    this.http.get("http://127.0.0.1:8000/api/admin/doctorsCount").subscribe(result => {
+      this.doctorsCount = result;
+    });
+    console.log(this.doctorsCount);
+  };
+  consultationCount:any 
+  getconsultationCount(){
+    this.http.get("http://127.0.0.1:8000/api/admin/consultationCount").subscribe(result => {
+      this.consultationCount = result;
+    });
+    console.log(this.consultationCount);
+  };
+  
+  patientsCount:any 
+  getPatientCount(){
+    this.http.get("http://127.0.0.1:8000/api/admin/patientCount").subscribe(result => {
+      this.patientsCount = result;
+    });
+    console.log(this.patientsCount);
+  };
+  doctorsinfo:any 
+  getDoctorsinfo(){
+    this.http.get("http://127.0.0.1:8000/api/admin/showDoctors").subscribe(result => {
+      this.doctorsinfo = result;
+    });
+    console.log(this.doctorsinfo);
+  };
+  showpatients:any 
+  showPatients(){
+    this.http.get("http://127.0.0.1:8000/api/admin/showPatients").subscribe(result => {
+      this.showpatients = result;
+    });
+    console.log(this.showpatients);
+  }; 
+  showConsultations:any 
+  getshowConsultations(){
+    this.http.get("http://127.0.0.1:8000/api/admin/showConsultations").subscribe(result => {
+      this.showConsultations = result;
+    });
+    console.log(this.showConsultations);
+  }; 
+  onchange(etat,id)
+  { 
+     if(etat == "confirmer"){
+        etat = "annuler"; 
+    }
+     else
+     etat = "confirmer";
+    
+     this.http.post("http://127.0.0.1:8000/api/admin/changeEtat",{"etat":etat,"id":id}).subscribe(result =>{
+       console.log(result);
+     });
+     
+  }
+
+  
+  
 }

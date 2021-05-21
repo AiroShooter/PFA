@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultation;
+use App\Models\Medecin;
+use App\Models\Patient;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,9 +94,59 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Request $request)
     {
-        //
+        $value = Admin::where('user_id', '<=', $request->user_id)->get();
+        return response()->json([
+            'hasError' => false,
+            'success' => 'Done',
+            'admin' => $value
+            ]);
+    }
+    public function showDoctors()
+    {
+        $value = DB::select("SELECT m.nom,m.prenom,s.libelle FROM medecins m inner join specialites s on m.spec_id = s.spec_id"); 
+        return $value;
+    }
+    public function showPatients()
+    {
+        $value = DB::select("SELECT p.nom,p.prenom,p.telePerso,sum(c.tarif) as tarifs FROM `consultations` c inner join patients p on c.patient_id = c.patient_id GROUP BY p.nom,p.prenom,p.telePerso"); 
+        return $value;
+    }
+    public function showConsultations()
+    {
+        $value = DB::select("SELECT c.const_id, m.nom as medecinnom,m.prenom as medecinprenom,p.nom,p.prenom,c.tarif,c.etat,c.date,s.libelle from `consultations` c inner join patients p on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id inner join specialites s on s.spec_id = m.spec_id"); 
+        return $value;
+    }
+    public function consultationCount()
+    {
+        $query = DB::table('consultations');
+        $conscount = $query->count();
+        return $conscount;
+    }
+    public function patientCount()
+    {
+        $query = DB::table('patients');
+        $patcount = $query->count();
+        return $patcount;
+    }
+    public function doctorsCount()
+    {
+        $query = DB::table('medecins');
+        $medcount = $query->count();
+        return $medcount;
+    }
+    public function allRevenue()
+    {
+        $query = DB::select('SELECT sum(tarif) as tarifs FROM `consultations`');
+       
+        return $query;
+    }
+    public function changeEtat(Request $request)
+    {
+        $query = DB::update("update consultations set etat = (?) where const_id = (?)",[$request->etat, $request->id]);
+       
+        return $query;
     }
 
     /**
