@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 
 
 use App\Http\Controllers\SpecialiteController;
+use App\Http\Controllers\CalendrierController;
 
 
 
@@ -42,3 +43,5 @@ Route::any('/admin/allRevenue',[AdminController::class, 'allRevenue'] );
 Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
+Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
+Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );

@@ -25,11 +25,8 @@ class CalendrierController extends Controller
      */
     public function create(Request $request)
     {
-        $celenders = $request;
 
-        foreach ($celenders as $item)
-        {
-            $inserted = DB::insert('insert into calendrier values (`med_id`, `date`, `jour`, `heureDebut`, `heureFin`, `patient_id`) values (?, ?, ?, ?, ?, ?)', [$item["med_id"] ,NULL,$item["jour"],$item["heureDebut"],$item["heureFin"],NULL]);
+        $inserted = DB::insert('INSERT INTO `calendriers`(`med_id`, `date`, `jour`, `heureDebut`, `heureFin`, `patient_id`) VALUES (?,?,?,?,?,?)', [$request->med_id,NULL, $request->jour, $request->heureDebut, $request->heureFin, NULL]);
              
                 if($inserted)
                 {
@@ -46,15 +43,7 @@ class CalendrierController extends Controller
                         'success' => '',
                         'data' => 'empty',
                         'error' => 'Error']);
-                }   
-        }
-    
-        
-
-           
-                
-            
-                  
+                }     
 
         
     }

@@ -15,6 +15,7 @@ import {
 } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonServiceService } from './common-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -24,12 +25,17 @@ import { CommonServiceService } from './common-service.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit, AfterViewChecked {
+
+  index = -1;
+  IDS: any[];
+  SLOT_DATA: string[];
   title = 'doccure';
   url;
   loadFooter = false;
   show: boolean = true;
   hideFooter: boolean = false;
   constructor(
+    private http: HttpClient,
     private activeRoute: ActivatedRoute,
     private changeDetector: ChangeDetectorRef,
     public Router: Router,
@@ -86,9 +92,54 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     setTimeout(() => (this.loadFooter = true), 2000);
+
+    this.SLOT_DATA = JSON.parse(localStorage.getItem('SLOT'));
+
+    //console.log(this.SLOT_DATA);
   }
 
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
+  }
+
+  Save(){
+    console.log('app component save')
+  }
+
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
+
+  select : any
+
+  selected : string
+
+  hours : string[];
+
+  jour: string;
+
+  CheckVal(e: any){
+    this.selected = e;
+
+    this.hours = this.selected.split(' - ', 2);
+
+    console.log(this.hours[0], this.hours[1]);
+  }
+
+  Add()
+  {
+
+    let data = new FormData();
+
+    data.append('med_id', localStorage.getItem('userId'));
+    data.append('jour', this.jour);
+    data.append('heureDebut', this.hours[0]);
+    data.append('heureFin', this.hours[1]);
+
+    console.log(data.get('med_id'),data.get('jour'),data.get('heureDebut'),data.get('heureFin'));
+
+    this.http.post(this.SERVER_URL + 'doctor/schedule', data).subscribe(res=>{
+
+      console.log(res);
+
+    });
   }
 }
