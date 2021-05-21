@@ -16,6 +16,7 @@ class CreateSpecialitesTable extends Migration
         Schema::create('specialites', function (Blueprint $table) {
             $table->bigIncrements("spec_id");
             $table->string('libelle');
+
             
         });
     }

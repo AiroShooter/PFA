@@ -18,7 +18,8 @@ class CreateNotificationEventsTable extends Migration
             $table->string("titre"); 
             $table->string("message");
             $table->string("etat");
-            $table->date("date");  
+            $table->date("date"); 
+
         });
     }
 

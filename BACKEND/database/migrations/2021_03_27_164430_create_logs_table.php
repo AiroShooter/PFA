@@ -20,7 +20,7 @@ class CreateLogsTable extends Migration
                 ->on("admins")->onDelete("cascade")->onUpdate("cascade");
             $table->date('dateLog');
             $table->string('descriptionLog');
-            
+
         });
     }
 

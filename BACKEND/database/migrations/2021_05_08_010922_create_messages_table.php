@@ -23,7 +23,8 @@ class CreateMessagesTable extends Migration
             ->on("rooms")->onDelete("cascade")->onUpdate("cascade");
             $table->string("message");
             $table->string("etat");
-            $table->date("date");   
+            $table->date("date"); 
+  
             
         });
     }
