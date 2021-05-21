@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AdminController;
+
+
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
 
@@ -30,10 +33,23 @@ Route::any('/login',[UserController::class, 'login'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
+Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
+Route::any('/admin/doctorsCount',[AdminController::class, 'doctorsCount'] );
+Route::any('/admin/showDoctors',[AdminController::class, 'showDoctors'] );
+Route::any('/admin/showPatients',[AdminController::class, 'showPatients'] );
+Route::any('/admin/patientCount',[AdminController::class, 'patientCount'] );
+Route::any('/admin/consultationCount',[AdminController::class, 'consultationCount'] );
+Route::any('/admin/allRevenue',[AdminController::class, 'allRevenue'] );
+Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
+Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
+Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+<<<<<<< HEAD
 Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
 Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
 Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll'] );
 Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
+=======
+>>>>>>> ac22e6042c40688ced2daae398d7f00f8ef8e83f

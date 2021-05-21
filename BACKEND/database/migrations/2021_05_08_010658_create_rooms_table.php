@@ -18,6 +18,7 @@ class CreateRoomsTable extends Migration
             $table->unsignedBigInteger("const_id");
             $table->foreign("const_id")->references("const_id")
                 ->on("consultations")->onDelete("cascade")->onUpdate("cascade");
+
             
         });
     }

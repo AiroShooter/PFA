@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Carbon;
-
-use App\Models\Medecin;
+use App\Models\consultation;
+use App\Models\medecin;
+use App\Models\patient;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -34,15 +35,17 @@ class MedecinController extends Controller
      */
     public function store(Request $request)
     {
-        DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree]);
+        DB::insert('insert into medecins (user_id, spec_id, titre, nom, prenom, sexe, tarif, siteWeb, adresseCabinet, ville, teleCabinet, telePerso, duree,isSanteSpecialise) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->user_id, $request->spec_id, $request->titre, $request->nom, $request->prenom, $request->sexe, $request->tarif, $request->siteWeb, $request->adresseCabinet, $request->ville, $request->teleCabinet, $request->telePerso, $request->duree,1]);
 
         $users = DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+        $spec = DB::select('select libelle from specialites where spec_id = ?',[$users[0]->spec_id]);
         if($users)
         {
            return response()->json([
                'hasError' => false,
                'success' => 'Done ',
                'error' => '',
+               'spec' => $spec[0],
                'user' =>$users[0]]);
         }
         else{
@@ -52,18 +55,32 @@ class MedecinController extends Controller
                 'error' => 'Error']);
         }
     }
-    public function Appshow(Request $request)
+    public function ConsultationCount(Request $request)
     {
-        $cons = DB::table('consultations')
-             ->select(DB::raw('count(*)'))
-             ->where('med_id', '=', $request->med_id)
-             ->where('patient_id', '=', $request->patient_id)
-             ->get();
-       
+        $cons = consultation::where('id', '<=', $request->med_id)->get();
+        $consCount = $cons->count();
         return response()->json([
             'hasError' => false,
             'success' => 'Done',
-            'Consultcount' => $cons
+            'Consultcount' => $consCount
+            ]);
+    }
+    public function ConsultationInfo(Request $request)
+    {
+        $cons = consultation::where('med_id', '<=', $request->med_id)->get();
+        return response()->json([
+            'hasError' => false,
+            'success' => 'Done',
+            'Consinfo' => $cons
+            ]);
+    }
+    public function PatientInfo(Request $request)
+    {
+        $cons = consultation::where('med_id', '<=', $request->med_id)->get();
+        return response()->json([
+            'hasError' => false,
+            'success' => 'Done',
+            'patients' => $cons
             ]);
     }
     /**

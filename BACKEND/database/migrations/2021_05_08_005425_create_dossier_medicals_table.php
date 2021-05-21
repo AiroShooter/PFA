@@ -15,6 +15,9 @@ class CreateDossierMedicalsTable extends Migration
     {
         Schema::create('dossier_medicals', function (Blueprint $table) {
             $table->bigIncrements("doss_id");
+            $table->string("libelle");
+
+            
         });
     }
 

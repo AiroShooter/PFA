@@ -21,11 +21,10 @@ class CreatePatientsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('sexe');
-
             $table->string('telePerso');
             $table->string('pays');
             $table->date('dateNaiss');
-            
+
         });
     }
 

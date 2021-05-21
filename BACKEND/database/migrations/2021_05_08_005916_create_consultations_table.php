@@ -16,14 +16,9 @@ class CreateConsultationsTable extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->bigIncrements("const_id");
             $table->unsignedBigInteger("patient_id");
-            $table->foreign("patient_id")->references("patient_id")
-                ->on("patients")->onDelete("cascade")->onUpdate("cascade");
             $table->unsignedBigInteger("med_id");
-            $table->foreign("med_id")->references("med_id")
-            ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("replace_id");
             $table->unsignedBigInteger("doss_id");
-            $table->foreign("doss_id")->references("doss_id")
-            ->on("dossier_medicals")->onDelete("cascade")->onUpdate("cascade");
             $table->date("date");
             $table->string("type");
             $table->string('desc');
@@ -31,7 +26,15 @@ class CreateConsultationsTable extends Migration
             $table->string('raison');
             $table->string('heure');
             $table->float('tarif');
-            
+            $table->foreign("replace_id")->references("med_id")
+            ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("patient_id")->references("patient_id")
+            ->on("patients")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("med_id")->references("med_id")
+            ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("doss_id")->references("doss_id")
+            ->on("dossier_medicals")->onDelete("cascade")->onUpdate("cascade"); 
+
            
         });
     }

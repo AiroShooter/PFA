@@ -24,7 +24,7 @@
 											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
-											<h3>168</h3>
+											<h3>{{doctorsCount}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
@@ -44,7 +44,7 @@
 											<i class="fe fe-credit-card"></i>
 										</span>
 										<div class="dash-count">
-											<h3>487</h3>
+											<h3>{{patientsCount}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
@@ -65,7 +65,7 @@
 											<i class="fe fe-money"></i>
 										</span>
 										<div class="dash-count">
-											<h3>485</h3>
+											<h3>{{consultationCount}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
@@ -86,7 +86,7 @@
 											<i class="fe fe-folder"></i>
 										</span>
 										<div class="dash-count">
-											<h3>$62523</h3>
+											<h3>${{allRevenue[0].tarifs}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
@@ -150,92 +150,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Ruby Perrin</a>
-														</h2>
-													</td>
-													<td>Dental</td>
-													<td>$3200.00</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Darren Elder</a>
-														</h2>
-													</td>
-													<td>Dental</td>
-													<td>$3100.00</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Deborah Angel</a>
-														</h2>
-													</td>
-													<td>Cardiology</td>
-													<td>$4000.00</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Sofia Brient</a>
-														</h2>
-													</td>
-													<td>Urology</td>
-													<td>$3200.00</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Marvin Campbell</a>
-														</h2>
-													</td>
-													<td>Orthopaedics</td>
-													<td>$3500.00</td>
-													<td>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star text-warning"></i>
-														<i class="fe fe-star-o text-secondary"></i>
-													</td>
-												</tr>
-											</tbody>
+												
+												<tr *ngFor="let med of doctorsinfo">
+
+												<td>
+													<h2 class="table-avatar">
+														<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
+														<a href="javascript:void(0)">{{med.nom}} {{med.prenom}}</a>
+													</h2>
+												</td>
+												<td>{{med.libelle}}</td>
+												<td>$3200.00</td>
+												<td>
+													<i class="fe fe-star text-warning"></i>
+													<i class="fe fe-star text-warning"></i>
+													<i class="fe fe-star text-warning"></i>
+													<i class="fe fe-star text-warning"></i>
+													<i class="fe fe-star-o text-secondary"></i>
+												</td>
+											</tr></tbody>
 										</table>
 									</div>
 								</div>
@@ -262,61 +195,17 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr *ngFor="let pat of showpatients">
 													<td>
 														<h2 class="table-avatar">
 															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Charlene Reed </a>
+															<a href="javascript:void(0)">{{pat.nom}} {{pat.prenom}}</a>
 														</h2>
 													</td>
-													<td>8286329170</td>
+													<td>{{pat.telePerso}}</td>
 													<td>20 Oct 2019</td>
-													<td class="text-right">$100.00</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Travis Trimble </a>
-														</h2>
-													</td>
-													<td>2077299974</td>
-													<td>22 Oct 2019</td>
-													<td class="text-right">$200.00</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Carl Kelly</a>
-														</h2>
-													</td>
-													<td>2607247769</td>
-													<td>21 Oct 2019</td>
-													<td class="text-right">$250.00</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient4.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)"> Michelle Fairfax</a>
-														</h2>
-													</td>
-													<td>5043686874</td>
-													<td>21 Sep 2019</td>
-													<td class="text-right">$150.00</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient5.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Gina Moore</a>
-														</h2>
-													</td>
-													<td>9548207887</td>
-													<td>18 Sep 2019</td>
-													<td class="text-right">$350.00</td>
-												</tr>
+													<td class="text-right">${{pat.tarifs}}</td>
+												</tr>	
 											</tbody>
 										</table>
 									</div>
@@ -348,133 +237,35 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr *ngFor="let app of showConsultations">
 													<td>
 														<h2 class="table-avatar">
 															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Ruby Perrin</a>
+															<a href="javascript:void(0)">Dr. {{app.medecinnom}} {{app.medecinprenom}}</a>
 														</h2>
 													</td>
-													<td>Dental</td>
+													<td>{{app.libelle}}</td>
 													<td>
 														<h2 class="table-avatar">
 															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Charlene Reed </a>
+															<a href="javascript:void(0)">{{app.nom}} {{app.prenom}}</a>
 														</h2>
 													</td>
-													<td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
+													<td>{{app.date}} <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
+
+															<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check" checked>
+															<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
+															<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
 															<label for="status_1" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 													<td class="text-right">
-														$200.00
+														${{app.tarif}}
 													</td>
 												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Darren Elder</a>
-														</h2>
-													</td>
-													<td>Dental</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Travis Trimble </a>
-														</h2>
-													</td>
-													
-													<td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35 AM</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_2" class="check" checked>
-															<label for="status_2" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														$300.00
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Deborah Angel</a>
-														</h2>
-													</td>
-													<td>Cardiology</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Carl Kelly</a>
-														</h2>
-													</td>
-													<td>11 Nov 2019 <span class="text-primary d-block">12.00 PM - 12.15 PM</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_3" class="check" checked>
-															<label for="status_3" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														$150.00
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Sofia Brient</a>
-														</h2>
-													</td>
-													<td>Urology</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient4.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)"> Michelle Fairfax</a>
-														</h2>
-													</td>
-													<td>7 Nov 2019<span class="text-primary d-block">1.00 PM - 1.20 PM</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_4" class="check" checked>
-															<label for="status_4" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														$150.00
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Dr. Marvin Campbell</a>
-														</h2>
-													</td>
-													<td>Orthopaedics</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient5.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">Gina Moore</a>
-														</h2>
-													</td>
-													
-													<td>15 Nov 2019 <span class="text-primary d-block">1.00 PM - 1.15 PM</span></td>
-													<td>
-														<div class="status-toggle">
-															<input type="checkbox" id="status_5" class="check" checked>
-															<label for="status_5" class="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td class="text-right">
-														$200.00
-													</td>
-												</tr>
+												
 											</tbody>
 										</table>
 									</div>
