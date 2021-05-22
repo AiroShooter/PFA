@@ -45,11 +45,8 @@ Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
-<<<<<<< HEAD
 Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
 Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
 Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll'] );
 Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
-=======
->>>>>>> ac22e6042c40688ced2daae398d7f00f8ef8e83f
