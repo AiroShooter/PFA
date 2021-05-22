@@ -46,10 +46,10 @@
                                         <td class="text-right">
                                             <div class="actions">
                                                 <a class="btn btn-sm bg-success-light" data-toggle="modal"
-                                                    (click)="editModal(edittemplate,special)">
+                                                    (click)="editModal(edittemplate,special,special.spec_id)">
                                                     <i class="fe fe-pencil"></i> Edit
                                                 </a>
-                                                <a data-toggle="modal" (click)="deleteModal(delete,special)"
+                                                <a data-toggle="modal" (click)="deleteModal(delete,special,special.spec_id)"
                                                     class="btn btn-sm bg-danger-light">
                                                     <i class="fe fe-trash"></i> Delete
                                                 </a>
@@ -104,20 +104,15 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
+        <form [formGroup]="myForm" (ngSubmit)="editspec()" method="POST">
             <div class="row form-row">
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label>Specialities</label>
-                        <input type="text" class="form-control" name="speciality" [(ngModel)]="name">
+                        <input type="text" class="form-control" name="speciality" [(ngModel)]="name" formControlName="libelle">
                     </div>
                 </div>
-                <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="file"  class="form-control">
-                    </div>
-                </div>
+                
                 
             </div>
             <button type="submit" class="btn btn-primary btn-block" (click)="update()">Edit</button>
@@ -135,7 +130,7 @@
     <div class="modal-body text-center">
       Are you sure want to delete this speciality?
       <div style="margin-top:25px">
-        <button type="button" class="btn btn-default" (mouseover)="btnColor()" id="btn-yes" (click)="deleteSpeciality()" >Yes</button>
+        <button type="button" class="btn btn-default" (mouseover)="btnColor()" id="btn-yes" (click)="deletespec()" >Yes</button>
         <button type="button" class="btn btn-primary" (mouseover)="btnColorNo()" id="btn-no" (click)="decline()" >No</button>
       </div>
     </div>

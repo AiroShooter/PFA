@@ -29,20 +29,9 @@ class SpecialiteController extends Controller
     {
         DB::insert('INSERT INTO `specialites`(`libelle`) VALUES (?)', [$request->libelle]);
 
-        $spec = DB::select('select * from specialites where libelle = ?',[$request->libelle]);
-        if($spec)
-        {
-           return response()->json([
-               'hasError' => false,
-               'success' => 'Done ',
-               'error' => '']);
-        }
-        else{
-            return response()->json([
-                'hasError' => true,
-                'success' => '',
-                'error' => 'Error']);
-        }
+        $spec = DB::select("select * from specialites");
+        return $spec;
+        
     }
 
     /**
@@ -72,23 +61,9 @@ class SpecialiteController extends Controller
      */
     public function edit(Request $request)
     {
-    $spec = Specialite::where('spec_id', $request->oldlibelle)
-      ->update(['libelle' => $request->newlibelle]);
-       
-        if($spec)
-        {
-           return response()->json([
-               'hasError' => false,
-               'success' => 'Done ',
-               'error' => '']);
-               
-        }
-        else{
-            return response()->json([
-                'hasError' => true,
-                'success' => '',
-                'error' => 'Error']);
-        }
+        $spec = DB::update("update specialites set libelle = ? where spec_id = ?", [$request->libelle,$request->spec_id]);
+        $spec1 = DB::select("select * from specialites");
+        return $spec1;
     }
 
     /**
@@ -98,9 +73,11 @@ class SpecialiteController extends Controller
      * @param  \App\Models\Specialite  $specialite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Specialite $specialite)
+    public function delete(Request $request)
     {
-        //
+        $spec = DB::update("delete from specialites where spec_id = ?",[$request->spec_id]);
+        $spec1 = DB::select("select * from specialites");
+        return $spec1;
     }
 
     /**

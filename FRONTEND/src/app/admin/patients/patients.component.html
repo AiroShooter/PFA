@@ -27,26 +27,35 @@
 										<th>Patient ID</th>
 										<th>Patient Name</th>
 										<th>Age</th>
-										<th>Address</th>
-										<th>Phone</th>
+										<th>Patient Phone</th>
+								
+										<th> Genre </th>
 										<th>Last Visit</th>
 										<th class="text-right">Paid</th>
+										<th>Account status</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let patient of patientsList">
-										<td>{{patient.key}}</td>
+									<tr *ngFor="let patient of showpatients">
+										<td>{{patient.patient_id}}</td>
 										<td>
 											<h2 class="table-avatar">
-												<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="patient.img" alt="User Image"></a>
-												<a>{{patient.name}} </a>
+												<a>{{patient.nom}} {{patient.prenom}} </a>
 											</h2>
 										</td>
-										<td>{{patient.age}}</td>
-										<td>{{patient.address}}</td>
-										<td>{{patient.phone}}</td>
-										<td>{{patient.lastvisit | date : 'dd MMM yyyy'}}</td>
-										<td class="text-right">${{patient.paid}}</td>
+										<td>{{patient.dateNaiss}}</td>
+										<td>{{patient.telePerso}}</td>
+										<td>{{patient.sexe}}</td>
+										<td>{{patient.date}}</td>
+										<td class="text-right">${{patient.tarifs}}</td>
+										<td>
+											<div class="status-toggle">
+
+												<input *ngIf="patient.isActive=='1'" type="checkbox" (change)="onchange(patient.isActive,patient.user_id)" id="{{patient.user_id}}" class="check" checked>
+												<input *ngIf="patient.isActive=='0'" type="checkbox" (change)="onchange(patient.isActive,patient.user_id)" id="{{patient.user_id}}" class="check">
+												<label for="{{patient.user_id}}" class="checktoggle">checkbox</label>
+											</div>
+										</td>
 									</tr>
 									
 								</tbody>

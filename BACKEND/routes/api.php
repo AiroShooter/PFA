@@ -45,4 +45,10 @@ Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+Route::any('/admin/insertSpec',[SpecialiteController::class, 'create'] );
 Route::any('admin/specialities/show',[SpecialiteController::class, 'show'] );
+Route::any('admin/specialities/edit',[SpecialiteController::class, 'edit'] );
+Route::any('admin/specialities/delete',[SpecialiteController::class, 'delete'] );
+Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
+
+

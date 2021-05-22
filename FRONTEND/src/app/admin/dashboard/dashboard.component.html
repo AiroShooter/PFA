@@ -145,7 +145,7 @@
 												<tr>
 													<th>Doctor Name</th>
 													<th>Speciality</th>
-													<th>Earned</th>
+													<th>Tarif</th>
 													<th>Reviews</th>
 												</tr>
 											</thead>
@@ -160,7 +160,7 @@
 													</h2>
 												</td>
 												<td>{{med.libelle}}</td>
-												<td>$3200.00</td>
+												<td>${{med.tarifs}}</td>
 												<td>
 													<i class="fe fe-star text-warning"></i>
 													<i class="fe fe-star text-warning"></i>
@@ -255,10 +255,10 @@
 													<td>
 														<div class="status-toggle">
 
-															<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check" checked>
-															<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
-															<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
+															<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
+															<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
+															<label for="{{app.const_id}}" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 													<td class="text-right">

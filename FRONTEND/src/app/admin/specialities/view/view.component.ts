@@ -49,7 +49,8 @@ export class ViewComponent implements OnInit {
     // this.key = "";
   }
 
-  editModal(template: TemplateRef<any>, special) {
+  editModal(template: TemplateRef<any>, special,spec_id) {
+    localStorage.setItem('spec_id',spec_id);
     this.id = special.id;
     // this.name = data[0].speciality;
     // this.id = data[0].id;
@@ -59,7 +60,8 @@ export class ViewComponent implements OnInit {
     });
   }
 
-  deleteModal(template: TemplateRef<any>, special) {
+  deleteModal(template: TemplateRef<any>, special,spec_id) {
+    localStorage.setItem('spec_id',spec_id);
     this.id = special.id;
     this.modalRef = this.modalService.show(template, {
       class: 'modal-sm modal-dialog-centered',
@@ -105,6 +107,7 @@ export class ViewComponent implements OnInit {
   decline() {
     this.modalRef.hide();
   }
+
   showspecialities:any 
   getshowspecialities(){
     this.http.get("http://127.0.0.1:8000/api/admin/specialities/show").subscribe(result => {
@@ -142,6 +145,37 @@ export class ViewComponent implements OnInit {
     console.log(this.myForm.value.libelle);
      this.http.post("http://127.0.0.1:8000/api/admin/insertSpec",form).subscribe(result =>{
        console.log(result);
+       this.showspecialities = result;
+       
      });
   }
+
+  editspec()
+  { 
+    let spec_id = localStorage.getItem('spec_id');
+    let form = new FormData();
+    form.append("libelle",this.myForm.value.libelle);
+    form.append("spec_id",spec_id);
+    console.log(this.myForm.value.libelle);
+    console.log(spec_id);
+     this.http.post("http://127.0.0.1:8000/api/admin/specialities/edit",form).subscribe(result =>{
+       console.log(result);
+       localStorage.removeItem('spec_id');
+       this.showspecialities = result;
+
+     });
+  }
+  deletespec()
+  { 
+    let spec_id = localStorage.getItem('spec_id');
+    let form = new FormData();
+    form.append("spec_id",spec_id);
+    console.log(spec_id);
+     this.http.post("http://127.0.0.1:8000/api/admin/specialities/delete",form).subscribe(result =>{
+       console.log(result);
+       localStorage.removeItem('spec_id');
+       this.showspecialities = result;
+       this.modalRef.hide();
+     });
+  } 
 }
