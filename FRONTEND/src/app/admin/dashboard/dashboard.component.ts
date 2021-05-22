@@ -142,6 +142,7 @@ export class DashboardComponent implements OnInit {
     });
     console.log(this.showpatients);
   }; 
+
   showConsultations:any 
   getshowConsultations(){
     this.http.get("http://127.0.0.1:8000/api/admin/showConsultations").subscribe(result => {

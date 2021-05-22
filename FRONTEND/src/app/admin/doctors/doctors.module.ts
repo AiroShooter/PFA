@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
 import { DoctorsRoutingModule } from './doctors-routing.module';
 import { DoctorsComponent } from './doctors.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { DoctorsComponent } from './doctors.component';
   imports: [
     CommonModule,
     DoctorsRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule
   ]
 })
 export class DoctorsModule { }

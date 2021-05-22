@@ -59,6 +59,39 @@ class CalendrierController extends Controller
         //
     }
 
+    public function check(Request $request)
+    {
+        return DB::select('SELECT * FROM `calendriers` where med_id = ?', [$request->med_id]);
+    }
+
+    
+    
+
+    public function delete(Request $request)
+    {
+        return DB::delete('delete from calendriers where med_id = ? and jour = ?', [$request->med_id, $request->jour]);
+
+    }
+    public function deleteSingle(Request $request)
+    {
+        return DB::delete('delete from calendriers where calen_id = ?', [$request->calen_id]);
+
+    }
+    
+
+    public function deleteAll(Request $request)
+    {
+        return DB::delete('delete from calendriers where med_id = ?', [$request->med_id]);
+
+    }
+
+    public function checkQuery(Request $request)
+    {
+        $data =  DB::select('SELECT COUNT(*) as count FROM `calendriers` WHERE `jour` = ? and `heureDebut`= ? and `heureFin` = ? and `med_id` = ?',[$request->jour, $request->heureDebut , $request->heureFin, $request->med_id]);
+
+        return $data[0]->count;
+    }
+
     /**
      * Display the specified resource.
      *

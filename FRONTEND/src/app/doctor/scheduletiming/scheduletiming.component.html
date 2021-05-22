@@ -13,7 +13,19 @@
                                 </ng-select2>
                             </div>
                         </div>
-
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Session</label>
+                                <ng-select2  width="100%" [(ngModel)]="select2" [data]="this.SLOT_DATA" (valueChanged)="CheckVal2($event)">
+                                </ng-select2>
+                            </div> 
+                        </div>
+                        <div class="col-lg-4 row">
+                            <div class="col-4"><label class="d-md-block d-sm-none d-none">&nbsp;</label><button (click)="Send()" class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i></button></div>
+                            <div class="col-4"><label class="d-md-block d-sm-none d-none">&nbsp;</label><button (click)="deleteDay()" class="btn btn-outline-warning"><i class="fas fa-backspace"></i></button></div>
+                            <div class="col-4"><label class="d-md-block d-sm-none d-none">&nbsp;</label><button (click)="deleteAll()" class="btn btn-outline-danger"><i class="fas fa-calendar-times"></i></button></div>
+                        </div>
+                       
                     </div>     
                     <div class="row">
                         <div class="col-md-12">
@@ -26,25 +38,25 @@
                                     <div class="schedule-nav">
                                         <ul class="nav nav-tabs nav-justified">
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_sunday" (click)="Sunday()">Sunday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_dimanche" (click)="dimanche()">dimanche</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="#slot_monday" (click)="Monday()">Monday</a>
+                                                <a class="nav-link active" data-toggle="tab" href="#slot_lundi" (click)="lundi()">lundi</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_tuesday" (click)="Tuesday()">Tuesday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_mardi" (click)="mardi()">mardi</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_wednesday" (click)="Wednesday()">Wednesday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_mercredi" (click)="mercredi()">mercredi</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_thursday" (click)="Thursday()">Thursday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_jeudi" (click)="jeudi()">jeudi</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_friday" (click)="Friday()">Friday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_vendredi" (click)="vendredi()">vendredi</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#slot_saturday" (click)="Saturday()">Saturday</a>
+                                                <a class="nav-link" data-toggle="tab" href="#slot_samedi" (click)="samedi()">samedi</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -56,104 +68,98 @@
                                 <!-- Schedule Content -->
                                 <div class="tab-content schedule-cont">
                                 
-                                    <!-- Sunday Slot -->
-                                    <div id="slot_sunday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- dimanche Slot -->
+                                    <div id="slot_dimanche" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Dimanche" class="doc-slot-list">
+                                                {{slot.hour}}
+                                               <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Sunday Slot -->
+                                    <!-- /dimanche Slot -->
 
-                                    <!-- Monday Slot -->
-                                    <div id="slot_monday" class="tab-pane fade show active">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
-                                        </h4>
-                                        
+                                    <!-- lundi Slot -->
+                                    <div id="slot_lundi" class="tab-pane fade show active">
                                         <!-- Slot List -->
                                         <div class="doc-times">
-                                            <div class="doc-slot-list">
-                                                8:00 pm - 11:30 pm
-                                                <a href="javascript:void(0)" class="delete_schedule">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                            <div class="doc-slot-list">
-                                                11:30 pm - 1:30 pm
-                                                <a href="javascript:void(0)" class="delete_schedule">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                            <div class="doc-slot-list">
-                                                3:00 pm - 5:00 pm
-                                                <a href="javascript:void(0)" class="delete_schedule">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                            <div class="doc-slot-list">
-                                                6:00 pm - 11:00 pm
-                                                <a href="javascript:void(0)" class="delete_schedule">
+                                            <div *ngFor="let slot of SLOT_Lundi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
                                         </div>
                                         <!-- /Slot List -->
-                                        
                                     </div>
-                                    <!-- /Monday Slot -->
+                                    <!-- /lundi Slot -->
 
-                                    <!-- Tuesday Slot -->
-                                    <div id="slot_tuesday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- mardi Slot -->
+                                    <div id="slot_mardi" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Mardi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Tuesday Slot -->
+                                    <!-- /mardi Slot -->
 
-                                    <!-- Wednesday Slot -->
-                                    <div id="slot_wednesday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- mercredi Slot -->
+                                    <div id="slot_mercredi" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Mercredi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                 <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Wednesday Slot -->
+                                    <!-- /mercredi Slot -->
 
-                                    <!-- Thursday Slot -->
-                                    <div id="slot_thursday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- jeudi Slot -->
+                                    <div id="slot_jeudi" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Jeudi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Thursday Slot -->
+                                    <!-- /jeudi Slot -->
 
-                                    <!-- Friday Slot -->
-                                    <div id="slot_friday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- vendredi Slot -->
+                                    <div id="slot_vendredi" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Vendredi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Friday Slot -->
+                                    <!-- /vendredi Slot -->
 
-                                    <!-- Saturday Slot -->
-                                    <div id="slot_saturday" class="tab-pane fade">
-                                        <h4 class="card-title d-flex justify-content-between">
-                                            <span>Time Slots</span> 
-                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                        </h4>
-                                        <p class="text-muted mb-0">Not Available</p>
+                                    <!-- samedi Slot -->
+                                    <div id="slot_samedi" class="tab-pane fade">
+                                        <div class="doc-times">
+                                            <div *ngFor="let slot of SLOT_Samedi" class="doc-slot-list">
+                                                {{slot.hour}}
+                                                <a href="javascript:void(0)" class="delete_schedule" (click)="delete(slot.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                         </div>
                                     </div>
-                                    <!-- /Saturday Slot -->
+                                    <!-- /samedi Slot -->
 
                                 </div>
 

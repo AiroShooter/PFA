@@ -25,30 +25,33 @@
 									<tr>
 										<th>Doctor Name</th>
 										<th>Speciality</th>
-										<th>Member Since</th>
-										<th>Earned</th>
-										<th>Account Status</th>
+										<!-- <th>Member Since</th> -->
+										<th>Tarif</th>
+										<th>Etat Compte</th>
 										
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let doctor of doctorsList">
+									<tr *ngFor="let doctor of doctorsinfo">
 										<td>
 											<h2 class="table-avatar">
-												<a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a>
-												<a>{{doctor.doctor_name}}</a>
+												<!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a>
+												 -->
+												<a>Dr. {{doctor.nom}} {{doctor.prenom}}</a>
 											</h2>
 										</td>
-										<td>{{doctor.speciality}}</td>
+										<td>{{doctor.libelle}}</td>
 										
-										<td>{{doctor.since | date : 'dd MMM yyyy hh mm a'}}</td>
+										<!-- <td>{{doctor.since | date : 'dd MMM yyyy hh mm a'}}</td> -->
 										
-										<td>${{doctor.Earned}}</td>
+										<td>${{doctor.tarifs}}</td>
 										
 										<td>
 											<div class="status-toggle">
-												<input type="checkbox" id="status_1" class="check" checked>
-												<label for="status_1" class="checktoggle">checkbox</label>
+
+												<input *ngIf="doctor.isActive=='1'" type="checkbox" (change)="onchange(doctor.isActive,doctor.user_id)" id="{{doctor.user_id}}" class="check" checked>
+												<input *ngIf="doctor.isActive=='0'" type="checkbox" (change)="onchange(doctor.isActive,doctor.user_id)" id="{{doctor.user_id}}" class="check">
+												<label for="{{doctor.user_id}}" class="checktoggle">checkbox</label>
 											</div>
 										</td>
 									</tr>
