@@ -9,7 +9,6 @@ import { DataService } from './../data.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminGuard } from './admin.guard';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonServiceService } from '../common-service.service';
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent],
   imports: [
@@ -21,6 +20,6 @@ import { CommonServiceService } from '../common-service.service';
     HttpClientModule,
     
   ],
-  providers:[AdminGuard, CommonServiceService]
+  providers:[AdminGuard]
 })
 export class AdminModule {}

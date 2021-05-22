@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     this.getDoctorsinfo();
     this.showPatients();
     this.getshowConsultations();
-    setInterval(()=>{this.getNotifs();}, 3000);
+    setInterval(()=>{this.getNotifs();}, 60000);
     let chartAreaData = [
       { y: '2006', a: 100, b: 90 },
       { y: '2007', a: 75, b: 65 },

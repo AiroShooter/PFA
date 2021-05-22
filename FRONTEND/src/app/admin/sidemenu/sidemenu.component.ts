@@ -22,7 +22,7 @@ export class SidemenuComponent implements OnInit {
     public http: HttpClient,
   ) {}
   ngOnInit(): void {
-    setInterval(()=>{this.getNotifs();}, 3000);
+    setInterval(()=>{this.getNotifs();}, 60000);
   }
 
   ngAfterViewInit() {
@@ -61,9 +61,10 @@ export class SidemenuComponent implements OnInit {
     }
   }
   notifs:[];
-  notifsCount:any;
+  notifsCount:any=0;
   getNotifs(){
     this.notifs = JSON.parse(localStorage.getItem('notifs'));
+    if(this.notifs.length != NaN)
     this.notifsCount = this.notifs.length;
   }
   
