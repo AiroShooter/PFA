@@ -33,7 +33,6 @@ Route::any('/login',[UserController::class, 'login'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
-Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
 Route::any('/admin/doctorsCount',[AdminController::class, 'doctorsCount'] );
 Route::any('/admin/showDoctors',[AdminController::class, 'showDoctors'] );
 Route::any('/admin/showPatients',[AdminController::class, 'showPatients'] );
@@ -52,3 +51,8 @@ Route::any('admin/specialities/delete',[SpecialiteController::class, 'delete'] )
 Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
 
 
+Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
+Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
+Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
+Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll'] );
+Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
