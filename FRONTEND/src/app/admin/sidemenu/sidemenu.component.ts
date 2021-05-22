@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { CommonServiceService } from '../../common-service.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -17,9 +18,12 @@ export class SidemenuComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
-    private commonService: CommonServiceService
+    private commonService: CommonServiceService,
+    public http: HttpClient,
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(()=>{this.getNotifs();}, 3000);
+  }
 
   ngAfterViewInit() {
     this.loadDynmicallyScript('assets/admin/js/script.js');
@@ -56,4 +60,12 @@ export class SidemenuComponent implements OnInit {
       this.bellCollapsed = true;
     }
   }
+  notifs:[];
+  notifsCount:any;
+  getNotifs(){
+    this.notifs = JSON.parse(localStorage.getItem('notifs'));
+    this.notifsCount = this.notifs.length;
+  }
+  
+
 }

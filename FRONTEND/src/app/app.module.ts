@@ -17,6 +17,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AppGuard } from './app.guard';
 import { NgSelect2Module } from 'ng-select2';
+import { CommonServiceService } from '../app/common-service.service'
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -32,7 +33,7 @@ import { NgSelect2Module } from 'ng-select2';
     Daterangepicker,
     NgSelect2Module
   ],
-  providers: [AppGuard],
+  providers: [AppGuard, CommonServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
