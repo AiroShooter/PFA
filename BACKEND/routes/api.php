@@ -49,8 +49,6 @@ Route::any('admin/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('admin/specialities/edit',[SpecialiteController::class, 'edit'] );
 Route::any('admin/specialities/delete',[SpecialiteController::class, 'delete'] );
 Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
-
-
 Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
 Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
