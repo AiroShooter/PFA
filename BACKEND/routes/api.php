@@ -6,10 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AdminController;
-
-
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
+use App\Http\Controllers\NotificationEventController;
+
 
 
 
@@ -45,3 +45,4 @@ Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+Route::any('/notif',[NotificationEventController::class, 'show'] );
