@@ -46,14 +46,15 @@
 							</div>
 							<div class="row">
 								<div class="col-12 col-sm-4 col-md-6">
-									<h4 class="mb-1">11 November 2019</h4>
-									<p class="text-muted">Monday</p>
+									<h4 class="mb-1">{{this.tody.jour_num}} {{this.tody.mois.substring(0,1).toUpperCase()+this.tody.mois.substring(1)}} {{this.tody.annee}}</h4>
+									<p class="text-muted">{{this.tody.jour_alfa.substring(0,1).toUpperCase()+this.tody.jour_alfa.substring(1)}}</p>
 								</div>
 								<div class="col-12 col-sm-8 col-md-6 text-sm-right">
-									<div class="bookingrange btn btn-white btn-sm mb-3">
-										<i class="far fa-calendar-alt mr-2"></i>
-										<input name="daterangeInput" id="daterange" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" />
-										<i class="fas fa-chevron-down ml-2"></i>
+									<div class="bookingrange bm-3">
+										<form  [formGroup]="myForm">
+											<input class="form-control" type="date" formControlName="date" id="date" (change)="GetDate()"/>
+										</form>
+									
 									</div>
 								</div>
                             </div>

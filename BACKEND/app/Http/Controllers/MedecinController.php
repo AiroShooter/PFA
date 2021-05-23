@@ -83,6 +83,25 @@ class MedecinController extends Controller
             'patients' => $cons
             ]);
     }
+    public function DoctorInfoByUser(Request $request)
+    {
+        $user =  DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+
+        if($user)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '',
+               'user' =>$user[0]]);
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
+    }
     /**
      * Display the specified resource.
      *
