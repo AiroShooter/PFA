@@ -3,12 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\NotificationEventController;
+use App\Http\Controllers\MedecinController;
 
 
 
@@ -55,3 +55,5 @@ Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
 Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll'] );
 Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
+Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationCount'] );
+

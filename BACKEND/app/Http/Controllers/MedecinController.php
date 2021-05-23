@@ -57,7 +57,7 @@ class MedecinController extends Controller
     }
     public function ConsultationCount(Request $request)
     {
-        $cons = consultation::where('id', '<=', $request->med_id)->get();
+        $cons = consultation::where('med_id', '<=', $request->med_id)->get();
         $consCount = $cons->count();
         return response()->json([
             'hasError' => false,

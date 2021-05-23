@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {CommonServiceService  } from './../../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -23,11 +24,12 @@ export class DashboardComponent implements OnInit {
   TotalPatientsLength ;
   activeTab = 'upcomming';
   
-  constructor(private toastr: ToastrService,public commonService:CommonServiceService,private modalService: BsModalService) { }
+  constructor(private toastr: ToastrService,private http:HttpClient,public commonService:CommonServiceService,private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getPatients();
       this.getAppointments();
+      this.getAppointmentscount();
   }
 
   search(activeTab){
@@ -124,5 +126,14 @@ export class DashboardComponent implements OnInit {
   cancel() {
     this.modalRef.hide();
   }
-
+  Appointmentscount:any 
+  med_id:any
+  getAppointmentscount(){
+    this.med_id = localStorage.getItem("med_id");
+    
+    this.http.get("http://127.0.0.1:8000/api/doctor/consultationCount").subscribe(result => {
+      this.Appointmentscount = result;
+    });
+    console.log(this.Appointmentscount);
+  }
 }
