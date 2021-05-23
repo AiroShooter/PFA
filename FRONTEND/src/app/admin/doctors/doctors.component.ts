@@ -48,6 +48,6 @@ export class DoctorsComponent implements OnInit {
      this.http.post("http://127.0.0.1:8000/api/admin/lockAccounts",{"isActive":isActive,"user_id":user_id}).subscribe(result =>{
        console.log(result);
      });
-     
+     setTimeout(()=>{this.getDoctorsinfo();}, 1000);
   }
 }

@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     this.getDoctorsinfo();
     this.showPatients();
     this.getshowConsultations();
-    setInterval(()=>{this.getNotifs();}, 60000);
+    setInterval(()=>{this.getNotifs();}, 5000);
     let chartAreaData = [
       { y: '2006', a: 100, b: 90 },
       { y: '2007', a: 75, b: 65 },
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
   }
   
-  allRevenue:any =[{"tarifs" : 0}];
+  allRevenue:any =0;
   getallRevenue(){
     this.http.get("http://127.0.0.1:8000/api/admin/allRevenue").subscribe(result => {
       if(result)
