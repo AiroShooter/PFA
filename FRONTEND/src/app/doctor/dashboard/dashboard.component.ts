@@ -127,13 +127,16 @@ export class DashboardComponent implements OnInit {
     this.modalRef.hide();
   }
   Appointmentscount:any 
-  med_id:any
+  user_id:any
   getAppointmentscount(){
-    this.med_id = localStorage.getItem("med_id");
-    
-    this.http.get("http://127.0.0.1:8000/api/doctor/consultationCount").subscribe(result => {
-      this.Appointmentscount = result;
+    this.user_id = localStorage.getItem("userId");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/consultationCount",{"user_id":this.user_id}).subscribe(result => {
+    this.Appointmentscount = result;
+    console.log(result);
+
     });
-    console.log(this.Appointmentscount);
+
+    
   }
 }
