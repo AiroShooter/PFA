@@ -61,7 +61,7 @@ class CalendrierController extends Controller
 
     public function check(Request $request)
     {
-        return DB::select('SELECT * FROM `calendriers` where med_id = ?', [$request->med_id]);
+        return DB::select('SELECT * FROM `calendriers` where med_id = ? order by heureDebut', [$request->med_id]);
     }
 
     
