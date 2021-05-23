@@ -106,12 +106,12 @@ class AdminController extends Controller
     }
     public function showDoctors()
     {
-        $value = DB::select("SELECT m.nom,m.prenom,s.libelle FROM medecins m inner join specialites s on m.spec_id = s.spec_id"); 
+        $value = DB::select("SELECT u.user_id,m.med_id,u.isActive,m.nom,m.prenom,m.tarif as tarifs,s.libelle FROM `medecins` m inner join users u on u.user_id = m.med_id inner join specialites s on m.spec_id = s.spec_id"); 
         return $value;
     }
     public function showPatients()
     {
-        $value = DB::select("SELECT p.nom,p.prenom,p.telePerso,sum(c.tarif) as tarifs FROM `consultations` c inner join patients p on c.patient_id = c.patient_id GROUP BY p.nom,p.prenom,p.telePerso"); 
+        $value = DB::select("SELECT u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date,sum(c.tarif) as tarifs FROM `consultations` c inner join patients p on c.patient_id = c.patient_id inner join users u on u.user_id = p.user_id GROUP BY  u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date"); 
         return $value;
     }
     public function showConsultations()
@@ -149,6 +149,13 @@ class AdminController extends Controller
        
         return $query;
     }
+    public function lockAccounts(Request $request)
+    {
+        $query = DB::update("update users set isActive = (?) where user_id = (?)",[$request->isActive, $request->user_id]);
+       
+        return $query;
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

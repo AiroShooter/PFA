@@ -8,6 +8,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { DataService } from './../data.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminGuard } from './admin.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonServiceService } from '../common-service.service';
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent],
   imports: [
@@ -16,7 +18,9 @@ import { AdminGuard } from './admin.guard';
     NgbModule,
     InMemoryWebApiModule.forRoot(DataService),
     ModalModule.forRoot(),
+    HttpClientModule,
+    
   ],
-  providers:[AdminGuard]
+  providers:[AdminGuard, CommonServiceService]
 })
 export class AdminModule {}

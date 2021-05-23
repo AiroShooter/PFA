@@ -14,6 +14,7 @@ import {
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { CommonServiceService } from '../common-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -27,7 +28,8 @@ export class AdminComponent implements OnInit {
     @Inject(DOCUMENT) private document,
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
-    public Router: Router
+    public Router: Router,
+    public http: HttpClient,
   ) {
     Router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {

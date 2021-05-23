@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
     this.getDoctorsinfo();
     this.showPatients();
     this.getshowConsultations();
+    setInterval(()=>{this.getNotifs();}, 3000);
     let chartAreaData = [
       { y: '2006', a: 100, b: 90 },
       { y: '2007', a: 75, b: 65 },
@@ -94,31 +95,35 @@ export class DashboardComponent implements OnInit {
 
   }
   
-  allRevenue:any 
+  allRevenue:any =[{"tarifs" : 0}];
   getallRevenue(){
     this.http.get("http://127.0.0.1:8000/api/admin/allRevenue").subscribe(result => {
+      if(result)
       this.allRevenue = result;
     });
     console.log(this.allRevenue);
   };
-  doctorsCount:any 
+  doctorsCount:any = 0;
   getDoctorsCount(){
     this.http.get("http://127.0.0.1:8000/api/admin/doctorsCount").subscribe(result => {
+      if(result)
       this.doctorsCount = result;
     });
     console.log(this.doctorsCount);
   };
-  consultationCount:any 
+  consultationCount:any = 0;
   getconsultationCount(){
     this.http.get("http://127.0.0.1:8000/api/admin/consultationCount").subscribe(result => {
+      if(result)
       this.consultationCount = result;
     });
     console.log(this.consultationCount);
   };
   
-  patientsCount:any 
+  patientsCount:any = 0
   getPatientCount(){
     this.http.get("http://127.0.0.1:8000/api/admin/patientCount").subscribe(result => {
+      if(result)
       this.patientsCount = result;
     });
     console.log(this.patientsCount);
@@ -137,6 +142,7 @@ export class DashboardComponent implements OnInit {
     });
     console.log(this.showpatients);
   }; 
+
   showConsultations:any 
   getshowConsultations(){
     this.http.get("http://127.0.0.1:8000/api/admin/showConsultations").subscribe(result => {
@@ -158,6 +164,12 @@ export class DashboardComponent implements OnInit {
      
   }
 
-  
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
+  getNotifs()
+  {
+    this.http.get(this.SERVER_URL + 'notif').subscribe(result => {
+      localStorage.setItem('notifs', JSON.stringify(result));
+    });
+  }
   
 }

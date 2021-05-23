@@ -6,10 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AdminController;
-
-
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
+use App\Http\Controllers\NotificationEventController;
+
 
 
 
@@ -35,7 +35,6 @@ Route::any('/doctor/getSingle',[MedecinController::class, 'DoctorInfoByUser'] );
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
-Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
 Route::any('/admin/doctorsCount',[AdminController::class, 'doctorsCount'] );
 Route::any('/admin/showDoctors',[AdminController::class, 'showDoctors'] );
 Route::any('/admin/showPatients',[AdminController::class, 'showPatients'] );
@@ -47,6 +46,12 @@ Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
+Route::any('/notif',[NotificationEventController::class, 'show'] );
+Route::any('/admin/insertSpec',[SpecialiteController::class, 'create'] );
+Route::any('admin/specialities/show',[SpecialiteController::class, 'show'] );
+Route::any('admin/specialities/edit',[SpecialiteController::class, 'edit'] );
+Route::any('admin/specialities/delete',[SpecialiteController::class, 'delete'] );
+Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
 Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
 Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );

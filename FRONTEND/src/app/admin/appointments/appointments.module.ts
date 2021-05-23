@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AppointmentsRoutingModule } from './appointments-routing.module';
 import { AppointmentsComponent } from './appointments.component';
 import { DataTablesModule } from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppointmentsComponent],
   imports: [
     CommonModule,
     AppointmentsRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule
   ]
 })
 export class AppointmentsModule { }

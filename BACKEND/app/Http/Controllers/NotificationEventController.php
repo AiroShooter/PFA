@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\notificationEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotificationEventController extends Controller
 {
@@ -44,9 +45,10 @@ class NotificationEventController extends Controller
      * @param  \App\Models\notificationEvent  $notificationEvent
      * @return \Illuminate\Http\Response
      */
-    public function show(notificationEvent $notificationEvent)
+    public function show()
     {
-        //
+        $value = DB::select("SELECT * from notification_events order by date desc"); 
+        return $value;
     }
 
     /**
