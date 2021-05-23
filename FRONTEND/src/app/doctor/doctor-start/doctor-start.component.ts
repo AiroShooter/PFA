@@ -60,6 +60,7 @@ export class DoctorStartComponent implements OnInit {
             localStorage.setItem('Mprenom',result['user']['prenom']);
             localStorage.setItem('Tele',result['user']['telePerso']);
             localStorage.setItem('Ville',result['user']['ville']);
+            localStorage.setItem('Mid',result['user']['med_id']);
             if(result['spec'])
               localStorage.setItem('Spec',result['spec']['libelle']);
             this.router.navigate(['/doctor/dashboard']);

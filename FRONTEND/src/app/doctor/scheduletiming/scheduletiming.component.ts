@@ -91,11 +91,13 @@ export class ScheduletimingComponent implements OnInit {
 
     this.SLOT_DATA = JSON.parse(localStorage.getItem('SLOT-' + this.jour));
 
-    this.CheckDatabase(localStorage.getItem('userId'));
+    this.CheckDatabase(localStorage.getItem('Mid')
+);
 
     if(!this.hours)  this.hours = this.SLOT_DATA[0].split(' - ', 2);
 
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   checktime()
@@ -105,49 +107,60 @@ export class ScheduletimingComponent implements OnInit {
 
   dimanche(){
     this.jour = 'Dimanche';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   lundi(){
     this.jour = 'Lundi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   mardi(){
     this.jour = 'Mardi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   mercredi(){
     this.jour = 'Mercredi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   jeudi(){
     this.jour = 'Jeudi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   vendredi(){
     this.jour = 'Vendredi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   samedi(){
     this.jour = 'Samedi';
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   deleteDay()
   {
-    this.deleteHoures(localStorage.getItem('userId'), this.jour);
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.deleteHoures(localStorage.getItem('Mid')
+, this.jour);
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
   deleteAll()
   {
-    this.deleteHouresAll(localStorage.getItem('userId'));
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.deleteHouresAll(localStorage.getItem('Mid')
+);
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
   }
 
  
@@ -175,7 +188,8 @@ export class ScheduletimingComponent implements OnInit {
 
     this.SLOT_DATA = JSON.parse(localStorage.getItem('SLOT-' + this.jour));
 
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
 
    
 
@@ -199,7 +213,8 @@ export class ScheduletimingComponent implements OnInit {
 
     this.hours = this.selected.split(' - ', 2);
 
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid')
+)
    }
     
    
@@ -215,19 +230,19 @@ export class ScheduletimingComponent implements OnInit {
   {
  
     
-    this.CheckDatabase(localStorage.getItem('userId'))
+    this.CheckDatabase(localStorage.getItem('Mid'))
     
    
 
     let data = new FormData();
 
-    data.append('med_id', localStorage.getItem('userId'));
+    data.append('med_id', localStorage.getItem('Mid'));
     data.append('jour', this.jour);
     data.append('heureDebut', this.hours[0])
     data.append('heureFin', this.hours[1]);
 
     
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('userId'))
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('Mid'))
     if(localStorage.getItem('slot_count') == '0')
     {
       this.http.post(this.SERVER_URL + 'doctor/schedule', data).subscribe(res=>{
@@ -483,7 +498,7 @@ export class ScheduletimingComponent implements OnInit {
         }
        
 
-      this.CheckDatabase(localStorage.getItem('userId'));
+      this.CheckDatabase(localStorage.getItem('Mid'));
 
     })
 

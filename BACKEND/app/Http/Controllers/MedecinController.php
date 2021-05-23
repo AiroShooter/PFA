@@ -57,13 +57,8 @@ class MedecinController extends Controller
     }
     public function ConsultationCount(Request $request)
     {
-        $cons = consultation::where('id', '<=', $request->med_id)->get();
-        $consCount = $cons->count();
-        return response()->json([
-            'hasError' => false,
-            'success' => 'Done',
-            'Consultcount' => $consCount
-            ]);
+        $count = DB::select("select count(*) as count from consultations c inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = ?",[$request->user_id]);
+        return $count[0]->count;
     }
     public function ConsultationInfo(Request $request)
     {
@@ -82,6 +77,25 @@ class MedecinController extends Controller
             'success' => 'Done',
             'patients' => $cons
             ]);
+    }
+    public function DoctorInfoByUser(Request $request)
+    {
+        $user =  DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+
+        if($user)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '',
+               'user' =>$user[0]]);
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
     }
     /**
      * Display the specified resource.

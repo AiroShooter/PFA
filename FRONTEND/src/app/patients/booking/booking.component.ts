@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonServiceService } from './../../common-service.service';
-
+import { FormBuilder} from '@angular/forms';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -11,30 +11,65 @@ export class BookingComponent implements OnInit {
   doctorId;
   doctorDetails;
   userDetails;
-  public daterange: any = {};
+  
 
-  // see original project for full list of options
-  // can also be setup using the config service to apply to multiple pickers
-  public options: any = {
-    locale: { format: 'YYYY-MM-DD' },
-    alwaysShowCalendars: false,
-  };
 
-  public selectedDate(value: any, datepicker?: any) {
-    // any object can be passed to the selected event and it will be passed back here
-    datepicker.start = value.start;
-    datepicker.end = value.end;
 
-    // use passed valuable to update state
-    this.daterange.start = value.start;
-    this.daterange.end = value.end;
-    this.daterange.label = value.label;
+  GetDate(){
+
+    let today =Date.parse(new Date().toString());
+    let dur = parseInt(((Date.parse(this.myForm.value.date) - today) / (1000 * 3600 * 24)).toString());
+    
+    let newDate = today;
+
+    if(dur > 0)
+    {
+      for(let i = 0; i <= dur ; i++)
+      {
+        newDate += (1000 * 3600 * 24); 
+
+        let date = new Intl.DateTimeFormat('fr-FR', {weekday: "long", year: "numeric", month: "short", day: "numeric"}).format(new Date(newDate)).split(' ',4);
+
+        let dateObj = {
+          "jour_alfa": date[0],
+          "jour_num":date[1],
+          "mois": date[2],
+          "annee":date[3],
+        }
+
+
+       
+
+       this.dates.push(dateObj);
+      }
+    }
+    console.log(this.dates);
+
   }
 
+  todayDate = new Intl.DateTimeFormat('fr-FR', {weekday: "long", year: "numeric", month: "short", day: "numeric"}).format(new Date()).split(' ',4);
+
+ tody = {
+    "jour_alfa": this.todayDate[0],
+    "jour_num":this.todayDate[1],
+    "mois": this.todayDate[2],
+    "annee":this.todayDate[3],
+  }
+
+  dates: object[] = []
+
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     public commonService: CommonServiceService
   ) {}
+
+
+  myForm = this.fb.group({
+    date:['']
+  });
+
+
 
   ngOnInit(): void {
     if (this.route.snapshot.queryParams['id']) {
