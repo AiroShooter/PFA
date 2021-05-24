@@ -9,26 +9,26 @@ export class AuthService {
 
   loggedIn():boolean
   {
-    return !!localStorage.getItem('userEmail');
+    return !!localStorage.getItem('email');
   }
 
   isDoctor()
   {
-    if(this.loggedIn() && localStorage.getItem('userType') === 'medecin')
+    if(this.loggedIn() && localStorage.getItem('type') === 'medecin')
        return true
     else return false
   }
 
   isPatient()
   {
-    if(this.loggedIn() && localStorage.getItem('userType') === 'patient')
+    if(this.loggedIn() && localStorage.getItem('type') === 'patient')
        return true
     else return false
   }
 
   isAdmin()
   {
-    if(this.loggedIn() && localStorage.getItem('userType') === 'admin')
+    if(this.loggedIn() && localStorage.getItem('type') === 'admin')
        return true
     else return false
   }

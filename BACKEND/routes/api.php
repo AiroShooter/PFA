@@ -33,6 +33,7 @@ Route::any('/login',[UserController::class, 'login'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/doctor/getSingle',[MedecinController::class, 'DoctorInfoByUser'] );
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
+Route::any('/admin/getSingle',[AdminController::class, 'AdminInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('/admin/doctorsCount',[AdminController::class, 'doctorsCount'] );

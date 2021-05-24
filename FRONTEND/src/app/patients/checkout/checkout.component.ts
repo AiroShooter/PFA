@@ -49,8 +49,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   patientDetails() {
-    let userId = localStorage.getItem('id');
-    this.commonService.getPatientDetails(Number(userId)).subscribe((res) => {
+    let user_id = localStorage.getItem('id');
+    this.commonService.getPatientDetails(Number(user_id)).subscribe((res) => {
       this.patients = res;
     });
   }

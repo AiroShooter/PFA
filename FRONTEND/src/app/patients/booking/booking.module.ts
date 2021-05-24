@@ -13,7 +13,6 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     BookingRoutingModule,
     NgbModule,
     Daterangepicker,
-
     ReactiveFormsModule
   ]
 })

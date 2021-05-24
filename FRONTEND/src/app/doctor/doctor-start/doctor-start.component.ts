@@ -36,7 +36,7 @@ export class DoctorStartComponent implements OnInit {
 
   signup() {
     let form = new FormData();
-    form.append("user_id",localStorage.getItem('userId'));
+    form.append("user_id",localStorage.getItem('user_id'));
     form.append("spec_id",this.myForm.value.specialite);
     form.append("titre",this.myForm.value.titre);
     form.append("nom",this.myForm.value.nom);
@@ -56,11 +56,11 @@ export class DoctorStartComponent implements OnInit {
       console.log(result);
       if(result['user'])
           {
-            localStorage.setItem('Mnom',result['user']['nom']);
-            localStorage.setItem('Mprenom',result['user']['prenom']);
-            localStorage.setItem('Tele',result['user']['telePerso']);
-            localStorage.setItem('Ville',result['user']['ville']);
-            localStorage.setItem('Mid',result['user']['med_id']);
+            localStorage.setItem('nom',result['user']['nom']);
+            localStorage.setItem('prenom',result['user']['prenom']);
+            localStorage.setItem('tele',result['user']['telePerso']);
+            localStorage.setItem('ville',result['user']['ville']);
+            localStorage.setItem('med_id',result['user']['med_id']);
             if(result['spec'])
               localStorage.setItem('Spec',result['spec']['libelle']);
             this.router.navigate(['/doctor/dashboard']);
