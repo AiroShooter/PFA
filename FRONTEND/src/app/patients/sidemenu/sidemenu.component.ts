@@ -32,8 +32,8 @@ export class SidemenuComponent implements OnInit {
     return moment().diff(dateOfBirth, 'years');
   }
 
-  nom = localStorage.getItem('Pnom') + ' ' + localStorage.getItem('Pprenom');
-  dateNaiss = localStorage.getItem('DateNaiss');
+  nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+  dateNaiss = localStorage.getItem('dateNaiss');
   age = this.ageFromDateOfBirthday(this.dateNaiss);
-  pays = localStorage.getItem('Pays');
+  pays = localStorage.getItem('pays');
 }

@@ -47,28 +47,11 @@ class PatientController extends Controller
 
     }
 
-    public function PatientInfoByUser(Request $request)
+    public function showConsultations(Request $request)
     {
-        $user =  DB::select('select * from patients where user_id = ?',[$request->user_id]);
-        if($user)
-        {
-           return response()->json([
-               'hasError' => false,
-               'success' => 'Done ',
-               'error' => '',
-               'user' =>$user[0]]);
-        }
-        else{
-            return response()->json([
-                'hasError' => true,
-                'success' => '',
-                'error' => 'Error']);
-        }
-
-
-
-
-    }
+        $value = DB::select("SELECT up.email,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss,c.tarif,c.heure,c.etat,c.type,c.date,c.const_id,c.raison FROM `consultations` c inner join medecins m on m.med_id = c.med_id inner join patients p on p.patient_id = c.patient_id inner join users um on um.user_id = m.user_id inner join users up on up.user_id = p.user_id where um.user_id = (?)",[$request->user_id]); 
+        return $value;
+    } 
 
     /**
      * Store a newly created resource in storage.

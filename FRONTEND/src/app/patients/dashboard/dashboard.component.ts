@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {CommonServiceService  } from './../../common-service.service';
 
@@ -9,36 +10,27 @@ import {CommonServiceService  } from './../../common-service.service';
 export class DashboardComponent implements OnInit {
   appointments ;
   patients ;
+  
 
-  constructor(public commonService:CommonServiceService) { }
+  constructor(public commonService:CommonServiceService,private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getPatients();
-    this.getAppointments();
+    this.changeState;
+    
   }
 
-  getAppointments() {
-    this.commonService.getAppointments()
-      .subscribe(res=>{
-        this.appointments = res;
-        let scope = this;
-        this.appointments.forEach(index=>{
-          let filter = scope.patients.filter(a=>a.key === index.patient_key);
-          if(filter.length != 0) {
-            index['patients'] = filter[0];
-          }
-        })
-       
-      })
+  
+  AppointmentsInfo:any;
+  user_id:any;
+  getApptointementsInfo(){
+    this.user_id = localStorage.getItem("user_id");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/patients/showConsultations",{"user_id":this.user_id}).subscribe(result => {
+    this.AppointmentsInfo = result;
+    console.log(result);
+    });
   }
-
-  getPatients() {
-    this.commonService.getpatients()
-    .subscribe(res=>{
-      this.patients = res;
-    })
-  }
-
+  changeState(){}
 
  
 }
