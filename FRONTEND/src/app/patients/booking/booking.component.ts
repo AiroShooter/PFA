@@ -88,12 +88,12 @@ export class BookingComponent implements OnInit {
   }
 
   patientDetails() {
-    let userId;
-    userId = localStorage.getItem('id');
-    if (!userId) {
-      userId = 1;
+    let user_id;
+    user_id = localStorage.getItem('id');
+    if (!user_id) {
+      user_id = 1;
     }
-    this.commonService.getPatientDetails(Number(userId)).subscribe((res) => {
+    this.commonService.getPatientDetails(Number(user_id)).subscribe((res) => {
       this.userDetails = res;
     });
   }

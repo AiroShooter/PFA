@@ -62,9 +62,9 @@ export class RegisterComponent implements OnInit {
         else{
           if(result['user'])
           {
-            localStorage.setItem('userEmail',result['user']['email']);
-            localStorage.setItem('userType',result['user']['type']);
-            localStorage.setItem('userId',result['user']['user_id']);
+            localStorage.setItem('email',result['user']['email']);
+            localStorage.setItem('type',result['user']['type']);
+            localStorage.setItem('user_id',result['user']['user_id']);
             this.updater.sendUpdate(true);
             if(this.isPatient == "false")
               this.router.navigate(['/doctor/start']);

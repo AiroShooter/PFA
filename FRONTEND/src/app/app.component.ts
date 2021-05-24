@@ -127,19 +127,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   Add()
   {
 
-    let data = new FormData();
-
-    data.append('med_id', localStorage.getItem('userId'));
-    data.append('jour', this.jour);
-    data.append('heureDebut', this.hours[0]);
-    data.append('heureFin', this.hours[1]);
-
-    console.log(data.get('med_id'),data.get('jour'),data.get('heureDebut'),data.get('heureFin'));
-
-    this.http.post(this.SERVER_URL + 'doctor/schedule', data).subscribe(res=>{
-
-      console.log(res);
-
-    });
+    
   }
 }

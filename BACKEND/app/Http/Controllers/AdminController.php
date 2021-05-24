@@ -78,6 +78,26 @@ class AdminController extends Controller
  
     }
 
+    public function AdminInfoByUser(Request $request)
+    {
+        $user =  DB::select('select * from admins where user_id = ?',[$request->user_id]);
+
+        if($user)
+        {
+           return response()->json([
+               'hasError' => false,
+               'success' => 'Done ',
+               'error' => '',
+               'user' =>$user[0]]);
+        }
+        else{
+            return response()->json([
+                'hasError' => true,
+                'success' => '',
+                'error' => 'Error']);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

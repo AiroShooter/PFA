@@ -26,7 +26,7 @@ export class PatientsStartComponent implements OnInit {
 
   signup() {
     let form = new FormData(); 
-    form.append("user_id",localStorage.getItem('userId'));
+    form.append("user_id",localStorage.getItem('user_id'));
     form.append("nom",this.myForm.value.nom);
     form.append("prenom",this.myForm.value.prenom);
     form.append("sexe",this.myForm.value.sexe);

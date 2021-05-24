@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptionName= this.updater.getUpdate().subscribe
     (auth => { //message contains the data sent from service
       this.auth = auth;
-      if(localStorage.getItem('userType') == 'patient')
+      if(localStorage.getItem('type') == 'patient')
         this.isPatient = true;
        else this.isPatient = false;
     });
@@ -207,7 +207,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 checkLoging()
 {
-  this.auth = !!localStorage.getItem('userEmail');
+  this.auth = !!localStorage.getItem('email');
 }
 
 
