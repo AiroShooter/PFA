@@ -79,6 +79,7 @@ class MedecinController extends Controller
     public function DoctorInfoByUser(Request $request)
     {
         $user =  DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+        $spec = DB::select('select libelle from specialites where spec_id = ?',[$user[0]->spec_id]);
 
         if($user)
         {
@@ -86,6 +87,7 @@ class MedecinController extends Controller
                'hasError' => false,
                'success' => 'Done ',
                'error' => '',
+               'spec' => $spec[0],
                'user' =>$user[0]]);
         }
         else{

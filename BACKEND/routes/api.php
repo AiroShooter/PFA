@@ -27,15 +27,26 @@ use App\Http\Controllers\MedecinController;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
     //return $request->user();
 //});
+
+//                       ######### UserController ###########
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
+
+
+//                       ######### MedecinController ###########
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/doctor/getSingle',[MedecinController::class, 'DoctorInfoByUser'] );
+Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationCount'] );
+Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
+Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
+
+//                       ######### PatientController ###########
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
-Route::any('/admin/getSingle',[AdminController::class, 'AdminInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
-Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
+
+//                       ######### AdminController ###########
+Route::any('/admin/getSingle',[AdminController::class, 'AdminInfoByUser'] );
 Route::any('/admin/doctorsCount',[AdminController::class, 'doctorsCount'] );
 Route::any('/admin/showDoctors',[AdminController::class, 'showDoctors'] );
 Route::any('/admin/showPatients',[AdminController::class, 'showPatients'] );
@@ -43,16 +54,19 @@ Route::any('/admin/patientCount',[AdminController::class, 'patientCount'] );
 Route::any('/admin/consultationCount',[AdminController::class, 'consultationCount'] );
 Route::any('/admin/allRevenue',[AdminController::class, 'allRevenue'] );
 Route::any('/admin/showConsultations',[AdminController::class, 'showConsultations'] );
-Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
 Route::any('/admin/changeEtat',[AdminController::class, 'changeEtat'] );
+Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
+
+//                       ######### SpecialiteController ###########
+Route::any('/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('admin/specialities/add',[SpecialiteController::class, 'create'] );
-Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
-Route::any('/notif',[NotificationEventController::class, 'show'] );
 Route::any('/admin/insertSpec',[SpecialiteController::class, 'create'] );
 Route::any('admin/specialities/show',[SpecialiteController::class, 'show'] );
 Route::any('admin/specialities/edit',[SpecialiteController::class, 'edit'] );
 Route::any('admin/specialities/delete',[SpecialiteController::class, 'delete'] );
-Route::any('/admin/lockAccounts',[AdminController::class, 'lockAccounts'] );
+
+//                       ######### CalendrierController ###########
+Route::any('/doctor/schedule',[CalendrierController::class, 'create'] );
 Route::any('/doctor/schedule/check',[CalendrierController::class, 'check'] );
 Route::any('/doctor/schedule/delete',[CalendrierController::class, 'delete'] );
 Route::any('/doctor/schedule/checkQuery',[CalendrierController::class, 'checkQuery'] );
@@ -66,3 +80,5 @@ Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsu
 
 
 
+//                       ######### NotificationEventController ###########
+Route::any('/notif',[NotificationEventController::class, 'show'] );
