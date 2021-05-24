@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('ville',result1['user']['ville']);
                   localStorage.setItem('patient_id',result1['user']['patient_id']);
                   localStorage.setItem('dateNaiss',result1['user']['dateNaiss']);
+                  localStorage.setItem('pays',result1['user']['pays']);
                   this.router.navigate(['/patients/dashboard']);
                 }
               }); 
