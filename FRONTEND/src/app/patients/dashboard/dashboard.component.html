@@ -35,25 +35,25 @@
 																	<th>Appt Date</th>
 																	<th>Booking Date</th>
 																	<th>Amount</th>
-																	<th>Follow Up</th>
+																	<th>Type</th>
 																	<th>Status</th>
-																	<th>Changer l'état</th>
+																	<th>Changer status</th>
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr *ngFor="let app of AppointmentsInfo">
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>14 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
+																	<td>{{app.date}} <span class="d-block text-info">{{app.heure}} AM</span></td>
 																	<td>12 Nov 2019</td>
-																	<td>$160</td>
-																	<td>16 Nov 2019</td>
+																	<td>{{app.tarif}}</td>
+																	<td>{{app.type}}</td>
 																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
 																	<td class="text-right">
 																		<div class="table-action">

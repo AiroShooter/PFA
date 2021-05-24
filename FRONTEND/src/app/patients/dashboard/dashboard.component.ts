@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeState;
-    
+    this.getApptointementsInfo();
   }
 
   
