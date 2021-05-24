@@ -160,8 +160,10 @@ class AdminController extends Controller
     public function allRevenue()
     {
         $query = DB::select('SELECT sum(tarif) as tarifs FROM `consultations`');
-       
-        return $query;
+        if($query[0]->tarifs == null)
+            return 0;
+        else
+            return $query[0]->tarifs;
     }
     public function changeEtat(Request $request)
     {

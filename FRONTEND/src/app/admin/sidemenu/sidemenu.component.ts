@@ -22,7 +22,7 @@ export class SidemenuComponent implements OnInit {
     public http: HttpClient,
   ) {}
   ngOnInit(): void {
-    setInterval(()=>{this.getNotifs();}, 3000);
+    setInterval(()=>{this.getNotifs();}, 5000);
   }
 
   ngAfterViewInit() {
@@ -54,17 +54,32 @@ export class SidemenuComponent implements OnInit {
       this.userCollapsed = true;
     }
   }
+  
   user() {
     this.userCollapsed = !this.userCollapsed;
     if (!this.bellCollapsed) {
       this.bellCollapsed = true;
     }
   }
+
   notifs:[];
-  notifsCount:any;
+  notifsCount:any=0;
   getNotifs(){
     this.notifs = JSON.parse(localStorage.getItem('notifs'));
-    this.notifsCount = this.notifs.length;
+    let count;
+    let i=0;
+    if(this.notifs != null)
+    {
+      count = this.notifs.map(({ etat }) => etat)
+      this.notifsCount = 0;
+      for(i;i<count.length;i++)
+      {
+        if(count[i] == "unseen")
+        this.notifsCount++;
+      }
+    }    
+    // if(this.notifs.length != NaN)
+    // this.notifsCount = this.notifs.length;
   }
   
 

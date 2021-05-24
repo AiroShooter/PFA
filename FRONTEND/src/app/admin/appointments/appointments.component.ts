@@ -36,7 +36,7 @@ export class AppointmentsComponent implements OnInit {
      this.http.post("http://127.0.0.1:8000/api/admin/changeEtat",{"etat":etat,"id":id}).subscribe(result =>{
        console.log(result);
      });
-     
+     setTimeout(()=>{this.getshowConsultations();}, 1000);
   }
 
 }
