@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {CommonServiceService  } from './../../common-service.service';
 
@@ -11,12 +12,24 @@ export class MypatientsComponent implements OnInit {
   appointments : any = [];
   patients :  any = [];
   
-  constructor(public commonService:CommonServiceService) { }
+  constructor(public commonService:CommonServiceService, private http:HttpClient) { }
 
   ngOnInit(): void {
     this.getPatients();
     this.getAppointments();
+    this.getApptointementsInfo();
+    
 
+  }
+  AppointmentsInfo:any;
+  user_id:any;
+  getApptointementsInfo(){
+    this.user_id = localStorage.getItem("userId");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showConsultations",{"user_id":this.user_id}).subscribe(result => {
+    this.AppointmentsInfo = result;
+    console.log(result);
+    });
   }
 
   getAppointments() {

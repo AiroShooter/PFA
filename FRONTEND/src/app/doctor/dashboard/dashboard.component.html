@@ -12,9 +12,9 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Total Patient</h6>
-                                    <h3>1500</h3>
-                                    <p class="text-muted">Till Today</p>
+                                    <h6>Total Patients</h6>
+                                    <h3>{{AppointmentsCount}}</h3>
+                                    <p class="text-muted">À aujourd'hui</p>
                                 </div>
                             </div>
                         </div>
@@ -27,9 +27,8 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Today Patient</h6>
-                                    <h3>160</h3>
-                                    <p class="text-muted">06, Nov 2019</p>
+                                    <h6>Nombre de patients</h6>
+                                    <h3>{{AppointmentsCount}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +41,9 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Appoinments</h6>
-                                    <h3>{{Appointmentscount}}</h3>
+                                    <h6>Nombre de consulations</h6>
+                                    <h3>{{AppointmentsCount}}</h3>
+
                                 </div>
                             </div>
                         </div>
@@ -79,35 +79,38 @@
                                     <table class="table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Patient Name</th>
-                                                <th>Appt Date</th>
-                                                <th>Purpose</th>
+                                                <th>Patient Nom</th>
+                                                <th>Date</th>
+                                                <th>Raison</th>
                                                 <th>Type</th>
-                                                <th class="text-center">Paid Amount</th>
+                                                <th class="text-center">Tarif Payant</th>
+                                                <th class="text-center">Etat courant</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let appointment of appointments">
+                                            <tr *ngFor="let appointment of AppointmentsInfo">
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="appointment?.patients?.img" alt="User Image"></a>
-                                                        <a >{{appointment?.patients?.name}}<span>{{appointment.patients?.key}}</span></a>
+                                                        <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
-                                                <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}<span class="d-block text-info">10.00 AM</span></td>
-                                                <td>General</td>
+                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info">10.00 AM</span></td>
+                                                <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
-                                                <td class="text-center">{{appointment.amount}}</td>
+                                                <td class="text-center">${{appointment.tarif}}</td>
+                                                <td *ngIf="appointment.etat == 'confirmer'" class="text-center text-success">{{appointment.etat}}</td>
+                                                <td *ngIf="appointment.etat == 'annuler'" class="text-center text-danger">{{appointment.etat}}</td>
+                                                
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                             <i class="far fa-eye"></i> View
                                                         </a> 
-														<a (click)="openModal(template,appointment)" class="btn btn-sm bg-success-light">
+														<a (click)="openModal(template,appointment,appointment.const_id)" class="btn btn-sm bg-success-light">
                                                             <i class="fas fa-check"></i> Accept
                                                         </a> 
-                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment)" class="btn btn-sm bg-danger-light">
+                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id)" class="btn btn-sm bg-danger-light">
                                                             <i class="fas fa-times"></i> Cancel
                                                         </a>
                                                     </div>
@@ -123,7 +126,7 @@
                     <!-- /Upcoming Appointment Tab -->
                
                     <!-- Today Appointment Tab -->
-                    <div class="tab-pane" id="today" [ngClass]="{ 'active':activeTab==='today'}">
+                    <!-- <div class="tab-pane" id="today" [ngClass]="{ 'active':activeTab==='today'}">
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -170,7 +173,7 @@
                                 </div>	
                             </div>	
                         </div>	
-                    </div>
+                    </div> -->
                     <!-- /Today Appointment Tab -->
                     
                 </div>
@@ -190,7 +193,7 @@
     <div class="modal-body text-center">
       Are you sure want to accept this patient?
       <div style="margin-top:25px">
-        <button type="button" id="btn-yes" (mouseover)="btnColor()" class="btn btn-default" (click)="confirm('accept')" >Yes</button>
+        <button type="button" id="btn-yes" (mouseover)="btnColor()" class="btn btn-default" (click)="confirm()" >Yes</button>
         <button type="button" id="btn-no" (mouseover)="btnColorNo()" class="btn btn-primary" (click)="cancel()" >No</button>
       </div>
     </div>
@@ -206,7 +209,7 @@
     <div class="modal-body text-center">
       Are you sure want to cancel this patient?
       <div style="margin-top:25px">
-        <button type="button" class="btn btn-default" (click)="confirm('cancel')" >Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline()" >Yes</button>
         <button type="button" class="btn btn-primary" (click)="cancel()" >No</button>
      </div>
     </div>

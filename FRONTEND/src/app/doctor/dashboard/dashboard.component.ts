@@ -28,8 +28,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatients();
-      this.getAppointments();
       this.getAppointmentscount();
+      this.getApptointementsInfo();
   }
 
   search(activeTab){
@@ -60,59 +60,47 @@ export class DashboardComponent implements OnInit {
     document.getElementById('btn-yes').style.color = "#000";
   }
   
-  openModal(template: TemplateRef<any>,appointment) {
+  openModal(template: TemplateRef<any>,appointment,const_id) {
     this.appointmentId = appointment;
     this.modalRef = this.modalService.show(template,{class: 'modal-sm modal-dialog-centered'});
-    
+    localStorage.setItem('const_id',const_id);
   }
+  etat:any
+  confirm() {
+    let const_id = localStorage.getItem('const_id');
+    let form = new FormData();
+    this.etat = "confirmer";
+    form.append("const_id",const_id);
+    form.append("etat",this.etat);
+    console.log(const_id);
+    console.log(this.etat);
+    this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",form).subscribe(result =>{
+       console.log(result);
+       this.getApptointementsInfo();
+       this.modalRef.hide();
 
-  confirm(value) {
-    delete this.appointmentId['patients']
-    let data = {
-      ...this.appointmentId
-    }
-    data['status'] = 'accept';
-    this.commonService.updateAppointment(data,data.id)
-      .subscribe(res=>{
-        this.toastr.success('', 'Updated successfully!');
-        this.modalRef.hide();
-        this.appointments = this.appointments.filter(a=>a.id != data.id);
-        this.getPatients();
-        this.getAppointments();
-      })
+    });
    
   }
 
   decline() {
-    delete this.appointmentId['patients']
-    let data = {
-      ...this.appointmentId
-    }
-    data['status'] = 'decline';
-    this.commonService.updateAppointment(data,data.id)
-      .subscribe(res=>{
-        this.toastr.success('', 'Decline successfully!');
-        this.modalRef.hide();
-        this.appointments = this.appointments.filter(a=>a.id != data.id);
-        this.getPatients();
-        this.getAppointments();
-      })
-  }
+    let const_id = localStorage.getItem('const_id');
+    let form = new FormData();
+    this.etat = "annuler";
+    form.append("const_id",const_id);
+    form.append("etat",this.etat);
+    console.log(const_id);
+    console.log(this.etat);
+    this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",form).subscribe(result =>{
+       console.log(result);
+       localStorage.removeItem('const_id');
+       this.getApptointementsInfo();
+       this.modalRef.hide();
+    });
+   
+  
 
-  getAppointments() {
-    this.commonService.getAppointments()
-      .subscribe(res=>{
-        this.appointments = res;
-        let scope = this;
-        this.appointments.forEach(index=>{
-          let filter = scope.patients.filter(a=>a.key === index.patient_key);
-          if(filter.length != 0) {
-            index['patients'] = filter[0];
-          }
-        })
-        this.appointments = this.appointments.filter(a=>a.status === 'active');
-        this.appointmentsLength = this.appointments.length;
-      })
+  
   }
 
   getPatients() {
@@ -128,14 +116,30 @@ export class DashboardComponent implements OnInit {
   }
   Appointmentscount:any 
   user_id:any
+
+  AppointmentsInfo:any;
+  getApptointementsInfo(){
+    this.user_id = localStorage.getItem("userId");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showConsultations",{"user_id":this.user_id}).subscribe(result => {
+    this.AppointmentsInfo = result;
+    console.log(result);
+    });
+  }
+  AppointmentsCount:any;
   getAppointmentscount(){
     this.user_id = localStorage.getItem("userId");
     console.log(this.user_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/consultationCount",{"user_id":this.user_id}).subscribe(result => {
-    this.Appointmentscount = result;
-    console.log(result);
+    this.AppointmentsCount = result;
 
     });
+
+  
+  
+
+
+ 
 
     
   }
