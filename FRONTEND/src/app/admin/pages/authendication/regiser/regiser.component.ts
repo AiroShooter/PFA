@@ -12,6 +12,10 @@ export class RegiserComponent implements OnInit {
   constructor(private fb:FormBuilder, private http: HttpClient, public router: Router,) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('nom') == null)
+      this.router.navigateByUrl('/admin/register')
+    else
+      this.router.navigateByUrl('/admin/dashboard')
   }
 
   myForm = this.fb.group({
@@ -40,11 +44,13 @@ export class RegiserComponent implements OnInit {
         }
         else{
 
-          if(result['user'])
+          if(result['user'] && result['admin'])
           {
             localStorage.setItem('email',result['user']['email']);
             localStorage.setItem('type',result['user']['type']);
             localStorage.setItem('user_id',result['user']['user_id']);
+            localStorage.setItem('nom',result['admin']['nom']);
+            localStorage.setItem('prenom',result['admin']['prenom']);
             //this.updater.sendUpdate(true);
             this.router.navigate(['/admin/dashboard']);
           }

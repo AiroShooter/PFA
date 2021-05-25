@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,TemplateRef  } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -15,37 +16,16 @@ export class AppointmentsComponent implements OnInit {
   appointments : any = [];
   patients :  any = [];
   appointmentId;
-  constructor(public commonService:CommonServiceService,private modalService: BsModalService) { }
+  constructor(public commonService:CommonServiceService,private http:HttpClient,private modalService: BsModalService) { }
 
   ngOnInit(): void {
       
-      this.getPatients();
       this.getAppointments();
-		  this.list = this.commonService.getJSON();
-		  this.list = this.list.filter(a=>a.status === 0);
+
   }
 
-  openModal(template: TemplateRef<any>,appointment) {
-    this.appointmentId = appointment;
-    this.modalRef = this.modalService.show(template,{class: 'modal-sm modal-dialog-centered'});
-    
-  }
 
-  confirm(value) {
-    delete this.appointmentId['patients']
-    let data = {
-      ...this.appointmentId
-    }
-    data['status'] = 'accept';
-    this.commonService.updateAppointment(data,data.id)
-      .subscribe(res=>{
-        this.modalRef.hide();
-        this.appointments = this.appointments.filter(a=>a.id != data.id);
-        this.getPatients();
-        this.getAppointments();
-      });
-   
-  }
+ 
 
   btnColor() {
     document.getElementById('btn-yes').style.backgroundColor = "#09e5ab";
@@ -67,42 +47,19 @@ export class AppointmentsComponent implements OnInit {
     document.getElementById('btn-yes').style.color = "#000";
   }
 
-  decline() {
-    delete this.appointmentId['patients']
-    let data = {
-      ...this.appointmentId
-    }
-    data['status'] = 'decline';
-    this.commonService.updateAppointment(data,data.id)
-      .subscribe(res=>{
-        this.modalRef.hide();
-        this.appointments = this.appointments.filter(a=>a.id != data.id);
-        this.getPatients();
-        this.getAppointments();
-      })
-  }
-
+ 
+  AppointmentsInfo:any;
+  user_id:any;
   getAppointments() {
-    this.commonService.getAppointments()
-      .subscribe(res=>{
-        this.appointments = res;
-        let scope = this;
-        this.appointments.forEach(index=>{
-          let filter = scope.patients.filter(a=>a.key === index.patient_key);
-          if(filter.length != 0) {
-            index['patients'] = filter[0];
-          }
-        })
-        this.appointments = this.appointments.filter(a=>a.status === 'active');
-      })
+    this.user_id = localStorage.getItem("user_id");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showConsultations",{"user_id":this.user_id}).subscribe(result => {
+    this.AppointmentsInfo = result;
+    console.log(result);
+    });
   }
-
-  getPatients() {
-    this.commonService.getpatients()
-    .subscribe(res=>{
-      this.patients = res;
-    })
-  }
+  
+ 
 
  
 }

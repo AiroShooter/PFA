@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router,  private http: HttpClient, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('nom') == null)
+      this.router.navigateByUrl('/admin/login-form')
+    else
+      this.router.navigateByUrl('/admin/dashboard')
   }
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';

@@ -28,12 +28,13 @@ export class SidemenuComponent implements OnInit {
     this.name = name;
     this.commonService.nextmessage(name);
   }
+  
   public ageFromDateOfBirthday(dateOfBirth: any): number {
     return moment().diff(dateOfBirth, 'years');
   }
 
-  nom = localStorage.getItem('Pnom') + ' ' + localStorage.getItem('Pprenom');
-  dateNaiss = localStorage.getItem('DateNaiss');
+  nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+  dateNaiss = localStorage.getItem('dateNaiss');
   age = this.ageFromDateOfBirthday(this.dateNaiss);
-  pays = localStorage.getItem('Pays');
+  pays = localStorage.getItem('pays');
 }

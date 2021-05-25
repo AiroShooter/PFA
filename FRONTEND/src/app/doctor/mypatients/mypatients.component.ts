@@ -24,12 +24,18 @@ export class MypatientsComponent implements OnInit {
   AppointmentsInfo:any;
   user_id:any;
   getApptointementsInfo(){
-    this.user_id = localStorage.getItem("userId");
+    this.user_id = localStorage.getItem("user_id");
     console.log(this.user_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/showConsultations",{"user_id":this.user_id}).subscribe(result => {
     this.AppointmentsInfo = result;
     console.log(result);
     });
+  }
+  getDate(date:string)
+  {
+    let dateInt = Date.parse(date);
+    let currentDateInt = Date.parse(new Date().toString());
+    return parseInt(((currentDateInt - dateInt)/(1000 * 3600 * 24 * 365.25)).toString());
   }
 
   getAppointments() {

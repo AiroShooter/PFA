@@ -5,12 +5,13 @@ import { AppointmentsRoutingModule } from './appointments-routing.module';
 import { AppointmentsComponent } from './appointments.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppointmentsComponent],
   imports: [
     CommonModule,
-    AppointmentsRoutingModule,
+    AppointmentsRoutingModule,HttpClientModule,
     ModalModule.forRoot()
   ]
 })

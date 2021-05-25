@@ -63,7 +63,7 @@ class MedecinController extends Controller
     
     public function showConsultations(Request $request)
     {
-        $value = DB::select("SELECT p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss,c.tarif,c.etat,c.type,c.date,c.const_id,c.raison from `consultations` c inner join patients p on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = (?)",[$request->user_id]); 
+        $value = DB::select("SELECT up.email,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss,c.tarif,c.heure,c.etat,c.type,c.date,c.const_id,c.raison FROM `consultations` c inner join medecins m on m.med_id = c.med_id inner join patients p on p.patient_id = c.patient_id inner join users um on um.user_id = m.user_id inner join users up on up.user_id = p.user_id where um.user_id = (?)",[$request->user_id]); 
         return $value;
     }
     public function updateConsultations(Request $request)

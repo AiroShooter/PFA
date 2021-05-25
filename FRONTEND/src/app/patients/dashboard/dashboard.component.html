@@ -33,263 +33,41 @@
 																<tr>
 																	<th>Doctor</th>
 																	<th>Appt Date</th>
-																	<th>Booking Date</th>
 																	<th>Amount</th>
-																	<th>Follow Up</th>
+																	<th>Type</th>
 																	<th>Status</th>
-																	<th></th>
+																	<th>Changer status</th>
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr *ngFor="let app of AppointmentsInfo">
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
+																			
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>14 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
-																	<td>12 Nov 2019</td>
-																	<td>$160</td>
-																	<td>16 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
+																	<td>{{app.date}} <span class="d-block text-info">{{app.heure}} AM</span></td>
+																	<td>${{app.tarif}}</td>
+																	<td>{{app.type}}</td>
+																	<td><span *ngIf="app.etat == 'confirmer'" class="badge badge-pill bg-success-light">{{app.etat}}</span>
+																		<span *ngIf="app.etat == 'annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span></td>
 																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
+																		<div  class="table-action">
+																	
+																			<a (click)="changeState(app.const_id,'confirmer')" class="btn btn-sm bg-success-light mr-4">
+																				<i class="fas fa-check"></i> Accept
+																			</a> 
+																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'annuler')" class="btn btn-sm bg-danger-light">
+																				<i class="fas fa-times"></i> Cancel
 																			</a>
 																		</div>
 																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Darren Elder <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td>12 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-																	<td>12 Nov 2019</td>
-																	<td>$250</td>
-																	<td>14 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Deborah Angel <span>Cardiology</span></a>
-																		</h2>
-																	</td>
-																	<td>11 Nov 2019 <span class="d-block text-info">11.00 AM</span></td>
-																	<td>10 Nov 2019</td>
-																	<td>$400</td>
-																	<td>13 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Sofia Brient <span>Urology</span></a>
-																		</h2>
-																	</td>
-																	<td>10 Nov 2019 <span class="d-block text-info">3.00 PM</span></td>
-																	<td>10 Nov 2019</td>
-																	<td>$350</td>
-																	<td>12 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-warning-light">Pending</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Marvin Campbell <span>Ophthalmology</span></a>
-																		</h2>
-																	</td>
-																	<td>9 Nov 2019 <span class="d-block text-info">7.00 PM</span></td>
-																	<td>8 Nov 2019</td>
-																	<td>$75</td>
-																	<td>11 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Katharine Berthold <span>Orthopaedics</span></a>
-																		</h2>
-																	</td>
-																	<td>8 Nov 2019 <span class="d-block text-info">9.00 AM</span></td>
-																	<td>6 Nov 2019</td>
-																	<td>$175</td>
-																	<td>10 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-danger-light">Cancelled</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Linda Tobin <span>Neurology</span></a>
-																		</h2>
-																	</td>
-																	<td>8 Nov 2019 <span class="d-block text-info">6.00 PM</span></td>
-																	<td>6 Nov 2019</td>
-																	<td>$450</td>
-																	<td>10 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Paul Richard <span>Dermatology</span></a>
-																		</h2>
-																	</td>
-																	<td>7 Nov 2019 <span class="d-block text-info">9.00 PM</span></td>
-																	<td>7 Nov 2019</td>
-																	<td>$275</td>
-																	<td>9 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. John Gibbs <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td>6 Nov 2019 <span class="d-block text-info">8.00 PM</span></td>
-																	<td>4 Nov 2019</td>
-																	<td>$600</td>
-																	<td>8 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Olga Barlow  <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td>5 Nov 2019 <span class="d-block text-info">5.00 PM</span></td>
-																	<td>1 Nov 2019</td>
-																	<td>$100</td>
-																	<td>7 Nov 2019</td>
-																	<td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
+																	
 																</tr>
 															</tbody>
 														</table>
@@ -308,226 +86,27 @@
 															<thead>
 																<tr>
 																	<th>Date </th>
-																	<th>Name</th>									
+																	<th>Perspections</th>									
 																	<th>Created by </th>
 																	<th></th>
 																</tr>     
 															</thead>
 															<tbody>
-																<tr>
-																	<td>14 Nov 2019</td>
-																	<td>Prescription 1</td>
+																<tr *ngFor="let app of AppointmentsInfo">
+																	<td>{{app.date}}</td>
+																	<td>{{app.desc}}</td>
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}}  <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
 																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13 Nov 2019</td>
-																	<td>Prescription 2</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Darren Elder <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>12 Nov 2019</td>
-																	<td>Prescription 3</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Deborah Angel <span>Cardiology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>11 Nov 2019</td>
-																	<td>Prescription 4</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Sofia Brient <span>Urology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>10 Nov 2019</td>
-																	<td>Prescription 5</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Marvin Campbell <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>9 Nov 2019</td>
-																	<td>Prescription 6</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Katharine Berthold <span>Orthopaedics</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>8 Nov 2019</td>
-																	<td>Prescription 7</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Linda Tobin <span>Neurology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>7 Nov 2019</td>
-																	<td>Prescription 8</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Paul Richard <span>Dermatology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>6 Nov 2019</td>
-																	<td>Prescription 9</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. John Gibbs <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>5 Nov 2019</td>
-																	<td>Prescription 10</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Olga Barlow <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
+																			
 																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
 																				<i class="far fa-eye"></i> View
 																			</a>
@@ -823,245 +402,21 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr *ngFor="let app of AppointmentsInfo">
 																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0010</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Ruby Perrin <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td>$450</td>
-																	<td>14 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0009</a>
+																		<a [routerLink]="'/invoice-details'">#INV-0{{app.const_id}}</a>
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Darren Elder <span>Dental</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">{{app.pnom}} {{app.pprenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>$300</td>
-																	<td>13 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0008</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Deborah Angel <span>Cardiology</span></a>
-																		</h2>
-																	</td>
-																	<td>$150</td>
-																	<td>12 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0007</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Sofia Brient <span>Urology</span></a>
-																		</h2>
-																	</td>
-																	<td>$50</td>
-																	<td>11 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0006</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Marvin Campbell <span>Ophthalmology</span></a>
-																		</h2>
-																	</td>
-																	<td>$600</td>
-																	<td>10 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0005</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Katharine Berthold <span>Orthopaedics</span></a>
-																		</h2>
-																	</td>
-																	<td>$200</td>
-																	<td>9 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0004</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Linda Tobin <span>Neurology</span></a>
-																		</h2>
-																	</td>
-																	<td>$100</td>
-																	<td>8 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0003</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Paul Richard <span>Dermatology</span></a>
-																		</h2>
-																	</td>
-																	<td>$250</td>
-																	<td>7 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0002</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. John Gibbs <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td>$175</td>
-																	<td>6 Nov 2019</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<a [routerLink]="'/invoice-details'">#INV-0001</a>
-																	</td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Olga Barlow <span>#0010</span></a>
-																		</h2>
-																	</td>
-																	<td>$550</td>
-																	<td>5 Nov 2019</td>
+																	<td>${{app.tarif}}</td>
+																	<td>{{app.date}}</td>
 																	<td class="text-right">
 																		<div class="table-action">
 																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
