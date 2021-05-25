@@ -32,6 +32,8 @@ use App\Http\Controllers\MedecinController;
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
+Route::any('/verifyPass',[UserController::class, 'verifyPass'] );
+
 
 
 //                       ######### MedecinController ###########
@@ -44,6 +46,9 @@ Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsu
 //                       ######### PatientController ###########
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
+Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
+
+
 
 //                       ######### AdminController ###########
 Route::any('/admin/getSingle',[AdminController::class, 'AdminInfoByUser'] );

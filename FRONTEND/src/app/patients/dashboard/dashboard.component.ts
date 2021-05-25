@@ -30,7 +30,19 @@ export class DashboardComponent implements OnInit {
     console.log(result);
     });
   }
-  changeState(){}
+  
+  changeState(const_id,etat){
+    
+    let form = new FormData();
+    form.append("const_id",const_id);
+    form.append("etat",etat);
+    console.log(const_id);
+    console.log(etat);
+    this.http.post("http://127.0.0.1:8000/api/patients/updateConsultations",form).subscribe(result =>{
+       console.log(result);
+       this.getApptointementsInfo();
+  });
+}
 
  
 }

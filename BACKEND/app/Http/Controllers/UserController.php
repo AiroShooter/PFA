@@ -18,6 +18,26 @@ class UserController extends Controller
 
         return $users;
     }
+    public static function verifyPass(Request $request){
+        $value = DB::select("select * from users where user_id = ?",[$request->user_id]);
+        if($value){
+            $oldPassword = Crypt::decryptString($value[0]->password); 
+            if($oldPassword == $request->opassword){
+                $encrypted = Crypt::encryptString($request->password);
+                $update = DB::update("update users set password = ? where user_id = ?",[$encrypted,$request->user_id]);
+                if($update){
+                    $value1 = DB::select("select * from users where user_id = ?",[$request->user_id]);
+                    return response()->json([
+                        'hasError' => false,
+                        'success' => 'Done',
+                        'error' => '',
+                        'user' =>$value1[0]
+                    ]);
+                }         
+            }
+        }
+       
+    }
     public static function register(Request $request){
 
         $count = User::where('email','=',$request->email)->count();
