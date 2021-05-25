@@ -52,7 +52,7 @@
 								<div class="col-12 col-sm-8 col-md-6 text-sm-right">
 									<div class="bookingrange bm-3">
 										<form  [formGroup]="myForm">
-											<input class="form-control" type="date" formControlName="date" id="date" (change)="GetDate()"/>
+											<input class="form-control" type="date" formControlName="dateSelected" id="date" (change)="GetDate()" name="dd" [ngModel]="dd"/>
 										</form>
 									
 									</div>
@@ -67,43 +67,25 @@
 										<div class="col-md-12">
 										
 											<!-- Day Slot -->
-											<div class="day-slot">
-												<ul>
+											<div class="day-slot" *ngIf="this.date">
+												<ul style="display: flex; justify-content: space-between;">
 													<li class="left-arrow">
-														<a >
+														<a (click)="Prev()">
 															<i class="fa fa-chevron-left"></i>
 														</a>
 													</li>
 													<li>
-														<span>Mon</span>
-														<span class="slot-date">11 Nov <small class="slot-year">2019</small></span>
+															
 													</li>
 													<li>
-														<span>Tue</span>
-														<span class="slot-date">12 Nov <small class="slot-year">2019</small></span>
-													</li>
+														<span>{{this.date.jour_alfa.substring(0,1).toUpperCase()+this.date.jour_alfa.substring(1)}}</span>
+														<span class="slot-date">{{this.date.jour_num}} {{this.date.mois}} <small class="slot-year">{{this.date.annee}}</small></span>
+													</li>	
 													<li>
-														<span>Wed</span>
-														<span class="slot-date">13 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Thu</span>
-														<span class="slot-date">14 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Fri</span>
-														<span class="slot-date">15 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Sat</span>
-														<span class="slot-date">16 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Sun</span>
-														<span class="slot-date">17 Nov <small class="slot-year">2019</small></span>
+														
 													</li>
 													<li class="right-arrow">
-														<a >
+														<a (click)="Next()">
 															<i class="fa fa-chevron-right"></i>
 														</a>
 													</li>
@@ -122,86 +104,10 @@
 										<div class="col-md-12">
 										
 											<!-- Time Slot -->
-											<div class="time-slot">
-												<ul class="clearfix">
-													<li>
-														<a class="timing">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>12:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>01:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>02:00</span> <span>PM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>03:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>04:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>05:00</span> <span>PM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>06:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>07:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>08:00</span> <span>PM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>09:00</span> <span>PM</span>
-														</a>
-														<a class="timing selected">
-															<span>10:00</span> <span>PM</span>
-														</a>
-														<a class="timing">
-															<span>11:00</span> <span>PM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-												</ul>
+											<div class="time-slot doc-times">
+												<a  class="doc-slot-list text-light" style="border:none; cursor: pointer;">
+													<span>09:00</span>&nbsp;
+												</a>
 											</div>
 											<!-- /Time Slot -->
 											
