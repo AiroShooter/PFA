@@ -86,7 +86,7 @@
 						<div class="col-md-12 col-lg-8 col-xl-9">
 
 							<!-- Doctor Widget -->
-							<div class="card" *ngFor="let doctor of doctors" [hidden]="doctors.length === 0">
+							<div class="card" *ngFor="let doctor of doctorsInfo" [hidden]="doctors.length === 0">
 								
 								<div class="card-body">
 									<div class="doctor-widget">
@@ -97,9 +97,9 @@
 												</a>
 											</div>
 											<div class="doc-info-cont">
-												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.doctor_name}}</a></h4>
-												<p class="doc-speciality">{{doctor.Education}}</p>
-												<h5 class="doc-department"><img [src]="doctor.speciality_profile" class="img-fluid" alt="Speciality">{{doctor.speciality}}</h5>
+												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.nom}} {{doctor.prenom}}</a></h4>
+												<p class="doc-speciality">{{doctor.addresseCabinet}}</p>
+												<h5 class="doc-department"><img [src]="doctor.speciality_profile" class="img-fluid" alt="Speciality">{{doctor.libelle}}</h5>
 												<div class="rating">
 													<i class="fas fa-star filled"></i>
 													<i class="fas fa-star filled"></i>
@@ -109,7 +109,7 @@
 													<span class="d-inline-block average-rating">(17)</span>
 												</div>
 												<div class="clinic-details">
-													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{doctor.location}}</p>
+													<p class="doc-location"><i class="fas fa-map-marker-alt"></i>Maroc, {{doctor.ville}}</p>
 													<ul class="clinic-gallery">
 														<li> 
 															<a lightbox-group >
@@ -131,8 +131,8 @@
 												<ul>
 													<li><i class="far fa-thumbs-up"></i> 98%</li>
 													<li><i class="far fa-comment"></i> 17 Feedback</li>
-													<li><i class="fas fa-map-marker-alt"></i> {{doctor.location}}</li>
-													<li><i class="far fa-money-bill-alt"></i> {{doctor.Price}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
+													<li><i class="fas fa-map-marker-alt"></i> {{doctor.ville}}</li>
+													<li><i class="far fa-money-bill-alt"></i> {{doctor.tarif}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
 												</ul>
 											</div>
 											<div class="clinic-booking">
