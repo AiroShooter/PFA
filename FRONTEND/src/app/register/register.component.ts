@@ -13,7 +13,7 @@ import { UpdaterService } from 'src/app/services/updater.service';
 export class RegisterComponent implements OnInit {
   
   isPatient: string = "true";
-  reg_type = 'Registre des patients';
+  reg_type = 'Nouveau patient';
   doc_patient = 'Etes-vous un médecin ?';
   constructor(
     private http: HttpClient,
@@ -26,12 +26,12 @@ export class RegisterComponent implements OnInit {
   }
 
   changeRegType() {
-    if (this.reg_type === 'Registre des médecins') {
-      this.reg_type = 'Registre des patients';
+    if (this.reg_type === 'Nouveau médecin') {
+      this.reg_type = 'Nouveau patient';
       this.doc_patient = 'Etes-vous un médecin ?';
       this.isPatient = "true";
     } else {
-      this.reg_type = 'Registre des médecins';
+      this.reg_type = 'Nouveau médecin';
       this.doc_patient = 'Pas un médecin ?';
       this.isPatient = "false";
     }

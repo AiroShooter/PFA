@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -7,194 +10,14 @@ declare var $: any;
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
-  constructor() {}
+  constructor( 
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Pricing Options Show
-
-    $('#pricing_select input[name="rating_option"]').on('click', function () {
-      if ($(this).val() == 'price_free') {
-        $('#custom_price_cont').hide();
-      }
-      if ($(this).val() == 'custom_price') {
-        $('#custom_price_cont').show();
-      } else {
-      }
-    });
-
-    // Education Add More
-
-    $('.education-info').on('click', '.trash', function () {
-      $(this).closest('.education-cont').remove();
-      return false;
-    });
-
-    $('.add-education').on('click', function () {
-      var educationcontent =
-        '<div class="row form-row education-cont">' +
-        '<div class="col-12 col-md-10 col-lg-11">' +
-        '<div class="row form-row">' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>Degree</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>College/Institute</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>Year of Completion</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
-        '</div>';
-
-      $('.education-info').append(educationcontent);
-      return false;
-    });
-
-    // Experience Add More
-
-    $('.experience-info').on('click', '.trash', function () {
-      $(this).closest('.experience-cont').remove();
-      return false;
-    });
-
-    $('.add-experience').on('click', function () {
-      var experiencecontent =
-        '<div class="row form-row experience-cont">' +
-        '<div class="col-12 col-md-10 col-lg-11">' +
-        '<div class="row form-row">' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>Hospital Name</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>From</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>To</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-6 col-lg-4">' +
-        '<div class="form-group">' +
-        '<label>Designation</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
-        '</div>';
-
-      $('.experience-info').append(experiencecontent);
-      return false;
-    });
-
-    // Awards Add More
-
-    $('.awards-info').on('click', '.trash', function () {
-      $(this).closest('.awards-cont').remove();
-      return false;
-    });
-
-    $('.add-award').on('click', function () {
-      var regcontent =
-        '<div class="row form-row awards-cont">' +
-        '<div class="col-12 col-md-5">' +
-        '<div class="form-group">' +
-        '<label>Awards</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-5">' +
-        '<div class="form-group">' +
-        '<label>Year</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-2">' +
-        '<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
-        '<a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
-        '</div>' +
-        '</div>';
-
-      $('.awards-info').append(regcontent);
-      return false;
-    });
-
-    // Membership Add More
-
-    $('.membership-info').on('click', '.trash', function () {
-      $(this).closest('.membership-cont').remove();
-      return false;
-    });
-
-    $('.add-membership').on('click', function () {
-      var membershipcontent =
-        '<div class="row form-row membership-cont">' +
-        '<div class="col-12 col-md-10 col-lg-5">' +
-        '<div class="form-group">' +
-        '<label>Memberships</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-2 col-lg-2">' +
-        '<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
-        '<a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
-        '</div>' +
-        '</div>';
-
-      $('.membership-info').append(membershipcontent);
-      return false;
-    });
-
-    // Registration Add More
-
-    $('.registrations-info').on('click', '.trash', function () {
-      $(this).closest('.reg-cont').remove();
-      return false;
-    });
-
-    $('.add-reg').on('click', function () {
-      var regcontent =
-        '<div class="row form-row reg-cont">' +
-        '<div class="col-12 col-md-5">' +
-        '<div class="form-group">' +
-        '<label>Registrations</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-5">' +
-        '<div class="form-group">' +
-        '<label>Year</label>' +
-        '<input type="text" class="form-control">' +
-        '</div>' +
-        '</div>' +
-        '<div class="col-12 col-md-2">' +
-        '<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
-        '<a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
-        '</div>' +
-        '</div>';
-
-      $('.registrations-info').append(regcontent);
-      return false;
-    });
+    this.loadSpec();
   }
   files: File[] = [];
 
@@ -204,5 +27,53 @@ export class SettingsComponent implements OnInit {
 
   onRemove(event) {
     this.files.splice(this.files.indexOf(event), 1);
+  }
+  specs:any
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
+  loadSpec()
+  {
+    this.http.get(this.SERVER_URL + 'specialities/show').subscribe(result => {
+      this.specs=result;
+    });
+
+    console.log(this.specs);
+  }
+
+  myForm = this.fb.group({
+    prenom:[], nom:[], titre:[], tarif:[], siteweb:[], adresse:[], ville:[], sexe:[], teleC:[], teleP:[], duree:[], specialite:[]
+  });
+
+  signup() {
+    let form = new FormData();
+    form.append("user_id",localStorage.getItem('user_id'));
+    form.append("spec_id",this.myForm.value.specialite);
+    form.append("titre",this.myForm.value.titre);
+    form.append("nom",this.myForm.value.nom);
+    form.append("prenom",this.myForm.value.prenom);
+    form.append("tarif",this.myForm.value.tarif);
+    form.append("siteWeb",this.myForm.value.siteweb);
+    form.append("adresseCabinet",this.myForm.value.adresse);
+    form.append("ville",this.myForm.value.ville);
+    form.append("sexe",this.myForm.value.sexe);
+    form.append("teleCabinet",this.myForm.value.teleC);
+    form.append("telePerso",this.myForm.value.teleP);
+    form.append("duree",this.myForm.value.duree);
+    
+
+    console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
+    this.http.post(this.SERVER_URL + 'doctor/start', form).subscribe(result => {
+      console.log(result);
+      if(result['user'])
+          {
+            localStorage.setItem('nom',result['user']['nom']);
+            localStorage.setItem('prenom',result['user']['prenom']);
+            localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('ville',result['user']['ville']);
+            localStorage.setItem('med_id',result['user']['med_id']);
+            if(result['spec'])
+              localStorage.setItem('Spec',result['spec']['libelle']);
+            this.router.navigate(['/doctor/dashboard']);
+          }
+    });
   }
 }

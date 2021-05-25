@@ -49,12 +49,12 @@
                             <span>Factures</span>
                         </a>
                     </li>
-                    <li  [class.active]="name === 'Reviews'  || page === 'reviews'" (click)="navigate('Reviews')">
+                    <!-- <li  [class.active]="name === 'Reviews'  || page === 'reviews'" (click)="navigate('Reviews')">
                         <a   [routerLink]="'reviews'">
                             <i class="fas fa-star"></i>
                             <span>Commentaires</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li  [class.active]="name === 'Message' || page === 'message'" (click)="navigate('Message')">
                         <a   [routerLink]="'message'">
                             <i class="fas fa-comments"></i>
@@ -68,12 +68,12 @@
                             <span>Paramètres de profile</span>
                         </a>
                     </li>
-                    <li [class.active]="name === 'Social Media'" (click)="navigate('Social Media')">
+                    <!-- <li [class.active]="name === 'Social Media'" (click)="navigate('Social Media')">
                         <a [routerLink]="'social-media'">
                             <i class="fas fa-share-alt"></i>
                             <span>Social Media</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li [class.active]="name === 'Change Password'" (click)="navigate('Change Password')">
                         <a [routerLink]="'/change-password'">
                             <i class="fas fa-lock"></i>
