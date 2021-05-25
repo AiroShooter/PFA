@@ -15,23 +15,33 @@ export class ChangePasswordComponent implements OnInit {
   }
   myForm = this.fb.group({
     password:[],
-    opassword:[]
-    // confirmPassword:[]
+    opassword:[],
+    confirmPassword:[]
   });
+
+  error : string = "";
+  success : string = "";
 
   user_id:any
   changePass() 
   {
-    this.user_id = localStorage.getItem('user_id');
-    let form = new FormData();
-    form.append("user_id",this.user_id);
-    form.append("password",this.myForm.value.password);
-    form.append("opassword",this.myForm.value.opassword);
-    this.http.post("http://127.0.0.1:8000/api/verifyPass", form).subscribe(result => 
+    this.error = "";
+    this.success = "";
+    if(this.myForm.value.password == this.myForm.value.confirmPassword)
     {
-      console.log(result);
-      console.log(this.user_id);
-    });
+      this.user_id = localStorage.getItem('user_id');
+      let form = new FormData();
+      form.append("user_id",this.user_id);
+      form.append("password",this.myForm.value.password);
+      form.append("opassword",this.myForm.value.opassword);
+      this.http.post("http://127.0.0.1:8000/api/verifyPass", form).subscribe((result: string) => 
+      {
+        this.error = result['error']
+        this.success = result['success']
+      });
+    }
+    else this.error = "Svp confirmer"
+    
   }
 
 }

@@ -42,6 +42,7 @@ Route::any('/doctor/getSingle',[MedecinController::class, 'DoctorInfoByUser'] );
 Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationCount'] );
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
+Route::any('/doctor/show',[MedecinController::class, 'show'] );
 
 //                       ######### PatientController ###########
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );

@@ -5,6 +5,7 @@ import { FormControl,FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { HttpClient } from '@angular/common/http';
 
 declare const $: any;
 
@@ -85,7 +86,11 @@ export class HomeComponent implements OnInit {
       name: 'Switzerland',
     },
   ];
+
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
     public router: Router,
     public commonService: CommonServiceService
   ) {
@@ -311,9 +316,10 @@ export class HomeComponent implements OnInit {
   }
 
   getDoctors() {
-    this.commonService.getDoctors().subscribe((res) => {
+    this.http.get(this.SERVER_URL + 'doctor/show').subscribe((res) => {
       this.doctors = res;
-      this.slidepage = {
+      console.log(this.doctors)
+    this.slidepage = {
         slidesToShow: 5,
         slidesToScroll: 1,
         responsive: [
@@ -337,11 +343,11 @@ export class HomeComponent implements OnInit {
           },
         ],
       };
-      this.countries = [];
-      this.doctors.forEach((index, i) => {
+     this.countries = [];
+     this.doctors.forEach((index, i) => {
         this.countries.push({
-          id: index.id,
-          name: index.doctor_name,
+          id: index.med_id,
+          name: "Dr. "+index.nom + " " + index.prenom,
         });
       });
     });
