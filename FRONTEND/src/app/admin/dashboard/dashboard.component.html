@@ -6,9 +6,9 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
-								<h3 class="page-title">Bonjour {{admin}}!</h3>
+								<h3 class="page-title">Welcome Admin!</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item active">Tableau de bord</li>
+									<li class="breadcrumb-item active">Dashboard</li>
 								</ul>
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 										</div>
 									</div>
 									<div class="dash-widget-info">
-										<h6 class="text-muted">Médecins</h6>
+										<h6 class="text-muted">Doctors</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-primary w-50"></div>
 										</div>
@@ -49,7 +49,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Les patients</h6>
+										<h6 class="text-muted">Patients</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-success w-50"></div>
 										</div>
@@ -70,7 +70,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Rendez-vous</h6>
+										<h6 class="text-muted">Appointment</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-danger w-50"></div>
 										</div>
@@ -91,7 +91,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Revenu</h6>
+										<h6 class="text-muted">Revenue</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-warning w-50"></div>
 										</div>
@@ -106,7 +106,7 @@
 							<!-- Sales Chart -->
 							<div class="card card-chart">
 								<div class="card-header">
-									<h4 class="card-title">Revenu</h4>
+									<h4 class="card-title">Revenue</h4>
 								</div>
 								<div class="card-body">
 									<div id="morrisArea"></div>
@@ -120,7 +120,7 @@
 							<!-- Invoice Chart -->
 							<div class="card card-chart">
 								<div class="card-header">
-									<h4 class="card-title">Statut</h4>
+									<h4 class="card-title">Status</h4>
 								</div>
 								<div class="card-body">
 									<div id="morrisLine"></div>
@@ -136,17 +136,17 @@
 							<!-- Recent Orders -->
 							<div class="card card-table flex-fill">
 								<div class="card-header">
-									<h4 class="card-title">Liste des médecins</h4>
+									<h4 class="card-title">Doctors List</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
-													<th>Nom du médecin</th>
-													<th>Spécialité</th>
+													<th>Doctor Name</th>
+													<th>Speciality</th>
 													<th>Tarif</th>
-													<th>Commentaires</th>
+													<th>Reviews</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -181,17 +181,17 @@
 							<!-- Feed Activity -->
 							<div class="card  card-table flex-fill">
 								<div class="card-header">
-									<h4 class="card-title">Liste des patients</h4>
+									<h4 class="card-title">Patients List</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-hover table-center mb-0">
 											<thead>
 												<tr>													
-													<th>Nom du patient</th>
-													<th>Numéro de téléphone</th>
-													<th>Derniere visite</th>
-													<th>Payé</th>													
+													<th>Patient Name</th>
+													<th>Phone</th>
+													<th>Last Visit</th>
+													<th>Paid</th>													
 												</tr>
 											</thead>
 											<tbody>
@@ -221,19 +221,19 @@
 							<!-- Recent Orders -->
 							<div class="card card-table">
 								<div class="card-header">
-									<h4 class="card-title">Liste de rendez-vous</h4>
+									<h4 class="card-title">Appointment List</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
-													<th>Nom du médecin</th>
-													<th>Spécialité</th>
-													<th>Nom du patient</th>
-													<th>Heure de rendez-vous</th>
-													<th>Statut</th>
-													<th class="text-right">Montant</th>
+													<th>Doctor Name</th>
+													<th>Speciality</th>
+													<th>Patient Name</th>
+													<th>Apointment Time</th>
+													<th>Status</th>
+													<th class="text-right">Amount</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -258,7 +258,7 @@
 															<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
 															<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
 															<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
-															<label for="{{app.const_id}}" class="checktoggle">case à cocher</label>
+															<label for="{{app.const_id}}" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 													<td class="text-right">

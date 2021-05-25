@@ -58,7 +58,7 @@ export class DoctorStartComponent implements OnInit {
           {
             localStorage.setItem('nom',result['user']['nom']);
             localStorage.setItem('prenom',result['user']['prenom']);
-            localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('tele',result['user']['telePerso']);
             localStorage.setItem('ville',result['user']['ville']);
             localStorage.setItem('med_id',result['user']['med_id']);
             if(result['spec'])

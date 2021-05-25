@@ -5,7 +5,6 @@ import {
   AfterViewInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -16,14 +15,11 @@ declare var Morris: any;
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
 
   ngOnInit(): void {
-    if(localStorage.getItem("nom") == null)
-    this.router.navigateByUrl('/admin/login-form')
-
     this.getconsultationCount();
     this.getallRevenue();
     this.getPatientCount();
@@ -175,7 +171,5 @@ export class DashboardComponent implements OnInit {
       localStorage.setItem('notifs', JSON.stringify(result));
     });
   }
-
-  admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
   
 }

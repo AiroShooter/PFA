@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { CommonServiceService } from '../../common-service.service';
 import { HttpClient } from '@angular/common/http';
-
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -47,9 +46,7 @@ export class SidemenuComponent implements OnInit {
     this.commonService.nextmessage('main');
   }
   clickLogout() {
-    this.router.navigateByUrl('/admin/login-form')
-    localStorage.clear()
-    //window.location.href = '/admin/login-form';
+    window.location.href = '/home';
   }
   bell() {
     this.bellCollapsed = !this.bellCollapsed;
@@ -84,6 +81,6 @@ export class SidemenuComponent implements OnInit {
     // if(this.notifs.length != NaN)
     // this.notifsCount = this.notifs.length;
   }
-  admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
+  
 
 }

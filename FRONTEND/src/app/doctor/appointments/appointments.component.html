@@ -9,7 +9,7 @@
             <div class="profile-det-info">
                 <h3><a >{{patient.nom}} {{patient.prenom}}</a></h3>
                 <div class="patient-details">
-                    <h5><i class="far fa-clock"></i> {{patient.date}} {{patient.heure}}</h5>
+                    <h5><i class="far fa-clock"></i> {{patient.date}} {{patient.heure}}AM</h5>
                     <h5><i class="fas fa-map-marker-alt"></i> Consultation état : {{patient.etat}}</h5>
                     <h5><i class="fas fa-envelope"></i> {{patient.email}}</h5>
                     <h5 class="mb-0"><i class="fas fa-phone"></i> {{patient.telePerso}}</h5>
@@ -34,32 +34,32 @@
 
 <ng-template #template>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Accepter</h4>
+      <h4 class="modal-title pull-left">Accept</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body text-center">
-      Êtes-vous sûr que vous voulez accepter ce patient?
+      Are you sure want to accept this patient?
       <div style="margin-top:25px">
-        <button type="button" class="btn btn-default" id="btn-yes" (mouseover)="btnColor()" (click)="modalRef.hide()" >Oui</button>
-        <button type="button" class="btn btn-primary" id="btn-no" (mouseover)="btnColorNo()" (click)="modalRef.hide()" >Non</button>
+        <button type="button" class="btn btn-default" id="btn-yes" (mouseover)="btnColor()" (click)="modalRef.hide()" >Yes</button>
+        <button type="button" class="btn btn-primary" id="btn-no" (mouseover)="btnColorNo()" (click)="modalRef.hide()" >No</button>
       </div>
     </div>
   </ng-template>
 
   <ng-template #Declinetemplate>
     <div class="modal-header">
-     <h4 class="modal-title pull-left">Annuler</h4>
+     <h4 class="modal-title pull-left">Decline</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body text-center">
-      Êtes-vous sûr que vous voulez annuler ce patient?
+      Are you sure want to cancel this patient?
       <div style="margin-top:25px">
-        <button type="button" class="btn btn-default" id="btn-yes" (mouseover)="btnColor()" (click)="modalRef.hide()" >Oui</button>
-        <button type="button" class="btn btn-primary" id="btn-no" (mouseover)="btnColorNo()" (click)="modalRef.hide()" >Non</button>
+        <button type="button" class="btn btn-default" id="btn-yes" (mouseover)="btnColor()" (click)="modalRef.hide()" >Yes</button>
+        <button type="button" class="btn btn-primary" id="btn-no" (mouseover)="btnColorNo()" (click)="modalRef.hide()" >No</button>
      </div>
     </div>
   </ng-template>

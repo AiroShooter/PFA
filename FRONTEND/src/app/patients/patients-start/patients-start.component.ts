@@ -41,7 +41,7 @@ export class PatientsStartComponent implements OnInit {
           {
             localStorage.setItem('nom',result['user']['nom']);
             localStorage.setItem('prenom',result['user']['prenom']);
-            localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('tele',result['user']['telePerso']);
             localStorage.setItem('pays',result['user']['pays']);
             localStorage.setItem('dateNaiss',result['user']['dateNaiss']);
             this.router.navigate(['/patients/dashboard']);
