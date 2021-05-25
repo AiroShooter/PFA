@@ -103,9 +103,9 @@ class MedecinController extends Controller
      * @param  \App\Models\Medecin  $medecin
      * @return \Illuminate\Http\Response
      */
-    public function show(Medecin $medecin)
+    public function show()
     {
-        //
+        return  DB::select('select * from medecins');
     }
 
     /**

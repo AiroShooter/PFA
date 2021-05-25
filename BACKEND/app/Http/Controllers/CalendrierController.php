@@ -77,6 +77,8 @@ class CalendrierController extends Controller
         return DB::delete('delete from calendriers where calen_id = ?', [$request->calen_id]);
 
     }
+
+    
     
 
     public function deleteAll(Request $request)
@@ -113,6 +115,32 @@ class CalendrierController extends Controller
     {
         
     }
+
+
+    
+
+
+    public function book(Request $request)
+    {
+        return DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `calen_id`= ?', [$request->date, $request->patient_id, $request->calen_id]);
+    }
+
+    public function bookCancel(Request $request)
+    {
+        return DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `calen_id`= ? AND `patient_id`= ? ', [NUll, NULL, $request->calen_id, $request->patient_id]);
+    }
+
+
+    public function bookCheck(Request $request)
+    {
+        $result = DB::select('SELECT COUNT(*) as count FROM `calendriers` WHERE `patient_id` = ?', [$request->patient_id]);
+        return $result[0]->count;
+       
+    }
+    
+
+
+   
 
     /**
      * Update the specified resource in storage.

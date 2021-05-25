@@ -10,7 +10,7 @@ import { HomeComponent } from './home.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TooltipModule } from 'ng2-tooltip-directive';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -24,6 +24,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     MatInputModule,
     SlickCarouselModule,
     TooltipModule,
+    HttpClientModule
   ],
 })
 export class HomeModule {}

@@ -30,11 +30,18 @@ class UserController extends Controller
                     $value1 = DB::select("select * from users where user_id = ?",[$request->user_id]);
                     return response()->json([
                         'hasError' => false,
-                        'success' => 'Done',
+                        'success' => 'Votre mot de passe a ete changer avec success',
                         'error' => '',
                         'user' =>$value1[0]
                     ]);
                 }         
+            }
+            else{
+                return response()->json([
+                    'hasError' => true,
+                    'success' => '',
+                    'error' => 'Ancien mot de passe est incorrect'
+                ]);
             }
         }
        
