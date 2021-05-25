@@ -5,6 +5,7 @@ import { FormBuilder} from '@angular/forms';
 import { DataService } from 'src/app/data.service';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -80,6 +81,8 @@ export class BookingComponent implements OnInit {
   defaultVal = new Date();
   dd :string;
   constructor(
+    private toastr: ToastrService,
+    private router: Router,
     private datePipe:DatePipe,
     private http:HttpClient,
     private fb: FormBuilder,
@@ -253,8 +256,11 @@ export class BookingComponent implements OnInit {
        localStorage.setItem("bookCount", res)
       });
     }
- 
- 
+
+    confirm(){
+      this.toastr.success('', 'Rendez-vous réservé avec succès!');
+      this.router.navigate(['/patients/success']);
+    }
 
  
 }
