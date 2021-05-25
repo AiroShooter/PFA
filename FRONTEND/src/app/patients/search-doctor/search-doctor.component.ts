@@ -40,16 +40,19 @@ export class SearchDoctorComponent implements OnInit {
   doctorsInfo:any;
   getDoctors() {
     this.http.get("http://127.0.0.1:8000/api/patients/showDoctors").subscribe(result => {
-      this.doctorsInfo = result['users'];
+      this.doctorsInfo = result;
       console.log(this.doctorsInfo);
     });
     
+    
   }
-
+  showspecialities:any
   getspeciality() {
-    this.commonService.getSpeciality().subscribe(res => {
-      this.specialityList = res;
-    })
+    this.http.get("http://127.0.0.1:8000/api/admin/specialities/show").subscribe(result => {
+      this.showspecialities = result;
+    });
+    console.log(this.showspecialities);
+  
   }
 
   checkType(event) {
