@@ -18,6 +18,7 @@ class UserController extends Controller
 
         return $users;
     }
+
     public static function verifyPass(Request $request){
         $value = DB::select("select * from users where user_id = ?",[$request->user_id]);
         if($value){
@@ -38,6 +39,7 @@ class UserController extends Controller
         }
        
     }
+
     public static function register(Request $request){
 
         $count = User::where('email','=',$request->email)->count();
@@ -61,20 +63,28 @@ class UserController extends Controller
             elseif($request->type == "admin")
                  DB::insert('insert into users (email, password, type, isActive) values (?, ?, ?, ?)', [$request->email, $encrypted, 'admin', 1]);
         
-
                  $users = DB::select('select * from users where email = ?',[$request->email]);
                  if($users)
                  {
-
                     if($users[0]->type == 'admin')
                     {
                         DB::insert('INSERT INTO `admins`(`user_id`, `nom`, `prenom`) VALUES (?, ?, ?)', [$users[0]->user_id, $request->nom, $request->prenom]);
+                        $admin = DB::select('select * from admins where user_id = ?',[$users[0]->user_id]);
+
+                        return response()->json([
+                            'hasError' => false,
+                            'success' => 'Done ',
+                            'error' => '',
+                            'user' =>$users[0],
+                            'admin' =>$admin[0]
+                        ]);
                     }
+
                     return response()->json([
                         'hasError' => false,
                         'success' => 'Done ',
                         'error' => '',
-                        'user' =>$users[0]
+                        'user' =>$users[0],
                     ]);
                  }
                  return response()->json([
@@ -100,6 +110,19 @@ class UserController extends Controller
 
             if($password == $request->password)
             {
+                if($users[0]->type == 'admin')
+                {
+                    $admin = DB::select('select * from admins where user_id = ?',[$users[0]->user_id]);
+
+                    return response()->json([
+                        'hasError' => false,
+                        'success' => 'Done',
+                        'error' => '',
+                        'admin' => $admin[0],
+                        'user' =>$users[0],
+                    ]);
+                }
+
                 return response()->json([
                     'hasError' => false,
                     'success' => 'Done',
@@ -114,19 +137,13 @@ class UserController extends Controller
                     'success' => '',
                     'error' => 'Ce mot de passe est incorrect, veuillez vérifier vos informations']);
             }
-
-           
         }
         else{
                 
                 return response()->json([
                     'hasError' => true,
                     'success' => '',
-                    'error' => "Ce compte n'existe pas, veuillez essayer de vous inscrire d'abord"]);
+                    'error' => "Ce compte n'existe pas, veuillez essayer de vous s'inscrire d'abord"]);
         }
- 
-   
-
-        
     }
 }

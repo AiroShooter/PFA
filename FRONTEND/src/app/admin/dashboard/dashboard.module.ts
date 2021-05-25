@@ -4,6 +4,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ForgotPasswordModule } from './../../forgot-password/forgot-password.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 // import { MorrisJsModule } from 'angular-morris-js';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardRoutingModule,
     ForgotPasswordModule,
     HttpClientModule,
+    RouterModule,
     // MorrisJsModule,
   ],
 })

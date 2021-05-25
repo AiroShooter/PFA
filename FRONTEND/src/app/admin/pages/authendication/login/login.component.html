@@ -28,7 +28,7 @@
 
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password" formControlName="password">
+                                <input class="form-control" type="password" placeholder="Password" formControlName="password">
 
                                 <span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('required')" class="text-danger">S'il vous plaît entrer le mot de passe</span>
 									<span *ngIf="myForm.get('password')!.touched && myForm.get('password')!.hasError('minlength')" class="text-danger">La longueur minimale des caractères requise est de 8</span>
@@ -39,20 +39,20 @@
                         </form>
                         <!-- /Form -->
                         
-                        <div class="text-center forgotpass"><a [routerLink]="'forgot-password'">Mot de passe oublié?</a></div>
+                        <div class="text-center forgotpass"><a [routerLink]="'/admin/forgot-pass'">Mot de passe oublié?</a></div>
                         <div class="login-or">
                             <span class="or-line"></span>
                             <span class="span-or">ou</span>
                         </div>
                           
                         <!-- Social Login -->
-                        <div class="social-login">
+                        <!-- <div class="social-login">
                             <span>Se connecter avec</span>
                             <a href="javascript:void(0);" class="facebook"><i class="fa fa-facebook"></i></a><a href="javascript:void(0);" class="google"><i class="fa fa-google"></i></a>
-                        </div>
+                        </div> -->
                         <!-- /Social Login -->
                         
-                        <div class="text-center dont-have">Vous n’avez pas de compte? <a [routerLink]="'Register'">S'inscrire</a></div>
+                        <div class="text-center dont-have">Vous n’avez pas de compte? <a [routerLink]="'/admin/register'">S'inscrire</a></div>
                     </div>
                 </div>
             </div>

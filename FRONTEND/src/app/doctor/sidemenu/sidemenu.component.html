@@ -11,7 +11,7 @@
                     <h3>Dr. {{nom}}</h3>
                     
                     <div class="patient-details">
-                        <h5 class="mb-0">Specialite : {{spec}}</h5>
+                        <h5 class="mb-0">Spécialité : {{spec}}</h5>
                     </div>
                 </div>
             </div>
@@ -22,50 +22,50 @@
                     <li [class.active]="name === 'Dashboard' || page === 'dashboard'"  (click)="navigate('Dashboard')">
                         <a  [routerLink]="'dashboard'" >
                             <i class="fas fa-columns"></i>
-                            <span>Dashboard</span>
+                            <span>Tableau de bord</span>
                         </a>
                     </li>
                     <li [class.active]="name === 'Appointments' || page === 'appointment'" (click)="navigate('Appointments')"  >
                         <a [routerLink]="'appointment'">
                             <i class="fas fa-calendar-check"></i>
-                            <span>Appointments</span>
+                            <span>Rendez-vous</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'My Patients' || page === 'patients'"  (click)="navigate('My Patients')" >
                         <a [routerLink]="'patients'">
                             <i class="fas fa-user-injured"></i>
-                            <span>My Patients</span>
+                            <span>Mes patients</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Schedule Timings' || page === 'scheduletiming'" (click)="navigate('Schedule Timings')" >
                         <a  [routerLink]="'scheduletiming'">
                             <i class="fas fa-hourglass-start"></i>
-                            <span>Schedule Timings</span>
+                            <span>Horaires</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Invoices' || page === 'invoice'" (click)="navigate('Invoices')">
                         <a   [routerLink]="'invoice'">
                             <i class="fas fa-file-invoice"></i>
-                            <span>Invoices</span>
+                            <span>Factures</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Reviews'  || page === 'reviews'" (click)="navigate('Reviews')">
                         <a   [routerLink]="'reviews'">
                             <i class="fas fa-star"></i>
-                            <span>Reviews</span>
+                            <span>Commentaires</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Message' || page === 'message'" (click)="navigate('Message')">
                         <a   [routerLink]="'message'">
                             <i class="fas fa-comments"></i>
-                            <span>Message</span>
+                            <span>Messages</span>
                             <small class="unread-msg">23</small>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Profile Settings' || page === 'settings'" (click)="navigate('Profile Settings')" >
                         <a  [routerLink]="'settings'">
                             <i class="fas fa-user-cog"></i>
-                            <span>Profile Settings</span>
+                            <span>Paramètres de profile</span>
                         </a>
                     </li>
                     <li [class.active]="name === 'Social Media'" (click)="navigate('Social Media')">
@@ -77,13 +77,13 @@
                     <li [class.active]="name === 'Change Password'" (click)="navigate('Change Password')">
                         <a [routerLink]="'/change-password'">
                             <i class="fas fa-lock"></i>
-                            <span>Change Password</span>
+                            <span>Changer le mot de passe</span>
                         </a>
                     </li>
                     <li>
                         <a (click)="logout()" style="cursor: pointer;">
                             <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
+                            <span>Se déconnecter</span>
                         </a>
                     </li>
                 </ul>
