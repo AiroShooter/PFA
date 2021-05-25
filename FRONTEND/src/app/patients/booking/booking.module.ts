@@ -5,6 +5,7 @@ import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [BookingComponent],
@@ -13,7 +14,8 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     BookingRoutingModule,
     NgbModule,
     Daterangepicker,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class BookingModule { }
