@@ -91,7 +91,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Revenu</h6>
+										<h6 class="text-muted">Revenue</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-warning w-50"></div>
 										</div>
@@ -106,7 +106,7 @@
 							<!-- Sales Chart -->
 							<div class="card card-chart">
 								<div class="card-header">
-									<h4 class="card-title">Revenu</h4>
+									<h4 class="card-title">Revenue</h4>
 								</div>
 								<div class="card-body">
 									<div id="morrisArea"></div>
@@ -146,7 +146,7 @@
 													<th>Nom du médecin</th>
 													<th>Spécialité</th>
 													<th>Tarif</th>
-													<th>Commentaires</th>
+													<th>duree</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -155,18 +155,18 @@
 
 												<td>
 													<h2 class="table-avatar">
-														<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
+														<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+															<img *ngIf="med.sexe == 'F'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
+															<img *ngIf="med.sexe == 'M'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
+														
+														</a>
 														<a href="javascript:void(0)">{{med.nom}} {{med.prenom}}</a>
 													</h2>
 												</td>
 												<td>{{med.libelle}}</td>
 												<td>${{med.tarifs}}</td>
 												<td>
-													<i class="fe fe-star text-warning"></i>
-													<i class="fe fe-star text-warning"></i>
-													<i class="fe fe-star text-warning"></i>
-													<i class="fe fe-star text-warning"></i>
-													<i class="fe fe-star-o text-secondary"></i>
+													{{med.duree}}
 												</td>
 											</tr></tbody>
 										</table>
@@ -198,12 +198,16 @@
 												<tr *ngFor="let pat of showpatients">
 													<td>
 														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
+															<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+																<img *ngIf="pat.sexe == 'F'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/people-flat-design/64/Sick-Fever-Ill-Sickness-Patient-Sweating-Avatar-512.png" alt="User Image">
+																<img *ngIf="pat.sexe == 'M'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/covid-19-flat/64/virus-18-512.png" alt="User Image">
+															</a>
 															<a href="javascript:void(0)">{{pat.nom}} {{pat.prenom}}</a>
 														</h2>
+														
 													</td>
 													<td>{{pat.telePerso}}</td>
-													<td>20 Oct 2019</td>
+													<td>{{pat.date}}</td>
 													<td class="text-right">${{pat.tarifs}}</td>
 												</tr>	
 											</tbody>
@@ -240,18 +244,23 @@
 												<tr *ngFor="let app of showConsultations">
 													<td>
 														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
+															<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+																<img *ngIf="app.msexe == 'F'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
+																<img *ngIf="app.msexe == 'M'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">		
+															</a>
 															<a href="javascript:void(0)">Dr. {{app.medecinnom}} {{app.medecinprenom}}</a>
 														</h2>
 													</td>
 													<td>{{app.libelle}}</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-															<a href="javascript:void(0)">{{app.nom}} {{app.prenom}}</a>
+															<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+																<img *ngIf="app.sexe == 'F'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/people-flat-design/64/Sick-Fever-Ill-Sickness-Patient-Sweating-Avatar-512.png" alt="User Image">
+																<img *ngIf="app.sexe == 'M'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/covid-19-flat/64/virus-18-512.png" alt="User Image">
+															</a><a href="javascript:void(0)">{{app.nom}} {{app.prenom}}</a>
 														</h2>
 													</td>
-													<td>{{app.date}} <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
+													<td>{{app.date}} <span class="text-primary d-block">{{app.heure}} AM</span></td>
 													<td>
 														<div class="status-toggle">
 

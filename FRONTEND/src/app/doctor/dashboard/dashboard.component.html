@@ -63,9 +63,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#upcoming" [ngClass]="{ 'active':activeTab==='upcomming'}" (click)="search('upcomming')" data-toggle="tab">A venir</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="result('today')" data-toggle="tab">Aujourd'hui</a>
-                    </li> 
+                    </li>  -->
                 </ul>
                 <!-- /Appointment Tab -->
                 
@@ -85,13 +85,20 @@
                                                 <th>Type</th>
                                                 <th class="text-center">Tarif Payant</th>
                                                 <th class="text-center">Etat courant</th>
+                                                <th class="text-center">Changer l'état</th>
+
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let appointment of AppointmentsInfo">
                                                 <td>
+                                                    
                                                     <h2 class="table-avatar">
+                                                        <a [routerLink]="'/doctor/patients-profile'" class="avatar avatar-sm mr-2">
+                                                            <img *ngIf="appointment.sexe == 'F'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/people-flat-design/64/Sick-Fever-Ill-Sickness-Patient-Sweating-Avatar-512.png" alt="User Image">
+                                                            <img *ngIf="appointment.sexe == 'M'" class="avatar-img rounded-circle" src="https://cdn2.iconfinder.com/data/icons/covid-19-flat/64/virus-18-512.png" alt="User Image">
+                                                        </a>
                                                         <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
@@ -99,15 +106,13 @@
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
                                                 <td class="text-center">${{appointment.tarif}}</td>
-                                                <td *ngIf="appointment.etat == 'confirmer'" class="text-center text-success">{{appointment.etat}}</td>
-                                                <td *ngIf="appointment.etat == 'annuler'" class="text-center text-danger">{{appointment.etat}}</td>
+                                                <td *ngIf="appointment.etat == 'confirmer'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
+                                                <td *ngIf="appointment.etat == 'annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
                                                 
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                            <i class="far fa-eye"></i> Voir
-                                                        </a> 
-														<a (click)="openModal(template,appointment,appointment.const_id)" class="btn btn-sm bg-success-light">
+                                                        
+														<a (click)="openModal(template,appointment,appointment.const_id)" class="btn btn-sm bg-success-light mr-3">
                                                             <i class="fas fa-check"></i> Accepter
                                                         </a> 
                                                         <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id)" class="btn btn-sm bg-danger-light">

@@ -1,16 +1,24 @@
+<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+  <li class="nav-item">
+      <a class="nav-link active m-4" data-toggle="tab">List des rendez vous</a>
+  </li>
+  <!-- <li class="nav-item">
+      <a class="nav-link" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="result('today')" data-toggle="tab">Aujourd'hui</a>
+  </li>  -->
+</ul>
 <div class="appointments">
 							
     <!-- Appointment List -->
     <div class="appointment-list" *ngFor="let patient of AppointmentsInfo">
         <div class="profile-info-widget">
             <a class="booking-doc-img">
-                <img src="https://cdn0.iconfinder.com/data/icons/users-1/512/25-512.png" alt="User Image">
+                <img src="https://cdn3.iconfinder.com/data/icons/toolbar-people/512/user_appointment_man_male_profile_account-512.png" alt="User Image">
             </a>
             <div class="profile-det-info">
                 <h3><a >{{patient.nom}} {{patient.prenom}}</a></h3>
                 <div class="patient-details">
                     <h5><i class="far fa-clock"></i> {{patient.date}} {{patient.heure}}</h5>
-                    <h5><i class="fas fa-map-marker-alt"></i> Consultation état : {{patient.etat}}</h5>
+                    <h5><i class="fas fa-map-marker-alt"></i> Consultation état <span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{patient.etat}} </span></h5>
                     <h5><i class="fas fa-envelope"></i> {{patient.email}}</h5>
                     <h5 class="mb-0"><i class="fas fa-phone"></i> {{patient.telePerso}}</h5>
                 </div>
