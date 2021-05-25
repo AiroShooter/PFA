@@ -58,7 +58,9 @@ export class BookingComponent implements OnInit {
  //   console.log(this.dates);
  this.date = this.dates[this.index];
 
- console.log(this.dates);
+ console.log(this.date);
+ 
+ console.log(this.datas);
 
   }
 
@@ -100,7 +102,7 @@ export class BookingComponent implements OnInit {
     this.date = this.dates[this.index];
 
 
-    console.log(this.date);
+    //this.CheckDatabase(this.med_id)
    
   }
 
@@ -114,6 +116,8 @@ export class BookingComponent implements OnInit {
     this.date = this.dates[this.index];
 
     console.log(this.date);
+
+  //  this.CheckDatabase(this.med_id)
   }
   duree = 7;
 
@@ -157,31 +161,97 @@ export class BookingComponent implements OnInit {
   }
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
-  med_id = localStorage.getItem('med_id_selected');
+  med_id = 1;
   patient_id = localStorage.getItem('patient_id');
   datas : object[] = []
   
   CheckDatabase(med_id)
   {
+    this.datas = []
     this.http.post(this.SERVER_URL + 'doctor/schedule/check', {"med_id":med_id}).subscribe((res: string[]) => {
-      res.forEach((element,index)=>{
-        let hour = res[index]['heureDebut'].substring(0,5)+ ' - ' + res[index]['heureFin'].substring(0,5);
-        let data = {"jour":res[index]['jour'], "hour":hour, "id":parseInt(res[index]['calen_id']), "pat_id":res[index]['patient_id'], "date":res[index]['date']}
+          res.forEach((element,index)=>{
+            let hour = res[index]['heureDebut'].substring(0,5)+ ' - ' + res[index]['heureFin'].substring(0,5);
+            let data = {"jour":res[index]['jour'], "hour":hour, "id":parseInt(res[index]['calen_id']), "pat_id":res[index]['patient_id'], "date":res[index]['date']}
 
-        this.datas.push(data);
-      
-      })
+            this.datas.push(data);
+          
+          })
       
       });
 
     }
 
-    BookV(){
-      alert("alredy booked")
+    BookV(id){
+      this.checkBook()
+      
+
+    }
+   
+
+    Book(id,date,pat_id){
+
+      this.checkBook()
+      if(!pat_id)
+      {
+            
+            console.log(localStorage.getItem("bookCount"))
+            let mydiv = document.getElementById(id) as HTMLDivElement
+            if(mydiv.classList.contains("active")) 
+            {
+              this.http.post(this.SERVER_URL + 'patient/bookCancel', {"patient_id":this.patient_id, "calen_id":id}).subscribe((res: string) => {
+                mydiv.classList.remove("active");
+                this.checkBook()
+              });
+            }
+            
+            else 
+            {
+              if(localStorage.getItem("bookCount") == "0")
+              {
+                this.http.post(this.SERVER_URL + 'patient/book', {"patient_id":this.patient_id, "date":date, "calen_id":id}).subscribe((res: string) => {
+                  mydiv.classList.add("active");
+                  this.checkBook()
+                });
+              }
+              else alert("You Already booked another time slot")
+            }
+      }
+      else {
+        if(pat_id == this.patient_id)
+        {
+          console.log(localStorage.getItem("bookCount"))
+          let mydiv = document.getElementById(id) as HTMLDivElement
+          if(mydiv.classList.contains("active")) 
+          {
+            this.http.post(this.SERVER_URL + 'patient/bookCancel', {"patient_id":this.patient_id, "calen_id":id}).subscribe((res: string) => {
+              mydiv.classList.remove("active");
+              this.checkBook()
+            });
+          }
+          
+          else 
+          {
+            if(localStorage.getItem("bookCount") == "0")
+            {
+              this.http.post(this.SERVER_URL + 'patient/book', {"patient_id":this.patient_id, "date":date, "calen_id":id}).subscribe((res: string) => {
+                mydiv.classList.add("active");
+                this.checkBook()
+              });
+            }
+            else alert("You Already booked another time slot")
+          }
+        }
+        else alert("Already booked from someone else")
+      }
+     
+
     }
 
-    Book(id,date){
-      console.log(id, date)
+    checkBook()
+    {
+      this.http.post(this.SERVER_URL + 'patient/bookCheck', {"patient_id":this.patient_id}).subscribe((res: string) => {
+       localStorage.setItem("bookCount", res)
+      });
     }
  
  

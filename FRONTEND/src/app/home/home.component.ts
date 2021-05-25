@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { CommonServiceService } from '../common-service.service';
-import { FormControl } from '@angular/forms';
+import { FormControl,FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+
 declare const $: any;
 
 export interface Doctors {

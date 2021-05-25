@@ -467,6 +467,15 @@ export class ScheduletimingComponent implements OnInit {
   {
     this.http.post(this.SERVER_URL + 'doctor/schedule/deleteSingle',{"calen_id":calen_id}).subscribe((res:string) => {
 
+    let mydiv = document.getElementById(calen_id).parentNode as HTMLDivElement
+
+    mydiv.remove();
+
+    })
+  }
+
+  Refresh()
+  {
       if(this.jour == 'Lundi')
         {
           this.SLOT_Lundi = []
@@ -498,11 +507,7 @@ export class ScheduletimingComponent implements OnInit {
         }
        
 
-      this.CheckDatabase(localStorage.getItem('med_id'));
-
-    })
-
-   
+     this.CheckDatabase(localStorage.getItem('med_id'));
   }
 
 

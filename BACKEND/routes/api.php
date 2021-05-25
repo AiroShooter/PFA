@@ -81,6 +81,10 @@ Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationC
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
 Route::any('/patients/showConsultations',[PatientController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
+Route::any('/patient/book',[CalendrierController::class, 'book'] );
+Route::any('/patient/bookCancel',[CalendrierController::class, 'bookCancel'] );
+Route::any('/patient/bookCheck',[CalendrierController::class, 'bookCheck'] );
+
 
 
 
