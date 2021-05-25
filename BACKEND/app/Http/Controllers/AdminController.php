@@ -126,7 +126,7 @@ class AdminController extends Controller
     }
     public function showDoctors()
     {
-        $value = DB::select("SELECT u.user_id,m.med_id,u.isActive,m.nom,m.prenom,m.tarif as tarifs,s.libelle FROM `medecins` m inner join users u on u.user_id = m.med_id inner join specialites s on m.spec_id = s.spec_id"); 
+        $value = DB::select("SELECT u.user_id,m.sexe,m.duree,m.med_id,u.isActive,m.nom,m.prenom,m.tarif as tarifs,s.libelle FROM `medecins` m inner join users u on u.user_id = m.med_id inner join specialites s on m.spec_id = s.spec_id"); 
         return $value;
     }
     public function showPatients()
@@ -136,7 +136,7 @@ class AdminController extends Controller
     }
     public function showConsultations()
     {
-        $value = DB::select("SELECT c.const_id, m.nom as medecinnom,m.prenom as medecinprenom,p.nom,p.prenom,c.tarif,c.etat,c.date,s.libelle from `consultations` c inner join patients p on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id inner join specialites s on s.spec_id = m.spec_id"); 
+        $value = DB::select("SELECT c.const_id,m.sexe as msexe, m.nom as medecinnom,m.prenom as medecinprenom,p.nom,p.prenom,p.sexe,c.tarif,c.etat,c.date,c.heure,s.libelle from `consultations` c inner join patients p on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id inner join specialites s on s.spec_id = m.spec_id"); 
         return $value;
     }
     public function consultationCount()

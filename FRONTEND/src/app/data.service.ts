@@ -57,7 +57,7 @@ export class DataService implements InMemoryDbService {
         Available : " Available on Fri, 22 Mar ",
         Earned : "3900.00",
         Price : "$190",
-        profile : "assets/img/doctors/doctor-thumb-02.jpg",
+        profile : "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png",
         status : "1",
         type : "Female",
         location : "Montana, USA",
@@ -205,7 +205,7 @@ export class DataService implements InMemoryDbService {
             Available : " Available on Fri, 22 Mar ",
             Earned : "3100.00",
             Price : "$160",
-            profile : "assets/img/doctors/doctor-thumb-02.jpg",
+            profile : "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png",
             status : "1",
             type : "Female",
             location : "Georgia, USA",
@@ -400,7 +400,7 @@ export class DataService implements InMemoryDbService {
             paid : "100.00",
             bloodgroup : "AB+",
             type : "Male",
-            img : "assets/img/patients/patient.jpg"
+            img : "https://paramountsprx.com/wp-content/uploads/2017/09/MAN_AVATAR.png"
         },
       {
             id : "2",
@@ -654,7 +654,7 @@ export class DataService implements InMemoryDbService {
          patient_name : "Travis Trimble",
          doctor_name : "Dr. Darren Elder",
          patient_pic : "assets/img/patients/patient2.jpg",
-         doctor_pic : "assets/img/doctors/doctor-thumb-02.jpg",
+         doctor_pic : "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png",
          ratings : "3",
          description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
          date : "Wed May 27 2020 09:41:48 GMT+0530 (India Standard Time)"
@@ -702,7 +702,7 @@ export class DataService implements InMemoryDbService {
     status : "active",
     img : "assets/img/blog/blog-02.jpg",
     doctor_name : "Dr. Darren Elder",
-    doctor_pic : "assets/img/doctors/doctor-thumb-02.jpg"
+    doctor_pic : "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"
   },
   {
     id : 3,
