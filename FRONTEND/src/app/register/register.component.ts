@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   
   isPatient: string = "true";
   reg_type = 'Registre des patients';
-  doc_patient = 'Etes-vous un docteur ?';
+  doc_patient = 'Etes-vous un médecin ?';
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
   changeRegType() {
     if (this.reg_type === 'Registre des médecins') {
       this.reg_type = 'Registre des patients';
-      this.doc_patient = 'Etes-vous un docteur ?';
+      this.doc_patient = 'Etes-vous un médecin ?';
       this.isPatient = "true";
     } else {
       this.reg_type = 'Registre des médecins';
-      this.doc_patient = 'Pas un docteur ?';
+      this.doc_patient = 'Pas un médecin ?';
       this.isPatient = "false";
     }
   }

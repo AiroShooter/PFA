@@ -28,6 +28,7 @@ export class SidemenuComponent implements OnInit {
     this.name = name;
     this.commonService.nextmessage(name);
   }
+  
   public ageFromDateOfBirthday(dateOfBirth: any): number {
     return moment().diff(dateOfBirth, 'years');
   }
