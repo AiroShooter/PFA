@@ -66,8 +66,10 @@ export class SidemenuComponent implements OnInit {
   }
 
   notifs:[];
+  admin:any;
   notifsCount:any=0;
   getNotifs(){
+    this.admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
     this.notifs = JSON.parse(localStorage.getItem('notifs'));
     let count;
     let i=0;
@@ -84,6 +86,4 @@ export class SidemenuComponent implements OnInit {
     // if(this.notifs.length != NaN)
     // this.notifsCount = this.notifs.length;
   }
-  admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
-
 }
