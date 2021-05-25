@@ -24,7 +24,7 @@ export class SidemenuComponent implements OnInit {
     public http: HttpClient,
   ) {}
   ngOnInit(): void {
-    setTimeout(()=>{this.admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');}, 300);
+    setInterval(()=>{this.admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');}, 1000);
     setInterval(()=>{this.getNotifs();}, 5000);
   }
 
@@ -49,9 +49,9 @@ export class SidemenuComponent implements OnInit {
     this.commonService.nextmessage('main');
   }
   clickLogout() {
-    this.router.navigateByUrl('/admin/login-form')
     localStorage.clear()
-    //window.location.href = '/admin/login-form';
+    this.router.navigateByUrl('/admin/login-form')
+    this.userCollapsed = true;
   }
   bell() {
     this.bellCollapsed = !this.bellCollapsed;

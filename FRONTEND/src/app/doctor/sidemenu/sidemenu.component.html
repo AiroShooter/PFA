@@ -5,7 +5,7 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="javascript:void(0)" class="booking-doc-img">
-                    <img src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" alt="User Image">
+                    <img src="../../../assets/admin/img/profiles/admin.png" alt="User Image">
                 </a>
                 <div class="profile-det-info">
                     <h3>Dr. {{nom}}</h3>
@@ -40,7 +40,7 @@
                     <li  [class.active]="name === 'Schedule Timings' || page === 'scheduletiming'" (click)="navigate('Schedule Timings')" >
                         <a  [routerLink]="'scheduletiming'">
                             <i class="fas fa-hourglass-start"></i>
-                            <span>Horaires</span>
+                            <span>Horaires de travail</span>
                         </a>
                     </li>
                     <li  [class.active]="name === 'Invoices' || page === 'invoice'" (click)="navigate('Invoices')">
@@ -65,7 +65,7 @@
                     <li  [class.active]="name === 'Profile Settings' || page === 'settings'" (click)="navigate('Profile Settings')" >
                         <a  [routerLink]="'settings'">
                             <i class="fas fa-user-cog"></i>
-                            <span>Paramètres de profile</span>
+                            <span>Paramètres de profil</span>
                         </a>
                     </li>
                     <!-- <li [class.active]="name === 'Social Media'" (click)="navigate('Social Media')">
@@ -74,7 +74,7 @@
                             <span>Social Media</span>
                         </a>
                     </li> -->
-                    <li [class.active]="name === 'Change Password'" (click)="navigate('Change Password')">
+                    <li [class.active]="name === 'Change Password'" (click)="to()">
                         <a [routerLink]="'/change-password'">
                             <i class="fas fa-lock"></i>
                             <span>Changer le mot de passe</span>

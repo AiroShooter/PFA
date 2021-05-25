@@ -170,17 +170,17 @@
                 <li class="nav-item dropdown has-arrow logged-item" *ngIf="this.auth">
                     <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img">
-                            <img class="rounded-circle" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" width="31" alt="Darren Elder">
+                            <img class="rounded-circle" src="../../../assets/admin/img/profiles/admin.png" width="31" alt="{{nom}}">
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
                         <div class="user-header">
                             <div class="avatar avatar-sm">
-                                <img src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" alt="User Image" class="avatar-img rounded-circle">
+                                <img src="../../../assets/admin/img/profiles/admin.png" alt="User Image" class="avatar-img rounded-circle">
                             </div>
                             <div class="user-text">
-                                <h6>Darren Elder</h6>
-                                <p class="text-muted mb-0" *ngIf="!isPatient">Docteur</p>
+                                <h6>{{nom}}</h6>
+                                <p class="text-muted mb-0" *ngIf="!isPatient">Médecin</p>
                                 <p class="text-muted mb-0" *ngIf="isPatient">Patient</p>
                             </div>
                         </div>

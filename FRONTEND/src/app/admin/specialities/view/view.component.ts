@@ -42,7 +42,7 @@ export class ViewComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {
-      class: 'modal-lg modal-dialog-centered',
+      class: ' modal-dialog-centered',
     });
     // this.name = "";
     // this.id = "";
@@ -56,7 +56,7 @@ export class ViewComponent implements OnInit {
     // this.id = data[0].id;
     // this.key = data[0].key;
     this.modalRef = this.modalService.show(template, {
-      class: 'modal-lg modal-dialog-centered',
+      class: ' modal-dialog-centered',
     });
   }
 

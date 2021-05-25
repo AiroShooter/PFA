@@ -26,7 +26,7 @@ import { CommonServiceService } from './../../common-service.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   auth: boolean = false;
-  isPatient: boolean = false;
+  isPatient: boolean;
   page;
   splitVal;
   headerTop: boolean = true;
@@ -42,6 +42,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public commonService: CommonServiceService,
     private updater: UpdaterService
   ) {
+    if(localStorage.getItem('type') == "patient")
+    this.isPatient = true;
+    else if(localStorage.getItem('type') == "medecin")
+    this.isPatient = false;
     // subscribe to sender component messages
     this.subscriptionName= this.updater.getUpdate().subscribe
     (auth => { //message contains the data sent from service
@@ -210,7 +214,6 @@ checkLoging()
   this.auth = !!localStorage.getItem('email');
 }
 
-
-
+nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
   
 }
