@@ -59,7 +59,7 @@
 								</div>
                             </div>
 							<!-- Schedule Widget -->
-							<div class="card booking-schedule schedule-widget">
+							<div class="card booking-schedule schedule-widget" *ngIf="this.date">
 							
 								<!-- Schedule Header -->
 								<div class="schedule-header">
@@ -67,7 +67,7 @@
 										<div class="col-md-12">
 										
 											<!-- Day Slot -->
-											<div class="day-slot" *ngIf="this.date">
+											<div class="day-slot">
 												<ul style="display: flex; justify-content: space-between;">
 													<li class="left-arrow">
 														<a (click)="Prev()">
@@ -105,9 +105,14 @@
 										
 											<!-- Time Slot -->
 											<div class="time-slot doc-times">
-												<a  class="doc-slot-list text-light" style="border:none; cursor: pointer;">
-													<span>09:00</span>&nbsp;
-												</a>
+												<div *ngFor="let data of this.datas">
+													<a *ngIf="data.date && data.pat_id" class="doc-slot-list text-light" style="border:none; cursor: pointer;" (click)="BookV()">
+														<span>{{data.hour}}</span>&nbsp;<i class="fas fa-check"></i>
+													</a>
+													<a *ngIf="!data.date && !data.pat_id" class="doc-slot-list text-light" style="border:none; cursor: pointer;"(click)="Book(data.id, date.dateComp)">
+														<span>{{data.hour}}</span>
+													</a>
+												</div>
 											</div>
 											<!-- /Time Slot -->
 											

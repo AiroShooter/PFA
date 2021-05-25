@@ -46,6 +46,7 @@ export class BookingComponent implements OnInit {
           "jour_num":date[1],
           "mois": date[2],
           "annee":date[3],
+          "dateComp":new Date(newDate).toISOString().substring(0, 10)
         }
 
        this.dates.push(dateObj);
@@ -57,7 +58,7 @@ export class BookingComponent implements OnInit {
  //   console.log(this.dates);
  this.date = this.dates[this.index];
 
- console.log(this.myForm.value.dateSelected);
+ console.log(this.dates);
 
   }
 
@@ -132,6 +133,8 @@ export class BookingComponent implements OnInit {
     this.getDoctorsDetails();
     this.patientDetails();
     this.GetDate();
+    this.CheckDatabase(this.med_id);
+    console.log(this.datas);
    
    
   }
@@ -153,6 +156,34 @@ export class BookingComponent implements OnInit {
     });
   }
 
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
+  med_id = localStorage.getItem('med_id_selected');
+  patient_id = localStorage.getItem('patient_id');
+  datas : object[] = []
+  
+  CheckDatabase(med_id)
+  {
+    this.http.post(this.SERVER_URL + 'doctor/schedule/check', {"med_id":med_id}).subscribe((res: string[]) => {
+      res.forEach((element,index)=>{
+        let hour = res[index]['heureDebut'].substring(0,5)+ ' - ' + res[index]['heureFin'].substring(0,5);
+        let data = {"jour":res[index]['jour'], "hour":hour, "id":parseInt(res[index]['calen_id']), "pat_id":res[index]['patient_id'], "date":res[index]['date']}
+
+        this.datas.push(data);
+      
+      })
+      
+      });
+
+    }
+
+    BookV(){
+      alert("alredy booked")
+    }
+
+    Book(id,date){
+      console.log(id, date)
+    }
+ 
  
 
  
