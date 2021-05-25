@@ -15,6 +15,7 @@ export class SidemenuComponent implements OnInit {
   showDropdown = true;
   public bellCollapsed = true;
   public userCollapsed = true;
+  admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
 
   constructor(
     @Inject(DOCUMENT) private document,
@@ -23,6 +24,7 @@ export class SidemenuComponent implements OnInit {
     public http: HttpClient,
   ) {}
   ngOnInit(): void {
+    setTimeout(()=>{this.admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');}, 300);
     setInterval(()=>{this.getNotifs();}, 5000);
   }
 
@@ -84,6 +86,4 @@ export class SidemenuComponent implements OnInit {
     // if(this.notifs.length != NaN)
     // this.notifsCount = this.notifs.length;
   }
-  admin = localStorage.getItem('prenom') + ' ' + localStorage.getItem('nom');
-
 }

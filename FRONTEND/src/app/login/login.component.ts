@@ -83,18 +83,6 @@ export class LoginComponent implements OnInit {
                 }
               }); 
           }
-          else if(result['user']['type'] == 'admin')
-          {
-              this.http.post(this.SERVER_URL + 'admin/getSingle', {"user_id":result['user']['user_id']}).subscribe(result1 => {
-                if(result1['user'])
-                {
-                  localStorage.setItem('nom',result1['user']['nom']);
-                  localStorage.setItem('prenom',result1['user']['prenom']);
-                  localStorage.setItem('admin_id',result1['user']['admin_id']);
-                  this.router.navigate(['/admin/dashboard']);
-                }
-              }); 
-          }
 
           this.updater.sendUpdate(true);
 

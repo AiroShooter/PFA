@@ -44,8 +44,17 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email',result['user']['email']);
           localStorage.setItem('type',result['user']['type']);
           localStorage.setItem('user_id',result['user']['user_id']);
-          localStorage.setItem('nom',result['admin']['nom']);
-          localStorage.setItem('prenom',result['admin']['prenom']);
+          
+          this.http.post(this.SERVER_URL + 'admin/getSingle', {"user_id":result['user']['user_id']}).subscribe(result1 => {
+            if(result1['user'])
+            {
+              localStorage.setItem('nom',result1['user']['nom']);
+              localStorage.setItem('prenom',result1['user']['prenom']);
+              localStorage.setItem('admin_id',result1['user']['admin_id']);
+              this.router.navigate(['/admin/dashboard']);
+            }
+          }); 
+      
 
        //   this.updater.sendUpdate(true);
           this.router.navigate(['/admin/dashboard']);
