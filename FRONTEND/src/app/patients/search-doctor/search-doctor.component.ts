@@ -40,16 +40,19 @@ export class SearchDoctorComponent implements OnInit {
   doctorsInfo:any;
   getDoctors() {
     this.http.get("http://127.0.0.1:8000/api/patients/showDoctors").subscribe(result => {
-      this.doctorsInfo = result['users'];
+      this.doctorsInfo = result;
       console.log(this.doctorsInfo);
     });
     
+    
   }
-
+  showspecialities:any
   getspeciality() {
-    this.commonService.getSpeciality().subscribe(res => {
-      this.specialityList = res;
-    })
+    this.http.get("http://127.0.0.1:8000/api/admin/specialities/show").subscribe(result => {
+      this.showspecialities = result;
+    });
+    console.log(this.showspecialities);
+  
   }
 
   checkType(event) {
@@ -58,15 +61,7 @@ export class SearchDoctorComponent implements OnInit {
     } else {
       this.type = "";
     }
-  }
-
-  search() {
-    if (this.type && this.speciality) {
-      this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
-    } else {
-      this.getDoctors();
-    }
-
+    console.log(this.type);
   }
 
   checkSpeciality(event) {
@@ -75,18 +70,16 @@ export class SearchDoctorComponent implements OnInit {
     } else {
       this.speciality = "";
     }
-
-    var filter = this.specialityList.filter(a => a.speciality === event.target.value);
-    if (filter.length != 0) {
-      filter[0]['checked'] = true;
-    }
-    this.specialityList.forEach(index => {
-      if (index.speciality != event.target.value) {
-        index['checked'] = false;
-      }
-    })
+    console.log(this.speciality);
   }
+  search() {
+    if (this.type && this.speciality) {
+      this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
+    } else {
+      this.getDoctors();
+    }
 
+  }
   bookAppointment(id) {
     // if((localStorage.getItem('auth') === 'true') && (localStorage.getItem('patient') === 'true')) {
     this.router.navigateByUrl('/patients/booking?id=' + id);
@@ -94,5 +87,6 @@ export class SearchDoctorComponent implements OnInit {
     //   this.router.navigate(['/']);
     // }
   }
+  
 
 }
