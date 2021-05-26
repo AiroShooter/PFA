@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                   {
                     localStorage.setItem('nom',result1['user']['nom']);
                     localStorage.setItem('prenom',result1['user']['prenom']);
-                    localStorage.setItem('tele',result1['user']['telePerso']);
+                    localStorage.setItem('telePerso',result1['user']['telePerso']);
                     localStorage.setItem('ville',result1['user']['ville']);
                     localStorage.setItem('med_id',result1['user']['med_id']);
                     if(result1['spec'])
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
                 {
                   localStorage.setItem('nom',result1['user']['nom']);
                   localStorage.setItem('prenom',result1['user']['prenom']);
-                  localStorage.setItem('tele',result1['user']['telePerso']);
+                  localStorage.setItem('telePerso',result1['user']['telePerso']);
                  // localStorage.setItem('ville',result1['user']['ville']);
                   localStorage.setItem('patient_id',result1['user']['patient_id']);
                   localStorage.setItem('dateNaiss',result1['user']['dateNaiss']);

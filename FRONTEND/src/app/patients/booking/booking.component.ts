@@ -143,6 +143,16 @@ export class BookingComponent implements OnInit {
     this.CheckDatabase(this.med_id);
     console.log(this.datas);
    
+
+    this.checkBook()
+    if(localStorage.getItem("bookCount") == "0")
+    {
+      this.isBooked = false
+    }
+    else this.isBooked = true;
+
+    
+   
    
   }
 
@@ -167,6 +177,7 @@ export class BookingComponent implements OnInit {
   med_id = 1;
   patient_id = localStorage.getItem('patient_id');
   datas : object[] = []
+  isBooked = false;
   
   CheckDatabase(med_id)
   {
@@ -179,6 +190,8 @@ export class BookingComponent implements OnInit {
             this.datas.push(data);
           
           })
+
+          
       
       });
 
@@ -204,6 +217,7 @@ export class BookingComponent implements OnInit {
               this.http.post(this.SERVER_URL + 'patient/bookCancel', {"patient_id":this.patient_id, "calen_id":id}).subscribe((res: string) => {
                 mydiv.classList.remove("active");
                 this.checkBook()
+                this.isBooked = false;
               });
             }
             
@@ -214,6 +228,7 @@ export class BookingComponent implements OnInit {
                 this.http.post(this.SERVER_URL + 'patient/book', {"patient_id":this.patient_id, "date":date, "calen_id":id}).subscribe((res: string) => {
                   mydiv.classList.add("active");
                   this.checkBook()
+                  this.isBooked = true;
                 });
               }
               else alert("You Already booked another time slot")
@@ -229,6 +244,7 @@ export class BookingComponent implements OnInit {
             this.http.post(this.SERVER_URL + 'patient/bookCancel', {"patient_id":this.patient_id, "calen_id":id}).subscribe((res: string) => {
               mydiv.classList.remove("active");
               this.checkBook()
+              this.isBooked = false;
             });
           }
           
@@ -239,6 +255,7 @@ export class BookingComponent implements OnInit {
               this.http.post(this.SERVER_URL + 'patient/book', {"patient_id":this.patient_id, "date":date, "calen_id":id}).subscribe((res: string) => {
                 mydiv.classList.add("active");
                 this.checkBook()
+                this.isBooked = true;
               });
             }
             else alert("You Already booked another time slot")
@@ -258,8 +275,8 @@ export class BookingComponent implements OnInit {
     }
 
     confirm(){
-      this.toastr.success('', 'Rendez-vous réservé avec succès!');
-      this.router.navigate(['/patients/success']);
+    ///  this.toastr.success('', 'Rendez-vous réservé avec succès!');
+      this.router.navigate(['/patients/checkout']);
     }
 
  

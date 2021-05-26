@@ -38,7 +38,12 @@ export class CheckoutComponent implements OnInit {
    console.log(this.myForm.value.Raison, this.myForm.value.Type)
 
    this.http.post(this.SERVER_URL + 'patients/addCons', {"patient_id":this.patient_id,"type":this.myForm.value.Type, "raison":this.myForm.value.Raison}).subscribe((res)=>{
-     console.log(res)
+     if(res == "1")
+     {
+      this.toastr.success('', 'Rendez-vous réservé avec succès!');
+      this.router.navigate(['/patients/success']);
+     }
    })
   }
+
 }
