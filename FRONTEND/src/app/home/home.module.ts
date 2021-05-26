@@ -11,12 +11,14 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { HttpClientModule } from '@angular/common/http';
+import { NgSelect2Module } from 'ng-select2';
 @NgModule({
   declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
     FormsModule,
+    NgSelect2Module,
     ReactiveFormsModule,
     AutocompleteLibModule,
     MatAutocompleteModule,

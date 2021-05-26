@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SearchDoctorComponent],
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     CrystalLightboxModule,
     TooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
 })
 export class SearchDoctorModule {}

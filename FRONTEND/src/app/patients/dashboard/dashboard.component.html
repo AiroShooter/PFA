@@ -51,7 +51,7 @@
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>{{app.date}} <span class="d-block text-info">{{app.heure}} AM</span></td>
+																	<td>{{app.date |  date}} <span class="d-block text-info">{{app.heure.substring(0,5)}}</span></td>
 																	<td>${{app.tarif}}</td>
 																	<td>{{app.type}}</td>
 																	<td><span *ngIf="app.etat == 'confirmer'" class="badge badge-pill bg-success-light">{{app.etat}}</span>

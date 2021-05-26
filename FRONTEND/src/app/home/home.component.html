@@ -12,7 +12,10 @@
                 <div class="search-box">
                     <form>
                         <div class="form-group search-location">
-                        <input type="text" class="form-control" placeholder="Search Location">
+                            <select width="100%"  (change)="CheckVal2($event)" class="form-control">
+                                <option *ngFor="let c of city" value="" selected>Selectionner une ville</option>
+                                <option *ngFor="let c of city" value="{{c.ville}}">{{c.ville}}</option>
+                            </select>
                             <span class="form-text">Basé sur votre emplacement</span>
                         </div>
                         <div class="form-group search-info">

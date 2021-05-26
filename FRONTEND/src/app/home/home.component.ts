@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 import { FormControl,FormBuilder } from '@angular/forms';
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   specialityList: any = [];
   doctors: any = [];
   slidepage: any;
+  
   employeeCtrl = new FormControl();
   filteredEmployee: Observable<Doctors[]>;
   blogs: any = [];
@@ -102,10 +103,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getspeciality();
     this.getDoctors();
+    this.getCity();
     this.getblogs();
 
     // User's voice slider
@@ -314,7 +317,21 @@ export class HomeComponent implements OnInit {
       this.specialityList = res;
     });
   }
+  city=[]
+  select2:any
+  selectedCity:string
+  getCity(){
+    this.http.get('http://127.0.0.1:8000/api/doctor/cityshow').subscribe((res:[]) => {
+    
+      this.city = res
+     // console.log(this.city);
+    });
+  }
+  CheckVal2(event){
+  this.selectedCity = event.target.value
 
+  localStorage.setItem('selectedCity',this.selectedCity)
+  }
   getDoctors() {
     this.http.get(this.SERVER_URL + 'doctor/show').subscribe((res) => {
       this.doctors = res;
@@ -343,6 +360,7 @@ export class HomeComponent implements OnInit {
           },
         ],
       };
+
      this.countries = [];
      this.doctors.forEach((index, i) => {
         this.countries.push({

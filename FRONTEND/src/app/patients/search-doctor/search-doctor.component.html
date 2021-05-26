@@ -45,31 +45,29 @@
 								</div>
 								<div class="card-body">
 								<div class="filter-widget">
-									<div class="cal-icon">
-										<input type="text" class="form-control" name="dp"  ngbDatepicker #d="ngbDatepicker">
-									</div>			
+									
 								</div>
 								<div class="filter-widget">
 									<h4>Gender</h4>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Male" (click)="checkType($event)"  [checked]="type === 'Male'" >
+											<input type="checkbox" name="gender_type" value="m" (click)="checkType($event)"  [checked]="type === 'm'" >
 											<span class="checkmark"></span> Male Doctor
 										</label>
 									</div>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Female" [checked]="type === 'Female'"  (click)="checkType($event)">
+											<input type="checkbox" name="gender_type" value="f" [checked]="type === 'f'"  (click)="checkType($event)">
 											<span class="checkmark"></span> Female Doctor
 										</label>
 									</div>
 								</div>
 								<div class="filter-widget">
 									<h4>Select Specialist</h4>
-									<div *ngFor="let specialit of specialityList">
+									<div *ngFor="let doctor of showspecialities">
 										<label class="custom_check">
-											<input type="checkbox" (click)="checkSpeciality($event)" name="select_specialist" [value]="specialit.speciality" [checked]="specialit.checked">
-											<span class="checkmark"></span> {{specialit.speciality}}
+											<input type="checkbox" (click)="checkSpeciality($event)"  name="select_specialist" [value]="doctor.spec_id" [checked]="speciality == doctor.spec_id">
+											<span class="checkmark"></span> {{doctor.libelle}}
 										</label>
 									</div>
 									
@@ -86,53 +84,35 @@
 						<div class="col-md-12 col-lg-8 col-xl-9">
 
 							<!-- Doctor Widget -->
-							<div class="card" *ngFor="let doctor of doctorsInfo" [hidden]="doctors.length === 0">
+							<div class="card" *ngFor="let doctor of doctorsInfo">
 								
 								<div class="card-body">
 									<div class="doctor-widget">
 										<div class="doc-info-left">
 											<div class="doctor-img">
 												<a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">
-													<img [src]="doctor.profile" class="img-fluid" alt="User Image">
+													<img *ngIf="doctor.sexe =='m'" src="../../../assets/admin/img/doctors/mdoc.png" class="img-fluid" alt="User Image">
+													<img *ngIf="doctor.sexe =='f'" src="../../../assets/admin/img/doctors/fdoc.png" class="img-fluid" alt="User Image">
 												</a>
+	
 											</div>
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.nom}} {{doctor.prenom}}</a></h4>
-												<p class="doc-speciality">{{doctor.addresseCabinet}}</p>
-												<h5 class="doc-department"><img [src]="doctor.speciality_profile" class="img-fluid" alt="Speciality">{{doctor.libelle}}</h5>
-												<div class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star"></i>
-													<span class="d-inline-block average-rating">(17)</span>
-												</div>
+												<h5 class="doc-department">{{doctor.libelle}}</h5>
+												
 												<div class="clinic-details">
-													<p class="doc-location"><i class="fas fa-map-marker-alt"></i>Maroc, {{doctor.ville}}</p>
-													<ul class="clinic-gallery">
-														<li> 
-															<a lightbox-group >
-																<img *ngFor="let image of images" 
-																[src]="image.path" 
-																lightbox />
-															</a>
-														</li>
-													</ul>
+													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Maroc, {{doctor.ville}}</p>
+													<p class="doc-location">{{doctor.telePerso}}</p>
 												</div>
 												<div class="clinic-services">
-													<span>Dental Fillings</span>
-													<span> Whitneing</span>
+													<span>Address : {{doctor.adresseCabinet}}</span>
 												</div>
 											</div>
 										</div>
 										<div class="doc-info-right">
 											<div class="clini-infos">
 												<ul>
-													<li><i class="far fa-thumbs-up"></i> 98%</li>
-													<li><i class="far fa-comment"></i> 17 Feedback</li>
-													<li><i class="fas fa-map-marker-alt"></i> {{doctor.ville}}</li>
-													<li><i class="far fa-money-bill-alt"></i> {{doctor.tarif}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
+													<li><i class="far fa-money-bill-alt"></i>{{doctor.tarif}}DHs</li>
 												</ul>
 											</div>
 											<div class="clinic-booking">

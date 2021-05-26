@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { ToastrService } from 'ngx-toastr';
 import { CommonServiceService } from './../../common-service.service';
-
+import { FormBuilder, Validator, Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  doctorDetails;
-  doctorId;
-  firstName;
-  lastName;
-  email;
-  phone;
-  appointments: any = [];
-  patients: any = [];
+
 
   constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     public commonService: CommonServiceService,
@@ -27,69 +22,30 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.doctorId = this.route.snapshot.queryParams['id'];
-    this.getDoctorsDetails();
-    this.allPatients();
-    this.getAppointments();
+  
+    
   }
 
-  getDoctorsDetails() {
-    if (!this.doctorId) {
-      this.doctorId = 1;
-    }
-    this.commonService.getDoctorDetails(this.doctorId).subscribe((res) => {
-      this.doctorDetails = res;
-    });
-  }
+  myForm = this.fb.group({
+    Raison:['',[Validators.required, Validators.minLength(10)]],
+    Type:['',[Validators.required]]
+  });
 
-  allPatients() {
-    this.commonService.getpatients().subscribe((res) => {
-      this.patients = res;
-    });
-  }
-
-  patientDetails() {
-    let user_id = localStorage.getItem('id');
-    this.commonService.getPatientDetails(Number(user_id)).subscribe((res) => {
-      this.patients = res;
-    });
-  }
-
-  getAppointments() {
-    this.commonService.getAppointments().subscribe((res) => {
-      this.appointments = res;
-    });
-  }
+  patient_id = localStorage.getItem('patient_id');
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
 
   booking() {
-    let value = this.patients.reverse();
-    let key = value[0]['key'] + '1';
-    let params = {
-      id: this.appointments.length + 1,
-      doctorName: this.doctorDetails.doctor_name,
-      type: 'New patient',
-      speciality: this.doctorDetails.speciality,
-      patient_key: key,
-      Patient_Name: this.firstName + this.lastName,
-      appointment_time: new Date(),
-      status: 'active',
-      amount: this.doctorDetails.Price,
-    };
-    this.commonService.createAppointment(params).subscribe((res) => {
-      let patients = {
-        id: this.patients.length + 1,
-        key: key,
-        name: this.firstName + this.lastName,
-        phone: this.phone,
-        email: this.email,
-        paid: this.doctorDetails.Price,
-      };
-      this.commonService.createPatient(patients).subscribe((patients) => {
-        this.allPatients();
-        this.getAppointments();
-        this.toastr.success('', 'Appointment booked successfully!');
-        this.router.navigate(['/patients/success']);
-      });
-    });
+   console.log(this.myForm.value.Raison, this.myForm.value.Type)
+
+   this.http.post(this.SERVER_URL + 'patients/addCons', {"patient_id":this.patient_id,"type":this.myForm.value.Type, "raison":this.myForm.value.Raison}).subscribe((res)=>{
+     if(res == "1")
+     {
+      this.toastr.success('', 'Rendez-vous réservé avec succès!');
+      this.router.navigate(['/patients/success']);
+     }
+   })
   }
+
+
+
 }

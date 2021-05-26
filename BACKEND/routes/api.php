@@ -9,6 +9,7 @@ use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\NotificationEventController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\ConsultationController;
 
 
 
@@ -44,12 +45,21 @@ Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultat
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
 Route::any('/doctor/show',[MedecinController::class, 'show'] );
 Route::any('/doctor/update',[MedecinController::class, 'edit'] );
+Route::any('/doctor/cityshow',[MedecinController::class, 'cityshow'] );
+
+
 
 //                       ######### PatientController ###########
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
+Route::any('/patients/addCons',[ConsultationController::class, 'create'] );
 Route::any('/patients/showDoctors',[PatientController::class, 'showDoctors'] );
+Route::any('/patients/showDoctorsbySexeSpec',[PatientController::class, 'showDoctorsbySexeSpec'] );
+Route::any('/patients/showDoctorsbySexe',[PatientController::class, 'showDoctorsbySexe']);
+Route::any('/patients/showDoctorsbySpec',[PatientController::class, 'showDoctorsbySpec'] );
+
+
 
 
 //                       ######### AdminController ###########
