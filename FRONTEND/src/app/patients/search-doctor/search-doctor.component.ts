@@ -14,9 +14,9 @@ import { HttpClient } from '@angular/common/http';
 export class SearchDoctorComponent implements OnInit {
   doctors: any = [];
   specialityList: any = [];
-  type;
+  type="";
   specialist = "";
-  speciality;
+  speciality="";
   selDate;
   constructor(public commonService: CommonServiceService,private http: HttpClient, public router: Router) { }
   images = [
@@ -73,13 +73,34 @@ export class SearchDoctorComponent implements OnInit {
     console.log(this.speciality);
   }
   search() {
-    if (this.type && this.speciality) {
-      this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
-    } else {
+    if(this.type!="" && this.speciality!="") {
+        this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpec",{"sexe":this.type,"spec_id":this.speciality}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    } 
+    else if(this.type!="" && this.speciality=="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexe",{"sexe":this.type}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
+    else if(this.type=="" && this.speciality!="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpec",{"spec_id":this.speciality}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
+    
+    else 
+    {
       this.getDoctors();
     }
 
   }
+  
   bookAppointment(id) {
     // if((localStorage.getItem('auth') === 'true') && (localStorage.getItem('patient') === 'true')) {
     this.router.navigateByUrl('/patients/booking?id=' + id);
