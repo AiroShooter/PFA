@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   index = -1;
   IDS: any[];
   SLOT_DATA: string[];
-  title = 'doccure';
+  title = 'DOCEMSI';
   url;
   loadFooter = false;
   show: boolean = true;
