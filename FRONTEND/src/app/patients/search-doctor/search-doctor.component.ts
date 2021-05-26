@@ -61,15 +61,7 @@ export class SearchDoctorComponent implements OnInit {
     } else {
       this.type = "";
     }
-  }
-
-  search() {
-    if (this.type && this.speciality) {
-      this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
-    } else {
-      this.getDoctors();
-    }
-
+    console.log(this.type);
   }
 
   checkSpeciality(event) {
@@ -78,18 +70,16 @@ export class SearchDoctorComponent implements OnInit {
     } else {
       this.speciality = "";
     }
-
-    var filter = this.specialityList.filter(a => a.speciality === event.target.value);
-    if (filter.length != 0) {
-      filter[0]['checked'] = true;
-    }
-    this.specialityList.forEach(index => {
-      if (index.speciality != event.target.value) {
-        index['checked'] = false;
-      }
-    })
+    console.log(this.speciality);
   }
+  search() {
+    if (this.type && this.speciality) {
+      this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
+    } else {
+      this.getDoctors();
+    }
 
+  }
   bookAppointment(id) {
     // if((localStorage.getItem('auth') === 'true') && (localStorage.getItem('patient') === 'true')) {
     this.router.navigateByUrl('/patients/booking?id=' + id);
@@ -97,5 +87,6 @@ export class SearchDoctorComponent implements OnInit {
     //   this.router.navigate(['/']);
     // }
   }
+  
 
 }

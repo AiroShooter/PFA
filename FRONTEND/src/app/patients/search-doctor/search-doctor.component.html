@@ -51,13 +51,13 @@
 									<h4>Gender</h4>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Male" (click)="checkType($event)"  [checked]="type === 'Male'" >
+											<input type="checkbox" name="gender_type" value="m" (click)="checkType($event)"  [checked]="type === 'm'" >
 											<span class="checkmark"></span> Male Doctor
 										</label>
 									</div>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Female" [checked]="type === 'Female'"  (click)="checkType($event)">
+											<input type="checkbox" name="gender_type" value="f" [checked]="type === 'f'"  (click)="checkType($event)">
 											<span class="checkmark"></span> Female Doctor
 										</label>
 									</div>
@@ -66,7 +66,7 @@
 									<h4>Select Specialist</h4>
 									<div *ngFor="let doctor of showspecialities">
 										<label class="custom_check">
-											<input type="checkbox"  name="select_specialist" [value]="doctor.doctory" [checked]="doctor.checked">
+											<input type="checkbox" (click)="checkSpeciality($event)"  name="select_specialist" [value]="doctor.spec_id" [checked]="speciality == doctor.spec_id">
 											<span class="checkmark"></span> {{doctor.libelle}}
 										</label>
 									</div>
@@ -98,24 +98,21 @@
 											</div>
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.nom}} {{doctor.prenom}}</a></h4>
-												<p class="doc-speciality">{{doctor.addresseCabinet}}</p>
 												<h5 class="doc-department">{{doctor.libelle}}</h5>
 												
 												<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Maroc, {{doctor.ville}}</p>
-													
+													<p class="doc-location">{{doctor.telePerso}}</p>
 												</div>
 												<div class="clinic-services">
-													<span>Dental Fillings</span>
-													<span> Whitneing</span>
+													<span>Address : {{doctor.adresseCabinet}}</span>
 												</div>
 											</div>
 										</div>
 										<div class="doc-info-right">
 											<div class="clini-infos">
 												<ul>
-													<li><i class="fas fa-map-marker-alt"></i> {{doctor.ville}}</li>
-													<li><i class="far fa-money-bill-alt"></i> MAD {{doctor.tarif}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
+													<li><i class="far fa-money-bill-alt"></i>{{doctor.tarif}}DHs</li>
 												</ul>
 											</div>
 											<div class="clinic-booking">

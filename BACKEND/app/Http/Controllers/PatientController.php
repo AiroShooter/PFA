@@ -77,7 +77,7 @@ class PatientController extends Controller
         return $value;
     }
     public function showDoctors(){
-        $value = DB::select("select m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id"); 
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id"); 
         return $value;
         // if($value) return response()->json([
         //     'hasError' => false,
