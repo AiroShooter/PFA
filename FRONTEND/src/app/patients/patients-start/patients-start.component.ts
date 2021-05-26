@@ -45,6 +45,11 @@ export class PatientsStartComponent implements OnInit {
             localStorage.setItem('pays',result['user']['pays']);
             localStorage.setItem('dateNaiss',result['user']['dateNaiss']);
             localStorage.setItem('patient_id',result['user']['patient_id']);
+            if(localStorage.getItem("med_id_selected"))
+            {
+              this.router.navigate(['/patients/booking']);
+            }
+            else
             this.router.navigate(['/patients/dashboard']);
           }
     });

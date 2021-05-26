@@ -76,21 +76,21 @@ class PatientController extends Controller
         $value = DB::update("update consultations set etat = ? where const_id = ?",[$request->etat,$request->const_id]); 
         return $value;
     }
-    public function showDoctors(){
-        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id"); 
+    public function showDoctors(Request $request){
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.ville like ?",[$request->ville]); 
         return $value;
         
     } 
      public function showDoctorsbySexeSpec(Request $request){
-        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ? and m.sexe = ?",[$request->spec_id,$request->sexe]); 
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ? and m.sexe = ? and m.ville = ?",[$request->spec_id,$request->sexe,$request->ville]); 
         return $value;
     }
     public function showDoctorsbySexe(Request $request){
-        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.sexe = ?",[$request->sexe]); 
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.sexe = ? and m.ville = ?",[$request->sexe,$request->ville]); 
         return $value;
     }
     public function showDoctorsbySpec(Request $request){
-        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ?",[$request->spec_id]); 
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ? and m.ville = ?",[$request->spec_id,$request->ville]); 
         return $value;
     }
 

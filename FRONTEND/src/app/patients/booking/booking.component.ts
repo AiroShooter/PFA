@@ -151,7 +151,11 @@ export class BookingComponent implements OnInit {
     }
     else this.isBooked = true;
 
-    
+    if(!localStorage.getItem('med_id_selected'))
+    {
+      this.router.navigate(['/login-page']);
+     
+    }
    
    
   }
@@ -174,7 +178,7 @@ export class BookingComponent implements OnInit {
   }
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
-  med_id = 1;
+  med_id = localStorage.getItem('med_id_selected');
   patient_id = localStorage.getItem('patient_id');
   datas : object[] = []
   isBooked = false;

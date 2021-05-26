@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 import { FormControl,FormBuilder } from '@angular/forms';
@@ -102,6 +102,7 @@ export class HomeComponent implements OnInit {
       )
     );
   }
+
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -317,18 +318,19 @@ export class HomeComponent implements OnInit {
     });
   }
   city=[]
-  select2
+  select2:any
+  selectedCity:string
   getCity(){
-    this.http.get('http://127.0.0.1:8000/api/doctor/cityshow').subscribe((res:any[]) => {
-    res.forEach((item, index) => {
-      this.city.push(item.ville);
-    });
+    this.http.get('http://127.0.0.1:8000/api/doctor/cityshow').subscribe((res:[]) => {
     
-      console.log(this.city);
+      this.city = res
+     // console.log(this.city);
     });
   }
   CheckVal2(event){
-    console.log(event);
+  this.selectedCity = event.target.value
+
+  localStorage.setItem('selectedCity',this.selectedCity)
   }
   getDoctors() {
     this.http.get(this.SERVER_URL + 'doctor/show').subscribe((res) => {

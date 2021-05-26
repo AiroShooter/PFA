@@ -37,9 +37,10 @@ export class SearchDoctorComponent implements OnInit {
     this.getDoctors();
     this.getspeciality();
   }
+  selectedCity = localStorage.getItem("selectedCity")
   doctorsInfo:any;
   getDoctors() {
-    this.http.get("http://127.0.0.1:8000/api/patients/showDoctors").subscribe(result => {
+    this.http.post("http://127.0.0.1:8000/api/patients/showDoctors",{"ville": this.selectedCity }).subscribe(result => {
       this.doctorsInfo = result;
       console.log(this.doctorsInfo);
     });
@@ -74,21 +75,21 @@ export class SearchDoctorComponent implements OnInit {
   }
   search() {
     if(this.type!="" && this.speciality!="") {
-        this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpec",{"sexe":this.type,"spec_id":this.speciality}).subscribe(result =>{
+        this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpec",{"ville": this.selectedCity ,"sexe":this.type,"spec_id":this.speciality}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
     } 
     else if(this.type!="" && this.speciality=="")
     {
-      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexe",{"sexe":this.type}).subscribe(result =>{
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexe",{"ville": this.selectedCity ,"sexe":this.type}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
     }
     else if(this.type=="" && this.speciality!="")
     {
-      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpec",{"spec_id":this.speciality}).subscribe(result =>{
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpec",{"ville": this.selectedCity ,"spec_id":this.speciality}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
@@ -103,7 +104,16 @@ export class SearchDoctorComponent implements OnInit {
   
   bookAppointment(id) {
     // if((localStorage.getItem('auth') === 'true') && (localStorage.getItem('patient') === 'true')) {
-    this.router.navigateByUrl('/patients/booking?id=' + id);
+      if(localStorage.getItem('type')=="patient")
+      {
+        localStorage.setItem('med_id_selected',id);
+        this.router.navigateByUrl('/patients/booking');
+      }
+      else{
+        localStorage.setItem('med_id_selected',id);
+        this.router.navigateByUrl('/login-page');
+      }  
+     
     // } else {
     //   this.router.navigate(['/']);
     // }
