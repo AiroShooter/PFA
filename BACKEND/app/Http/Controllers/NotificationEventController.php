@@ -47,7 +47,7 @@ class NotificationEventController extends Controller
      */
     public function show()
     {
-        $value = DB::select("SELECT * from notification_events order by date desc"); 
+        $value = DB::select("SELECT * from notification_events order by date desc, heure desc"); 
         return $value;
     }
 

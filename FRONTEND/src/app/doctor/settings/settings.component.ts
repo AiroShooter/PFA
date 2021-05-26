@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UpdaterService } from 'src/app/services/updater.service';
 declare var $: any;
 
 @Component({
@@ -13,7 +14,8 @@ export class SettingsComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private updater: UpdaterService
   ) {}
 
   ngOnInit(): void {
@@ -61,18 +63,20 @@ export class SettingsComponent implements OnInit {
     
 
     console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
-    this.http.post(this.SERVER_URL + 'doctor/start', form).subscribe(result => {
+    this.http.post(this.SERVER_URL + 'doctor/update', form).subscribe(result => {
       console.log(result);
-      if(result['user'])
+      if(result)
           {
-            localStorage.setItem('nom',result['user']['nom']);
-            localStorage.setItem('prenom',result['user']['prenom']);
-            localStorage.setItem('telePerso',result['user']['telePerso']);
-            localStorage.setItem('ville',result['user']['ville']);
-            localStorage.setItem('med_id',result['user']['med_id']);
+            localStorage.setItem('nom',result["user"]['nom']);
+            localStorage.setItem('prenom',result["user"]['prenom']);
+            localStorage.setItem('telePerso',result["user"]['telePerso']);
+            localStorage.setItem('ville',result["user"]['ville']);
+            localStorage.setItem('user_id',result["user"]['user_id']);
+            localStorage.setItem('med_id',result["user"]['med_id']);
             if(result['spec'])
               localStorage.setItem('Spec',result['spec']['libelle']);
-            this.router.navigate(['/doctor/dashboard']);
+            this.updater.sendUpdate(true);
+            this.router.navigateByUrl('/change-password');
           }
     });
   }

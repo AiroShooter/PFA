@@ -55,6 +55,7 @@ class MedecinController extends Controller
                 'error' => 'Error']);
         }
     }
+    
     public function ConsultationCount(Request $request)
     {
         $count = DB::select("select count(*) as count from consultations c inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = ?",[$request->user_id]);
@@ -114,9 +115,18 @@ class MedecinController extends Controller
      * @param  \App\Models\Medecin  $medecin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medecin $medecin)
+    public function edit(Request $request)
     {
-        //
+        $query = DB::select("UPDATE `medecins` SET `spec_id`=?,`titre`=?,`nom`=?,`prenom`=?,`sexe`=?, `tarif`=?, `siteWeb`=?, `adresseCabinet`=?, `ville`=?, `teleCabinet`=?,`telePerso`=?, `duree`=? WHERE `user_id` = ?",[$request->spec_id,$request->titre,$request->nom,$request->prenom,$request->sexe,$request->tarif,$request->siteWeb,$request->adresseCabinet,$request->ville,$request->teleCabinet,$request->telePerso,$request->duree,$request->user_id]);
+        $user = DB::select('select * from medecins where user_id = ?',[$request->user_id]);
+        $spec = DB::select('select * from specialites where spec_id = ?',[$request->spec_id]);
+
+        return response()->json([
+            'hasError' => true,
+            'success' => '',
+            'spec' => $spec[0],
+            'user' => $user[0]
+            ]);
     }
 
     /**

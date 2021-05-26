@@ -52,7 +52,7 @@
 									</span>
 									<div class="media-body">
 										<p class="noti-details"><span class="noti-title">{{notif.titre}} {{notif.message}}</span></p>
-										<p class="noti-time"><span class="notification-time">{{notif.date}}</span></p>
+										<p class="noti-time"><span class="notification-time">Le {{notif.date}} a {{notif.heure}}</span></p>
 									</div>
 								</div>
 							</a>
@@ -83,7 +83,7 @@
 					</div>
 				</div>
 				<a class="dropdown-item" [routerLink]="'doc-profile'">Mon profil</a>
-				<a class="dropdown-item" [routerLink]="'settings'">Paramètres</a>
+				<!-- <a class="dropdown-item" [routerLink]="'settings'">Paramètres</a> -->
 				<a class="dropdown-item" (click)="clickLogout()" style="cursor: pointer;">Se déconnecter</a>
 			</div>
 		</li>

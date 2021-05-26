@@ -19,6 +19,7 @@ class CreateNotificationEventsTable extends Migration
             $table->string("message");
             $table->string("etat");
             $table->date("date"); 
+            $table->time("heure")->default(DB::raw('CURRENT_TIMESTAMP'));
 
         });
     }

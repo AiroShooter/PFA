@@ -6,6 +6,7 @@ import {CommonServiceService  } from './../../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,12 @@ export class DashboardComponent implements OnInit {
   TotalPatientsLength ;
   activeTab = 'upcomming';
   
-  constructor(private toastr: ToastrService,private http:HttpClient,public commonService:CommonServiceService,private modalService: BsModalService) { }
+  constructor(private toastr: ToastrService,
+    private http:HttpClient,
+    public commonService:CommonServiceService,
+    private modalService: BsModalService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.getPatients();
