@@ -107,6 +107,11 @@ class MedecinController extends Controller
     {
         return  DB::select('select * from medecins');
     }
+    public function cityshow()
+    {
+        return  DB::select('select distinct ville from medecins');
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

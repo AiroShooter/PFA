@@ -12,7 +12,8 @@
                 <div class="search-box">
                     <form>
                         <div class="form-group search-location">
-                        <input type="text" class="form-control" placeholder="Search Location">
+                            <ng-select2  width="100%" [(ngModel)]="select2" [data]="this.city" (valueChanged)="CheckVal2($event)">
+                            </ng-select2>
                             <span class="form-text">Basé sur votre emplacement</span>
                         </div>
                         <div class="form-group search-info">

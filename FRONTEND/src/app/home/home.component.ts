@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   specialityList: any = [];
   doctors: any = [];
   slidepage: any;
+  
   employeeCtrl = new FormControl();
   filteredEmployee: Observable<Doctors[]>;
   blogs: any = [];
@@ -106,6 +107,7 @@ export class HomeComponent implements OnInit {
     window.scrollTo(0, 0);
     this.getspeciality();
     this.getDoctors();
+    this.getCity();
     this.getblogs();
 
     // User's voice slider
@@ -314,7 +316,20 @@ export class HomeComponent implements OnInit {
       this.specialityList = res;
     });
   }
-
+  city=[]
+  select2
+  getCity(){
+    this.http.get('http://127.0.0.1:8000/api/doctor/cityshow').subscribe((res:any[]) => {
+    res.forEach((item, index) => {
+      this.city.push(item.ville);
+    });
+    
+      console.log(this.city);
+    });
+  }
+  CheckVal2(event){
+    console.log(event);
+  }
   getDoctors() {
     this.http.get(this.SERVER_URL + 'doctor/show').subscribe((res) => {
       this.doctors = res;
@@ -343,6 +358,7 @@ export class HomeComponent implements OnInit {
           },
         ],
       };
+
      this.countries = [];
      this.doctors.forEach((index, i) => {
         this.countries.push({

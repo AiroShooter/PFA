@@ -79,19 +79,20 @@ class PatientController extends Controller
     public function showDoctors(){
         $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id"); 
         return $value;
-        // if($value) return response()->json([
-        //     'hasError' => false,
-        //     'success' => 'Done',
-        //     'error' => '',
-        //     'users' =>$value
-        // ]);
-        // else return response()->json([
-        //     'hasError' => true,
-        //     'success' => '',
-        //     'error' => 'Data not available!'
-        // ]);
+        
     } 
-    
+     public function showDoctorsbySexeSpec(Request $request){
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ? and m.sexe = ?",[$request->spec_id,$request->sexe]); 
+        return $value;
+    }
+    public function showDoctorsbySexe(Request $request){
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.sexe = ?",[$request->sexe]); 
+        return $value;
+    }
+    public function showDoctorsbySpec(Request $request){
+        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where s.spec_id = ?",[$request->spec_id]); 
+        return $value;
+    }
 
     /**
      * Store a newly created resource in storage.
