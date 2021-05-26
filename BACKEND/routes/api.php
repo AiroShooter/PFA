@@ -9,6 +9,7 @@ use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\NotificationEventController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\ConsultationController;
 
 
 
@@ -48,6 +49,7 @@ Route::any('/doctor/show',[MedecinController::class, 'show'] );
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
+Route::any('/patients/addCons',[ConsultationController::class, 'create'] );
 
 
 
