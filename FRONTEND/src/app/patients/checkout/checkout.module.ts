@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -12,7 +11,9 @@ import { CheckoutComponent } from './checkout.component';
   imports: [
     CommonModule,
     FormsModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class CheckoutModule { }
