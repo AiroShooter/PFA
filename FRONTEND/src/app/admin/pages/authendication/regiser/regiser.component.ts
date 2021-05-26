@@ -51,6 +51,7 @@ export class RegiserComponent implements OnInit {
             localStorage.setItem('user_id',result['user']['user_id']);
             localStorage.setItem('nom',result['admin']['nom']);
             localStorage.setItem('prenom',result['admin']['prenom']);
+            localStorage.setItem('admin_id',result['admin']['admin_id']);
             //this.updater.sendUpdate(true);
             this.router.navigate(['/admin/dashboard']);
           }

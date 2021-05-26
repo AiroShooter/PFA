@@ -65,9 +65,6 @@ class PatientController extends Controller
                 'error' => 'Error']);
         }
 
-
-
-
     }
 
     public function showConsultations(Request $request)
@@ -79,6 +76,21 @@ class PatientController extends Controller
         $value = DB::update("update consultations set etat = ? where const_id = ?",[$request->etat,$request->const_id]); 
         return $value;
     }
+    public function showDoctors(){
+        $value = DB::select("select m.nom,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id"); 
+        return $value;
+        // if($value) return response()->json([
+        //     'hasError' => false,
+        //     'success' => 'Done',
+        //     'error' => '',
+        //     'users' =>$value
+        // ]);
+        // else return response()->json([
+        //     'hasError' => true,
+        //     'success' => '',
+        //     'error' => 'Data not available!'
+        // ]);
+    } 
     
 
     /**

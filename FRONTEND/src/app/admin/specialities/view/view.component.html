@@ -4,9 +4,9 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-7 col-auto">
-                    <h3 class="page-title">Spécialités</h3>
+                    <h3 class="page-title">Les spécialités</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="''">Tableau de bord</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="'/admin/dashboard'">Tableau de bord</a></li>
                         <li class="breadcrumb-item active">Spécialités</li>
                     </ul>
                 </div>
@@ -47,11 +47,11 @@
                                             <div class="actions">
                                                 <a class="btn btn-sm bg-success-light" data-toggle="modal"
                                                     (click)="editModal(edittemplate,special,special.spec_id)">
-                                                    <i class="fe fe-pencil"></i> Éditer
+                                                    <i class="fe fe-pencil"></i> Modifier
                                                 </a>
                                                 <a data-toggle="modal" (click)="deleteModal(delete,special,special.spec_id)"
                                                     class="btn btn-sm bg-danger-light">
-                                                    <i class="fe fe-trash"></i> Effacer
+                                                    <i class="fe fe-trash"></i> Supprimer
                                                 </a>
                                             </div>
                                         </td>
@@ -69,20 +69,20 @@
 
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Ajouter des spécialités</h4>
+        <h4 class="modal-title pull-left">Ajouter une spécialité</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form [formGroup]="myForm" (ngSubmit)="addspec()" method="POST">
-            <div class="row form-row">
-                <div class="d-inline-flex p-2">
+            <div class="container">
+                <!-- <div class="d-inline-flex p-2"> -->
                     <div class="form-group">
                         <label>Spécialités</label>
                         <input type="text" class="form-control" name="speciality" formControlName="libelle">
                     </div>
-                </div>
+                <!-- </div> -->
                 <!-- <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label>Image</label>
@@ -91,38 +91,38 @@
                 </div> -->
                 
             </div>
-            <button type="submit" class="btn btn-primary btn-block" (click)="save()">Sauvegarder les modifications</button>
+            <button type="submit" class="btn btn-primary btn-block" (click)="save()">Ajouter</button>
         </form>
     </div>
 </ng-template>
 
 <ng-template #edittemplate>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Modifier des spécialités</h4>
+        <h4 class="modal-title pull-left">Modifier spécialité</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form [formGroup]="myForm" (ngSubmit)="editspec()" method="POST">
-            <div class="row form-row">
-                <div class="col-12 col-sm-6">
+            <div class="container">
+                <!-- <div class="col-12 col-sm-6"> -->
                     <div class="form-group">
                         <label>Spécialités</label>
                         <input type="text" class="form-control" name="speciality" [(ngModel)]="name" formControlName="libelle">
                     </div>
-                </div>
+                <!-- </div> -->
                 
                 
             </div>
-            <button type="submit" class="btn btn-primary btn-block" (click)="update()">Éditer</button>
+            <button type="submit" class="btn btn-primary btn-block" (click)="update()">Modifier</button>
         </form>
     </div>
 </ng-template>
 
 <ng-template #delete>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Effacer</h4>
+        <h4 class="modal-title pull-left">Supprimer</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>

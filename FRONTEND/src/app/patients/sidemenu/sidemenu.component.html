@@ -19,38 +19,38 @@
 				<li [class.active]="name === 'Dashboard'">
 					<a [routerLink]="'dashboard'" (click)="navigate('Dashboard')">
 						<i class="fas fa-columns"></i>
-						<span>Dashboard</span>
+						<span>Tableau de bord</span>
 					</a>
 				</li>
-				<li [class.active]="name === 'Favourites'">
+				<!-- <li [class.active]="name === 'Favourites'">
 					<a (click)="navigate('Favourites')" [routerLink]="'favourites'">
 						<i class="fas fa-bookmark"></i>
-						<span>Favorites</span>
+						<span>Favoris</span>
 					</a>
-				</li>
+				</li> -->
 				<li [class.active]="name === 'message'">
 					<a [routerLink]="'message'">
 						<i class="fas fa-comments"></i>
-						<span>Message</span>
-						<small class="unread-msg">23</small>
+						<span>Messages</span>
+						<small class="unread-msg">8</small>
 					</a>
 				</li>
 				<li [class.active]="name === 'Profile Settings'">
 					<a (click)="navigate('Profile Settings')" [routerLink]="'settings'">
 						<i class="fas fa-user-cog"></i>
-						<span>Profile Settings</span>
+						<span>Paramètres de profil</span>
 					</a>
 				</li>
 				<li>
 					<a [routerLink]="'/change-password'">
 						<i class="fas fa-lock"></i>
-						<span>Change Password</span>
+						<span>Changer le mot de passe</span>
 					</a>
 				</li>
 				<li >
 					<a  (click)="logout()" style="cursor: pointer;">
 						<i class="fas fa-sign-out-alt"></i>
-						<span>Logout</span>
+						<span>Se déconnecter</span>
 					</a>
 				</li>
 			</ul>

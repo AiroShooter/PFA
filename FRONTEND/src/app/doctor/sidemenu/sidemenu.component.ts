@@ -45,6 +45,9 @@ export class SidemenuComponent implements OnInit {
     this.name = name;
     this.commonService.nextmessage(name);
   }
+  to(){
+    this.router.navigateByUrl('/change-password')
+  }
   nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
   spec = localStorage.getItem('Spec');
 }

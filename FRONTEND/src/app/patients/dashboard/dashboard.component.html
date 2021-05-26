@@ -5,16 +5,16 @@
 									<nav class="user-tabs mb-4">
 										<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 											<li class="nav-item">
-												<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
+												<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Rendez-vous</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="#pat_prescriptions" data-toggle="tab">Prescriptions</a>
+												<a class="nav-link" href="#pat_prescriptions" data-toggle="tab">Ordonnances</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="#pat_medical_records" data-toggle="tab"><span class="med-records">Medical Records</span></a>
+												<a class="nav-link" href="#pat_medical_records" data-toggle="tab"><span class="med-records">Dossiers médicaux</span></a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="#pat_billing" data-toggle="tab">Billing</a>
+												<a class="nav-link" href="#pat_billing" data-toggle="tab">Facturation</a>
 											</li>
 										</ul>
 									</nav>
@@ -31,12 +31,12 @@
 														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>Doctor</th>
-																	<th>Appt Date</th>
-																	<th>Amount</th>
+																	<th>Médecin</th>
+																	<th>Date du rendez-vous</th>
+																	<th>Montant</th>
 																	<th>Type</th>
-																	<th>Status</th>
-																	<th>Changer status</th>
+																	<th>Statut</th>
+																	<th>Changer statut</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -44,8 +44,8 @@
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img *ngIf="app.msexe == 'F'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
-																				<img *ngIf="app.msexe == 'M'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			
 																			</a>
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
@@ -60,10 +60,10 @@
 																		<div  class="table-action">
 																	
 																			<a (click)="changeState(app.const_id,'confirmer')" class="btn btn-sm bg-success-light mr-4">
-																				<i class="fas fa-check"></i> Accept
+																				<i class="fas fa-check"></i> Accepter
 																			</a> 
 																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'annuler')" class="btn btn-sm bg-danger-light">
-																				<i class="fas fa-times"></i> Cancel
+																				<i class="fas fa-times"></i> Annuler
 																			</a>
 																		</div>
 																	</td>
@@ -86,8 +86,8 @@
 															<thead>
 																<tr>
 																	<th>Date </th>
-																	<th>Perspections</th>									
-																	<th>Created by </th>
+																	<th>Points de vue</th>									
+																	<th>Créé par</th>
 																	<th></th>
 																</tr>     
 															</thead>
@@ -98,8 +98,8 @@
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img *ngIf="app.msexe == 'F'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
-																				<img *ngIf="app.msexe == 'M'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}}  <span>{{app.libelle}}</span></a>
 																		</h2>
@@ -108,7 +108,7 @@
 																		<div class="table-action">
 																			
 																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
+																				<i class="far fa-eye"></i> Voir
 																			</a>
 																		</div>
 																	</td>
@@ -129,11 +129,11 @@
 														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>ID</th>
-																	<th>Date </th>
-																	<th>Description</th>
-																	<th>Attachment</th>
-																	<th>Created</th>
+																	<th>identifiant</th>
+																	<th>date </th>
+																	<th>La description</th>
+																	<th>Attachement</th>
+																	<th>Créé</th>
 																	<th></th>
 																</tr>     
 															</thead>
@@ -154,10 +154,10 @@
 																	<td class="text-right">
 																		<div class="table-action">
 																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
+																				<i class="far fa-eye"></i> Voir
 																			</a>
 																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
+																				<i class="fas fa-print"></i> Imprimer
 																			</a>
 																		</div>
 																	</td>
@@ -170,7 +170,7 @@
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" alt="User Image">
+																				<img class="avatar-img rounded-circle" src="../../../assets/admin/img/profiles/admin.png" alt="User Image">
 																			</a>
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. Darren Elder <span>Dental</span></a>
 																		</h2>
@@ -394,10 +394,10 @@
 														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>Invoice No</th>
-																	<th>Doctor</th>
-																	<th>Amount</th>
-																	<th>Paid On</th>
+																	<th>Facture No</th>
+																	<th>Médecin</th>
+																	<th>Montant</th>
+																	<th>Payé le</th>
 																	<th></th>
 																</tr>
 															</thead>
@@ -409,10 +409,10 @@
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img *ngIf="app.msexe == 'F'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822733_user_512x512.png" alt="User Image">
-																				<img *ngIf="app.msexe == 'M'" class="avatar-img rounded-circle" src="https://www.shareicon.net/data/512x512/2016/09/01/822712_user_512x512.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">{{app.pnom}} {{app.pprenom}} <span>{{app.libelle}}</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
 																	<td>${{app.tarif}}</td>

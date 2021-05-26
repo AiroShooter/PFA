@@ -123,7 +123,7 @@
 							
 							<!-- Submit Section -->
 							<div class="submit-section proceed-btn text-right">
-								<a [routerLink]="'/patients/checkout'" [queryParams]="{id: doctorDetails?.id}" class="btn btn-primary submit-btn">Proceed to Pay</a>
+								<a (click)="confirm()" class="btn btn-primary submit-btn">Réserver</a>
 							</div>
 							<!-- /Submit Section -->
 							

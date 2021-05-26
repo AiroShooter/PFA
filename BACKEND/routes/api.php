@@ -49,8 +49,12 @@ Route::any('/doctor/show',[MedecinController::class, 'show'] );
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
+<<<<<<< HEAD
 Route::any('/patients/addCons',[ConsultationController::class, 'create'] );
 
+=======
+Route::any('/patients/showDoctors',[PatientController::class, 'showDoctors'] );
+>>>>>>> dfed419fad28f23b4242a149fcf9debcca6a1472
 
 
 //                       ######### AdminController ###########

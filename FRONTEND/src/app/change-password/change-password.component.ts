@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-change-password',
@@ -9,9 +11,10 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor(private http: HttpClient, private fb:FormBuilder) { }
+  constructor(private http: HttpClient, private fb:FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.router.navigateByUrl('/change-password')
   }
   myForm = this.fb.group({
     password:[],
@@ -44,4 +47,19 @@ export class ChangePasswordComponent implements OnInit {
     
   }
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login-page']);
+  }
+
+  public ageFromDateOfBirthday(dateOfBirth: any): number {
+    return moment().diff(dateOfBirth, 'years');
+  }
+
+  nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+  dateNaiss = localStorage.getItem('dateNaiss');
+  age = this.ageFromDateOfBirthday(this.dateNaiss);
+  pays = localStorage.getItem('pays');
+  type = localStorage.getItem('type');
+  spec = localStorage.getItem('Spec');
 }
