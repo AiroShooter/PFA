@@ -20,32 +20,29 @@
 			<div class="content">
 				<div class="container">
 
-					<div class="row">
-						<div class="col-md-12">
+					<div class="d-flex justify-content-center">
+						<div class="col-8">
 							<div class="card">
 								<div class="card-body">
 									<form [formGroup]="myForm" (ngSubmit)="booking()">
-										<div class="info-widget">
-											<h4 class="card-title">Consultation infos</h4>
-											<div class="row">
-												<div class="col-md-6 col-sm-12">
+											
+												<h4 class="card-title">Les informations du rendez-vous</h4>
 													<div class="form-group card-label">
-														<textarea name="" class="form-control" id="" formControlName="Raison" placeholder="La raison" rows="1"></textarea>
+														<label>Raison du rendez-vous</label>
+														<textarea name="" class="form-control" id="" formControlName="Raison" rows="5"></textarea>
 													</div>
-												</div>
-												<div class="col-md-6 col-sm-12">
 													<div class="form-group card-label">
+														<label>Type de rendez-vous</label>
 														<select name="" class="form-control" id="" aria-placeholder="Le type de consultation" formControlName="Type">
 															<option value="Presentiel">Presentiel</option>
 															<option value="A distance">A distance</option>
 														</select>
 													</div>
-												</div>
-											</div>
-										</div>
-										<div class="submit-section">
-											<button  type="submit" [disabled]="!myForm.valid" class="btn btn-primary submit-btn">Confirmer la consultation </button>
-										</div>
+													<div class="submit-section d-flex justify-content-center">
+														<button  type="submit" [disabled]="!myForm.valid" class="btn btn-primary submit-btn">Confirmer la consultation </button>
+													</div>
+
+										
 									</form>
 									
 								</div>
