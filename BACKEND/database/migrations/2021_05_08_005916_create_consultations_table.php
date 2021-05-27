@@ -17,11 +17,11 @@ class CreateConsultationsTable extends Migration
             $table->bigIncrements("const_id");
             $table->unsignedBigInteger("patient_id");
             $table->unsignedBigInteger("med_id");
-            $table->unsignedBigInteger("replace_id");
-            $table->unsignedBigInteger("doss_id");
-            $table->date("date");
+            $table->unsignedBigInteger("replace_id")->nullable();
+            $table->unsignedBigInteger("doss_id")->nullable();
+            $table->date("date")->nullable();
             $table->string("type");
-            $table->string('desc');
+            $table->string('desc')->nullable();
             $table->string('etat');
             $table->string('raison');
             $table->string('heure');

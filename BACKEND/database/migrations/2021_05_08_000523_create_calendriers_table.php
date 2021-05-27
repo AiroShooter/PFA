@@ -23,8 +23,6 @@ class CreateCalendriersTable extends Migration
             $table->time("heureDebut");
             $table->time("heureFin");
             $table->Integer("patient_id")->nullable();
-
-
         });
     }
 
