@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 import { CommonServiceService } from './../../common-service.service';
 
@@ -11,10 +13,15 @@ import { CommonServiceService } from './../../common-service.service';
 export class InvoiceComponent implements OnInit {
 
   invoices : any = [];
-  constructor(public commonService:CommonServiceService,private http: HttpClient) { }
+  constructor(public commonService:CommonServiceService,private http: HttpClient, private router:Router) { }
 
   ngOnInit(): void {
   	this.getTransactions();
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
   }
   AppointmentsInfo:any;
   user_id:any;

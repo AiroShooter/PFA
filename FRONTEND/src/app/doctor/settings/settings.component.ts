@@ -20,6 +20,11 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSpec();
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
   }
   files: File[] = [];
 

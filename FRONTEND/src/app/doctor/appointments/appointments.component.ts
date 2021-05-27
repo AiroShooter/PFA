@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,TemplateRef  } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 import {CommonServiceService  } from './../../common-service.service';
 
@@ -16,11 +17,16 @@ export class AppointmentsComponent implements OnInit {
   appointments : any = [];
   patients :  any = [];
   appointmentId;
-  constructor(public commonService:CommonServiceService,private http:HttpClient,private modalService: BsModalService) { }
+  constructor(public commonService:CommonServiceService,private http:HttpClient,private modalService: BsModalService, private router:Router) { }
 
   ngOnInit(): void {
       
       this.getAppointments();
+      if(!(!!localStorage.getItem("med_id")))
+      {
+        localStorage.clear()
+        this.router.navigateByUrl('/doctor/start');
+      }
 
   }
 

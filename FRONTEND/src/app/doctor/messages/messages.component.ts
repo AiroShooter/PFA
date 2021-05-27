@@ -17,6 +17,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.commonSerivce.nextmessage('chat');
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
   }
 
   ngOnDestroy() {

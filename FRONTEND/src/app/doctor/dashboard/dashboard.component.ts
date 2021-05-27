@@ -36,6 +36,12 @@ export class DashboardComponent implements OnInit {
     this.getPatients();
       this.getAppointmentscount();
       this.getApptointementsInfo();
+
+      if(!(!!localStorage.getItem("med_id")))
+      {
+        localStorage.clear()
+        this.router.navigateByUrl('/doctor/start');
+      }
   }
 
   search(activeTab){

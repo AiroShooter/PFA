@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {CommonServiceService  } from './../../common-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mypatients',
@@ -12,12 +13,18 @@ export class MypatientsComponent implements OnInit {
   appointments : any = [];
   patients :  any = [];
   
-  constructor(public commonService:CommonServiceService, private http:HttpClient) { }
+  constructor(public commonService:CommonServiceService, private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
     this.getPatients();
     this.getAppointments();
     this.getApptointementsInfo();
+    
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
     
 
   }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           if(result['user']['type'] == 'medecin')
           {
                 this.http.post(this.SERVER_URL + 'doctor/getSingle', {"user_id":result['user']['user_id']}).subscribe(result1 => {
-                  if(result1['user'])
+                  if(result1)
                   {
                     localStorage.setItem('nom',result1['user']['nom']);
                     localStorage.setItem('prenom',result1['user']['prenom']);
@@ -70,6 +70,9 @@ export class LoginComponent implements OnInit {
                     if(result1['spec'])
                       localStorage.setItem('Spec',result1['spec']['libelle']);
                     this.router.navigate(['/doctor/dashboard']);
+                  }
+                  else{
+                    this.router.navigate(['/doctor/start']);
                   }
               }); 
           }

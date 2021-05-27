@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-social-media',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialMediaComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
   }
 
 }

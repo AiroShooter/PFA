@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -69,7 +70,7 @@ export class ScheduletimingComponent implements OnInit {
   select: any;
   select2: any;
   jour: string = 'Lundi';
-  constructor(private appComponnet: AppComponent,  private http: HttpClient) { }
+  constructor(private appComponnet: AppComponent,  private http: HttpClient, private router:Router ) { }
 
 
 
@@ -91,13 +92,18 @@ export class ScheduletimingComponent implements OnInit {
 
     this.SLOT_DATA = JSON.parse(localStorage.getItem('SLOT-' + this.jour));
 
-    this.CheckDatabase(localStorage.getItem('med_id')
-);
+    this.CheckDatabase(localStorage.getItem('med_id'));
 
     if(!this.hours)  this.hours = this.SLOT_DATA[0].split(' - ', 2);
 
-    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('med_id')
-)
+    this.count(this.jour, this.hours[0],this.hours[1], localStorage.getItem('med_id'))
+
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      localStorage.clear()
+      this.router.navigateByUrl('/doctor/start');
+    }
+    
   }
 
   checktime()
