@@ -153,7 +153,7 @@ export class BookingComponent implements OnInit {
 
     if(!localStorage.getItem('med_id_selected'))
     {
-      this.router.navigate(['/login-page']);
+      this.router.navigate(['/patients/search-doctor']);
      
     }
    

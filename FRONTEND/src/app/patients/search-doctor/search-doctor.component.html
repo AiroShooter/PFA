@@ -116,8 +116,8 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">View Profile</a>
-												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a>
+												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.med_id}">View Profile</a>
+												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.med_id)">Book Appointment</a>
 											</div>
 										</div>
 									</div>
