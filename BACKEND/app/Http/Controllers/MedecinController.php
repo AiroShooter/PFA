@@ -69,7 +69,7 @@ class MedecinController extends Controller
     }
     public function updateConsultations(Request $request)
     {
-        $value = DB::update("update consultations set etat = ? where const_id = ?",[$request->etat,$request->const_id]); 
+        $value = DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]); 
         return $value;
     }
     public function PatientInfo(Request $request)

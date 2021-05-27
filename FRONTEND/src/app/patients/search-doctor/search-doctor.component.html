@@ -114,8 +114,8 @@
 												<span class="doc-name col-12 text-center mb-2">{{doctor.tarif}} DHs</span>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.med_id}">View Profile</a>
-												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.med_id)">Book Appointment</a>
+												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">Voir le profil</a>
+												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.med_id)">Rendez-vous</a>
 											</div>
 										</div>
 									</div>

@@ -126,7 +126,7 @@ class AdminController extends Controller
     }
     public function showDoctors()
     {
-        $value = DB::select("SELECT u.user_id,m.sexe,m.duree,m.med_id,u.isActive,m.nom,m.prenom,m.tarif as tarifs,s.libelle FROM `medecins` m inner join users u on u.user_id = m.med_id inner join specialites s on m.spec_id = s.spec_id"); 
+        $value = DB::select("SELECT u.user_id,m.sexe,m.duree,m.med_id,u.isActive,m.nom,m.prenom,m.tarif as tarifs,s.libelle FROM `medecins` m inner join users u on u.user_id = m.user_id inner join specialites s on m.spec_id = s.spec_id"); 
         return $value;
     }
     public function showPatients()
@@ -167,7 +167,7 @@ class AdminController extends Controller
     }
     public function changeEtat(Request $request)
     {
-        $query = DB::update("update consultations set etat = (?) where const_id = (?)",[$request->etat, $request->id]);
+        $query = DB::update("update consultations set etat = (?), echanger = 'admin' where const_id = (?)",[$request->etat, $request->id]);
        
         return $query;
     }

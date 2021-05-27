@@ -254,8 +254,8 @@
 													<td>
 														<h2 class="table-avatar">
 															<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
-																<img *ngIf="app.sexe == 'F'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
-																<img *ngIf="app.sexe == 'M'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
+																<img *ngIf="app.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+																<img *ngIf="app.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
 															</a><a href="javascript:void(0)">{{app.nom}} {{app.prenom}}</a>
 														</h2>
 													</td>
@@ -263,9 +263,8 @@
 													<td>
 														<div class="status-toggle">
 
-															<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
-															<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
-															<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
+															<input *ngIf="app.etat=='Accepter'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
+															<input *ngIf="app.etat=='Annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
 															<label for="{{app.const_id}}" class="checktoggle">case à cocher</label>
 														</div>
 													</td>

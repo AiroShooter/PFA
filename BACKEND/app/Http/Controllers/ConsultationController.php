@@ -27,8 +27,9 @@ class ConsultationController extends Controller
     {
         $result_c = DB::select('SELECT * FROM `calendriers` WHERE `patient_id` = ?', [$request->patient_id]);
         $result_m = DB::select('SELECT * FROM `medecins` WHERE `med_id` = ?', [$result_c[0]->med_id]);
-        return DB::insert('INSERT INTO `consultations`(`patient_id`,`med_id`, `replace_id`, `doss_id`, `date`, `type`, `desc`, `etat`, `raison`, `heure`, `tarif`)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)',[$request->patient_id,$result_c[0]->med_id,NULL,NULL,$result_c[0]->date,$request->type,NULL,'en_attendant',$request->raison,$result_c[0]->heureDebut, $result_m[0]->tarif]);
+        return  DB::insert('INSERT INTO `consultations`(`patient_id`, `med_id`, `replace_id`, `doss_id`, `date`, `type`, `desc`, `etat`, `raison`, `heure`, `tarif`, `echanger`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',[$request->patient_id,$result_c[0]->med_id,NULL,NULL,$result_c[0]->date,$request->type,NULL,'En attente',$request->raison,$result_c[0]->heureDebut, $result_m[0]->tarif,'patient']);
+        
         
     }
 
