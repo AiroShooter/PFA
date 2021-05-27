@@ -24,7 +24,6 @@ export class AppointmentsComponent implements OnInit {
       this.getAppointments();
       if(!(!!localStorage.getItem("med_id")))
       {
-        localStorage.clear()
         this.router.navigateByUrl('/doctor/start');
       }
 

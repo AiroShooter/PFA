@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
 
       if(!(!!localStorage.getItem("med_id")))
       {
-        localStorage.clear()
         this.router.navigateByUrl('/doctor/start');
       }
   }

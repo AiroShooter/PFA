@@ -36,7 +36,6 @@ export class SidemenuComponent implements OnInit {
   ngOnInit(): void {
     if(!(!!localStorage.getItem("med_id")))
     {
-      localStorage.clear()
       this.router.navigateByUrl('/doctor/start');
     }
   }
