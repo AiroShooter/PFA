@@ -34,16 +34,21 @@
                     <input type="text" class="form-control" formControlName="tele">
                 </div>
                 <div class="form-group">
-                    <label>Pays</label>
+                    <label>Ville</label>
                     <select class="select form-control" formControlName="pays">
-                        <option>Maroc</option>
-                        <option>France</option>
-                        <option>Espagne</option>
-                        <option>U.S.A</option>
+                        <option>Marrakech</option>
+                        <option>Rabat</option>
+                        <option>Casablanca</option>
+                        <option>Fes</option>
                     </select>
                 </div>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="row">
+                    <div class="submit-section col-6 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary submit-btn">Modifier</button>
+                    </div>
+                    <div class="submit-section col-6 d-flex justify-content-center">
+                        <button type="reset" [routerLink]="'/patients/dashboard'" class="btn btn-primary submit-btn">Annuler</button>
+                    </div>
                 </div>
             </form>
         </div>

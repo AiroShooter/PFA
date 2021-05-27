@@ -76,8 +76,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    <div class="row">
+                        <div class="submit-section col-6 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary submit-btn">Modifier</button>
+                        </div>
+                        <div class="submit-section col-6 d-flex justify-content-center">
+                            <button type="reset" [routerLink]="'/doctor/dashboard'" class="btn btn-primary submit-btn">Annuler</button>
+                        </div>
                     </div>
                 </form>
             </div>
