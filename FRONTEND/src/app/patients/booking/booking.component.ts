@@ -156,6 +156,11 @@ export class BookingComponent implements OnInit {
       this.router.navigate(['/patients/search-doctor']);
      
     }
+
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
    
    
   }

@@ -16,7 +16,10 @@ export class SidemenuComponent implements OnInit {
     public commonService: CommonServiceService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {if(!(!!localStorage.getItem("patient_id")))
+  {
+    this.router.navigateByUrl('/patients/start');
+  }}
 
   logout() {
     localStorage.clear();

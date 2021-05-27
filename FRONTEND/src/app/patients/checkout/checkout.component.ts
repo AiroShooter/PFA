@@ -22,7 +22,10 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
     
   }
 

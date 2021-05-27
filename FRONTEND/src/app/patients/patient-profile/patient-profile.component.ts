@@ -11,6 +11,10 @@ export class PatientProfileComponent implements OnInit {
   constructor(public Router : Router) { }
 
   ngOnInit(): void {
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.Router.navigateByUrl('/patients/start');
+    }
   }
   addBilling() {
     this.Router.navigateByUrl('/patients/add-billing');

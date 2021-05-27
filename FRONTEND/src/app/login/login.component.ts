@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     form.append("password",this.myForm.value.password);
   //  form.append("isPatient",this.isPatient);
 
-    console.log(form.get("email"), form.get("password"), form.get("isPatient"));
+    //console.log(form.get("email"), form.get("password"), form.get("isPatient"));
     this.http.post(this.SERVER_URL + 'login', form).subscribe(result => {
 
 
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
                   else
                   this.router.navigate(['/patients/dashboard']);
                 }
-                else this.router.navigate(['/patients/start']);
+                else {this.router.navigate(['/patients/start']);}
               }); 
           }
 

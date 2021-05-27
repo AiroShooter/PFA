@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {CommonServiceService  } from './../../common-service.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +13,15 @@ export class DashboardComponent implements OnInit {
   patients ;
   
 
-  constructor(public commonService:CommonServiceService,private http: HttpClient) { }
+  constructor(public commonService:CommonServiceService,private http: HttpClient,private router:Router) { }
 
   ngOnInit(): void {
     this.changeState;
     this.getApptointementsInfo();
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
   }
 
   

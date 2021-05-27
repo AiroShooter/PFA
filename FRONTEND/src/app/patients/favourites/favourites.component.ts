@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { CommonServiceService } from './../../common-service.service'
 
 @Component({
@@ -9,10 +9,14 @@ import { CommonServiceService } from './../../common-service.service'
 })
 export class FavouritesComponent implements OnInit {
 	favourites:any = [];
-  constructor(public commonService:CommonServiceService) { }
+  constructor(public commonService:CommonServiceService, private router:Router) { }
 
   ngOnInit(): void {
   	this.getFavourites();
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
   }
 
   getFavourites() {

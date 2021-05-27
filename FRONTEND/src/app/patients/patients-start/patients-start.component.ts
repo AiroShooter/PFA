@@ -16,6 +16,7 @@ export class PatientsStartComponent implements OnInit {
     private fb:FormBuilder ) { }
 
   ngOnInit(): void {
+   
   }
 
   myForm = this.fb.group({

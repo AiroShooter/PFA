@@ -18,6 +18,10 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
   }
   myForm = this.fb.group({
     prenom:[localStorage.getItem("prenom"),[Validators.required]],

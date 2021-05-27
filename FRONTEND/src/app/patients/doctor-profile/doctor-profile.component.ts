@@ -12,6 +12,7 @@ export class DoctorProfileComponent implements OnInit {
   id;
   doctorDetails;
   constructor(
+    private router:Router,
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
     private toastr: ToastrService
@@ -34,6 +35,10 @@ export class DoctorProfileComponent implements OnInit {
     window.scrollTo(0, 0);
     this.id = this.route.snapshot.queryParams['id'];
     this.getDoctorsDetails();
+    if(!(!!localStorage.getItem("patient_id")))
+    {
+      this.router.navigateByUrl('/patients/start');
+    }
   }
 
   getDoctorsDetails() {
