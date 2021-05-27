@@ -70,16 +70,15 @@ export class DashboardComponent implements OnInit {
     this.appointmentId = appointment;
     this.modalRef = this.modalService.show(template,{class: 'modal-sm modal-dialog-centered'});
     localStorage.setItem('const_id',const_id);
+
   }
   etat:any
   confirm() {
     let const_id = localStorage.getItem('const_id');
     let form = new FormData();
-    this.etat = "confirmer";
+    this.etat = "Accepter";
     form.append("const_id",const_id);
     form.append("etat",this.etat);
-    console.log(const_id);
-    console.log(this.etat);
     this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",form).subscribe(result =>{
        console.log(result);
        this.getApptointementsInfo();
@@ -92,7 +91,7 @@ export class DashboardComponent implements OnInit {
   decline() {
     let const_id = localStorage.getItem('const_id');
     let form = new FormData();
-    this.etat = "annuler";
+    this.etat = "Annuler";
     form.append("const_id",const_id);
     form.append("etat",this.etat);
     console.log(const_id);

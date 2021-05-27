@@ -35,8 +35,10 @@
 									<tr *ngFor="let doctor of doctorsinfo">
 										<td>
 											<h2 class="table-avatar">
-												<!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a>
-												 -->
+												<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+													<img *ngIf="doctor.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+													<img *ngIf="doctor.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">		
+												</a>
 												<a>Dr. {{doctor.nom}} {{doctor.prenom}}</a>
 											</h2>
 										</td>

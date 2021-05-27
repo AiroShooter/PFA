@@ -5,7 +5,8 @@
                 <div class="pro-widget-content">
                     <div class="profile-info-widget">
                         <a class="booking-doc-img">
-                            <img src="https://cem.uplb.edu.ph/wp-content/uploads/2019/11/placeholder-face-big.png" alt="User Image">
+                            <img *ngIf="patient.sexe == 'm'" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
+                            <img *ngIf="patient.sexe == 'f'" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
                         </a>
                         <div class="profile-det-info">
                             <h3><a >{{patient.nom}} {{patient.prenom}}</a></h3>

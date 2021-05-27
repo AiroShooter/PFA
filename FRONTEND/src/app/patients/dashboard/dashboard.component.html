@@ -54,15 +54,17 @@
 																	<td>{{app.date |  date}} <span class="d-block text-info">{{app.heure.substring(0,5)}}</span></td>
 																	<td>${{app.tarif}}</td>
 																	<td>{{app.type}}</td>
-																	<td><span *ngIf="app.etat == 'confirmer'" class="badge badge-pill bg-success-light">{{app.etat}}</span>
-																		<span *ngIf="app.etat == 'annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span></td>
+																	<td><span *ngIf="app.etat == 'Accepter'" class="badge badge-pill bg-success-light">{{app.etat}}</span>
+																		<span *ngIf="app.etat == 'Annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span>
+																		<span *ngIf="app.etat == 'En attente'" class="badge badge-pill bg-warning-light">{{app.etat}}</span>
+																	</td>
 																	<td class="text-right">
 																		<div  class="table-action">
 																	
-																			<a (click)="changeState(app.const_id,'confirmer')" class="btn btn-sm bg-success-light mr-4">
+																			<a (click)="changeState(app.const_id,'Accepter')" class="btn btn-sm bg-success-light mr-4">
 																				<i class="fas fa-check"></i> Accepter
 																			</a> 
-																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'annuler')" class="btn btn-sm bg-danger-light">
+																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'Annuler')" class="btn btn-sm bg-danger-light">
 																				<i class="fas fa-times"></i> Annuler
 																			</a>
 																		</div>

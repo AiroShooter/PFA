@@ -157,11 +157,11 @@ export class DashboardComponent implements OnInit {
   }; 
   onchange(etat,id)
   { 
-     if(etat == "confirmer"){
-        etat = "annuler"; 
+     if(etat == "Accepter"){
+        etat = "Annuler"; 
     }
      else
-     etat = "confirmer";
+     etat = "Accepter";
     
      this.http.post("http://127.0.0.1:8000/api/admin/changeEtat",{"etat":etat,"id":id}).subscribe(result =>{
        console.log(result);

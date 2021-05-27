@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
     console.log(result);
     });
   }
-  
+
   changeState(const_id,etat){
     
     let form = new FormData();

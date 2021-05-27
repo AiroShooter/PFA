@@ -96,19 +96,20 @@
                                                     
                                                     <h2 class="table-avatar">
                                                         <a [routerLink]="'/doctor/patients-profile'" class="avatar avatar-sm mr-2">
-                                                            <img *ngIf="appointment.sexe == 'F'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
-                                                            <img *ngIf="appointment.sexe == 'M'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
+                                                            <img *ngIf="appointment.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+                                                            <img *ngIf="appointment.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
                                                         </a>
                                                         <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
-                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info">10.00</span></td>
+                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info">{{appointment.heure}}</span></td>
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
                                                 <td class="text-center">${{appointment.tarif}}</td>
-                                                <td *ngIf="appointment.etat == 'confirmer'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
-                                                <td *ngIf="appointment.etat == 'annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
-                                                
+                                                <td *ngIf="appointment.etat == 'Accepter'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
+                                                <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
+                                                <td *ngIf="appointment.etat == 'En attente'" class="text-center text-warning"><span _ngcontent-yos-cc204="" class="badge badge-pill bg-warning-light">{{appointment.etat}}</span></td>
+
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         

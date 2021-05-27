@@ -18,7 +18,11 @@
                 <h3><a >{{patient.nom}} {{patient.prenom}}</a></h3>
                 <div class="patient-details">
                     <h5><i class="far fa-clock"></i> {{patient.date}} {{patient.heure}}</h5>
-                    <h5><i class="fas fa-map-marker-alt"></i> Consultation état <span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{patient.etat}} </span></h5>
+                    <h5><i class="fas fa-map-marker-alt"></i> Consultation état 
+                    <span _ngcontent-yos-c204="" *ngIf="patient.etat == 'Accepter'" class="badge badge-pill bg-success-light">{{patient.etat}} </span>
+                    <span _ngcontent-yos-c204="" *ngIf="patient.etat == 'Annuler'" class="badge badge-pill bg-danger-light">{{patient.etat}} </span>
+                    <span _ngcontent-yos-c204="" *ngIf="patient.etat == 'En attente'" class="badge badge-pill bg-warning-light">{{patient.etat}} </span>
+                  </h5>
                     <h5><i class="fas fa-envelope"></i> {{patient.email}}</h5>
                     <h5 class="mb-0"><i class="fas fa-phone"></i> {{patient.telePerso}}</h5>
                 </div>

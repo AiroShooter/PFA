@@ -73,11 +73,11 @@ class PatientController extends Controller
         return $value;
     } 
     public function updateConsultations(Request $request){
-        $value = DB::update("update consultations set etat = ? where const_id = ?",[$request->etat,$request->const_id]); 
+        $value = DB::update("update consultations set etat = ? , Echanger = 'patient' where const_id = ?",[$request->etat,$request->const_id]); 
         return $value;
     }
     public function showDoctors(Request $request){
-        $value = DB::select("select m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.ville like ?",[$request->ville]); 
+        $value = DB::select("select m.med_id,m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where m.ville like ?",[$request->ville]); 
         return $value;
         
     } 

@@ -26,7 +26,6 @@
 									<tr>
 										<th>Identifiant du patient</th>
 										<th>Nom du patient</th>
-										<th>Âge</th>
 										<th>Téléphone patient</th>
 								
 										<th> genre </th>
@@ -37,13 +36,16 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let patient of showpatients">
-										<td>{{patient.patient_id}}</td>
+										
+										<td><a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+											<img *ngIf="patient.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+											<img *ngIf="patient.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">		
+										</a>#U0{{patient.patient_id}}</td>
 										<td>
 											<h2 class="table-avatar">
 												<a>{{patient.nom}} {{patient.prenom}} </a>
 											</h2>
 										</td>
-										<td>{{patient.dateNaiss}}</td>
 										<td>{{patient.telePerso}}</td>
 										<td>{{patient.sexe}}</td>
 										<td>{{patient.date}}</td>
