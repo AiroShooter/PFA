@@ -45,7 +45,7 @@ export class SettingsComponent implements OnInit {
     prenom:[], nom:[], titre:[], tarif:[], siteweb:[], adresse:[], ville:[], sexe:[], teleC:[], teleP:[], duree:[], specialite:[]
   });
 
-  signup() {
+  update() {
     let form = new FormData();
     form.append("user_id",localStorage.getItem('user_id'));
     form.append("spec_id",this.myForm.value.specialite);

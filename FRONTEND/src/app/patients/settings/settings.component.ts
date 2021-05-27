@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit {
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
 
-  signup() {
+  update() {
     let form = new FormData(); 
     form.append("user_id",localStorage.getItem('user_id'));
     form.append("nom",this.myForm.value.nom);
@@ -36,7 +36,7 @@ export class SettingsComponent implements OnInit {
     form.append("dateNaiss",this.myForm.value.dateNaiss);
 
     console.log(form.get("user_id"),form.get("nom"),form.get("telePerso"));
-    this.http.post(this.SERVER_URL + 'patients/start', form).subscribe(result => {
+    this.http.post(this.SERVER_URL + 'patients/update', form).subscribe(result => {
       console.log(result);
       if(result['user'])
           {
@@ -45,7 +45,7 @@ export class SettingsComponent implements OnInit {
             localStorage.setItem('telePerso',result['user']['telePerso']);
             localStorage.setItem('pays',result['user']['pays']);
             localStorage.setItem('dateNaiss',result['user']['dateNaiss']);
-            this.router.navigate(['/patients/dashboard']);
+            this.router.navigateByUrl('/change-password');
           }
     });
     

@@ -5,7 +5,7 @@
             <h4 class="card-title">Modifier vos informations</h4>
         </div>
         <div class="container mg-auto card-body">
-            <form [formGroup]="myForm" (ngSubmit)="signup()">
+            <form [formGroup]="myForm" (ngSubmit)="update()">
                 <div class="form-group">
                     <label>Nom</label>
                     <input type="text" class="form-control" formControlName="nom">

@@ -58,6 +58,7 @@ Route::any('/patients/showDoctors',[PatientController::class, 'showDoctors'] );
 Route::any('/patients/showDoctorsbySexeSpec',[PatientController::class, 'showDoctorsbySexeSpec'] );
 Route::any('/patients/showDoctorsbySexe',[PatientController::class, 'showDoctorsbySexe']);
 Route::any('/patients/showDoctorsbySpec',[PatientController::class, 'showDoctorsbySpec'] );
+Route::any('/patients/update',[PatientController::class, 'edit'] );
 
 
 
