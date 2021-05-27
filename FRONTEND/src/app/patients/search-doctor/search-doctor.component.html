@@ -41,29 +41,29 @@
 							<!-- Search Filter -->
 							<div class="card search-filter">
 								<div class="card-header">
-									<h4 class="card-title mb-0">Search Filter</h4>
+									<h4 class="card-title mb-0">Filtre de recherche</h4>
 								</div>
 								<div class="card-body">
 								<div class="filter-widget">
 									
 								</div>
 								<div class="filter-widget">
-									<h4>Gender</h4>
+									<h4>Par sexe</h4>
 									<div>
 										<label class="custom_check">
 											<input type="checkbox" name="gender_type" value="m" (click)="checkType($event)"  [checked]="type === 'm'" >
-											<span class="checkmark"></span> Male Doctor
+											<span class="checkmark"></span> <i class="fas fa-male"></i> Masculin
 										</label>
 									</div>
 									<div>
 										<label class="custom_check">
 											<input type="checkbox" name="gender_type" value="f" [checked]="type === 'f'"  (click)="checkType($event)">
-											<span class="checkmark"></span> Female Doctor
+											<span class="checkmark"></span> <i class="fas fa-female"></i> Féminin
 										</label>
 									</div>
 								</div>
 								<div class="filter-widget">
-									<h4>Select Specialist</h4>
+									<h4>Par spécialité</h4>
 									<div *ngFor="let doctor of showspecialities">
 										<label class="custom_check">
 											<input type="checkbox" (click)="checkSpeciality($event)"  name="select_specialist" [value]="doctor.spec_id" [checked]="speciality == doctor.spec_id">
@@ -73,7 +73,7 @@
 									
 								</div>
 									<div class="btn-search">
-										<button type="button" class="btn btn-block" (click)="search()">Search</button>
+										<button type="button" class="btn btn-block" (click)="search()">Rechercher</button>
 									</div>	
 								</div>
 							</div>
@@ -102,31 +102,29 @@
 												
 												<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Maroc, {{doctor.ville}}</p>
-													<p class="doc-location">{{doctor.telePerso}}</p>
+													<p class="doc-location"><i class="fas fa-phone-alt"></i> {{doctor.telePerso}}</p>
 												</div>
 												<div class="clinic-services">
-													<span>Address : {{doctor.adresseCabinet}}</span>
+													<span><i class="far fa-hospital fa-lg"></i> {{doctor.adresseCabinet}}</span>
 												</div>
 											</div>
 										</div>
 										<div class="doc-info-right">
-											<div class="clini-infos">
-												<ul>
-													<li><i class="far fa-money-bill-alt"></i>{{doctor.tarif}}DHs</li>
-												</ul>
+											<div class="clinic-services">
+												<span class="doc-name col-12 text-center mb-2">{{doctor.tarif}} DHs</span>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">View Profile</a>
-												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a>
+												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">Voir le profil</a>
+												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Rendez-vous</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>					
 
-							<div class="load-more text-center" *ngIf="doctors.length !== 0">
-								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
-							</div>	
+							<!-- <div class="load-more text-center" *ngIf="doctorsInfo.length !== 0">
+								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Charger plus</a>	
+							</div>	 -->
 						</div>
 					</div>
 

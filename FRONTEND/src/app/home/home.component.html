@@ -16,7 +16,7 @@
                                 <option *ngFor="let c of city" value="" selected>Selectionner une ville</option>
                                 <option *ngFor="let c of city" value="{{c.ville}}">{{c.ville}}</option>
                             </select>
-                            <span class="form-text">Basé sur votre emplacement</span>
+                            <span class="form-text text-center">Basé sur votre emplacement</span>
                         </div>
                         <div class="form-group search-info">
                             <!-- <input type="text" class="form-control"
@@ -36,7 +36,7 @@
                             <ng-template #notFoundTemplate let-notFound>
                                 <div [innerHTML]="notFound"></div>
                             </ng-template>
-							<span class="form-text">Ex : Dental or Sugar Check up etc</span>                          
+							<span class="form-text text-center">Chercher un médecin par son nom ou prénom</span>                          
                         </div>
                         <button type="submit" class="btn btn-primary search-btn"
                             [routerLink]="'/patients/search-doctor'"><i class="fas fa-search"></i>
