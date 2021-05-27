@@ -122,9 +122,16 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit(Request $request)
     {
-        //
+        $query = DB::select("UPDATE patients SET nom=?, prenom=?, sexe=?, telePerso=?, pays=?, dateNaiss=? WHERE user_id =?",[$request->nom,$request->prenom,$request->sexe,$request->telePerso,$request->pays,$request->dateNaiss,$request->user_id]);
+        $user = DB::select('select * from patients where user_id = ?',[$request->user_id]);
+
+        return response()->json([
+            'hasError' => true,
+            'success' => '',
+            'user' => $user[0]
+            ]);
     }
 
     /**

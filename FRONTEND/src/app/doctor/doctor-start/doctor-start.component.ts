@@ -31,7 +31,18 @@ export class DoctorStartComponent implements OnInit {
   }
 
   myForm = this.fb.group({
-    prenom:[], nom:[], titre:[], tarif:[], siteweb:[], adresse:[], ville:[], sexe:[], teleC:[], teleP:[], duree:[], specialite:[]
+    prenom:['',[Validators.required]],
+    nom:['',[Validators.required]],
+    titre:['',[Validators.required]],
+    tarif:['',[Validators.required]],
+    siteweb:['',[Validators.required]],
+    adresse:['',[Validators.required]],
+    ville:['',[Validators.required]],
+    sexe:['',[Validators.required]],
+    teleC:['',[Validators.required]],
+    teleP:['',[Validators.required]],
+    duree:['',[Validators.required]],
+    specialite:['',[Validators.required]]
   });
 
   signup() {
@@ -59,6 +70,12 @@ export class DoctorStartComponent implements OnInit {
             localStorage.setItem('nom',result['user']['nom']);
             localStorage.setItem('prenom',result['user']['prenom']);
             localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('teleCabinet',result['user']['teleCabinet']);
+            localStorage.setItem('tarif',result['user']['tarif']);
+            localStorage.setItem('siteWeb',result['user']['siteWeb']);
+            localStorage.setItem('adresseCabinet',result['user']['adresseCabinet']);
+            localStorage.setItem('duree',result['user']['duree']);
+            localStorage.setItem('titre',result['user']['titre']);
             localStorage.setItem('ville',result['user']['ville']);
             localStorage.setItem('med_id',result['user']['med_id']);
             if(result['spec'])

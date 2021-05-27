@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UpdaterService } from 'src/app/services/updater.service';
 declare var $: any;
 
 @Component({
@@ -13,7 +14,8 @@ export class SettingsComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private updater: UpdaterService
   ) {}
 
   ngOnInit(): void {
@@ -40,10 +42,21 @@ export class SettingsComponent implements OnInit {
   }
 
   myForm = this.fb.group({
-    prenom:[], nom:[], titre:[], tarif:[], siteweb:[], adresse:[], ville:[], sexe:[], teleC:[], teleP:[], duree:[], specialite:[]
+    prenom:[localStorage.getItem('prenom'),[Validators.required]],
+    nom:[localStorage.getItem('nom'),[Validators.required]],
+    titre:[localStorage.getItem('titre'),[Validators.required]],
+    tarif:[localStorage.getItem('tarif'),[Validators.required]],
+    siteweb:[localStorage.getItem('siteWeb'),[Validators.required]],
+    adresse:[localStorage.getItem('adresseCabinet'),[Validators.required]],
+    ville:[localStorage.getItem('ville'),[Validators.required]],
+    sexe:['',[Validators.required]],
+    teleC:[localStorage.getItem('teleCabinet'),[Validators.required]],
+    teleP:[localStorage.getItem('telePerso'),[Validators.required]],
+    duree:[localStorage.getItem('duree'),[Validators.required]],
+    specialite:['',[Validators.required]]
   });
 
-  signup() {
+  update() {
     let form = new FormData();
     form.append("user_id",localStorage.getItem('user_id'));
     form.append("spec_id",this.myForm.value.specialite);
@@ -61,18 +74,27 @@ export class SettingsComponent implements OnInit {
     
 
     console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
-    this.http.post(this.SERVER_URL + 'doctor/start', form).subscribe(result => {
+    this.http.post(this.SERVER_URL + 'doctor/update', form).subscribe(result => {
       console.log(result);
-      if(result['user'])
+      if(result)
           {
             localStorage.setItem('nom',result['user']['nom']);
             localStorage.setItem('prenom',result['user']['prenom']);
             localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('teleCabinet',result['user']['teleCabinet']);
+            localStorage.setItem('tarif',result['user']['tarif']);
+            localStorage.setItem('siteWeb',result['user']['siteWeb']);
+            localStorage.setItem('adresseCabinet',result['user']['adresseCabinet']);
+            localStorage.setItem('duree',result['user']['duree']);
+            localStorage.setItem('titre',result['user']['titre']);
             localStorage.setItem('ville',result['user']['ville']);
-            localStorage.setItem('med_id',result['user']['med_id']);
+            localStorage.setItem('sexe',result['user']['sexe']);
+            localStorage.setItem('user_id',result["user"]['user_id']);
+            localStorage.setItem('med_id',result["user"]['med_id']);
             if(result['spec'])
               localStorage.setItem('Spec',result['spec']['libelle']);
-            this.router.navigate(['/doctor/dashboard']);
+            this.updater.sendUpdate(true);
+            this.router.navigateByUrl('/change-password');
           }
     });
   }

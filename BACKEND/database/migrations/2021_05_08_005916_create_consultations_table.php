@@ -26,6 +26,7 @@ class CreateConsultationsTable extends Migration
             $table->string('raison');
             $table->string('heure');
             $table->float('tarif');
+            $table->string('echanger');
             $table->foreign("replace_id")->references("med_id")
             ->on("medecins")->onDelete("cascade")->onUpdate("cascade");
             $table->foreign("patient_id")->references("patient_id")

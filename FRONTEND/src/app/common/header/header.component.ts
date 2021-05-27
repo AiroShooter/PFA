@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   headerTop: boolean = true;
   base;
   url1;
+  nom;
   private subscriptionName: Subscription; //important to create a subscription
     
   constructor(
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public commonService: CommonServiceService,
     private updater: UpdaterService
   ) {
+    this.nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
     if(localStorage.getItem('type') == "patient")
     this.isPatient = true;
     else if(localStorage.getItem('type') == "medecin")
@@ -84,7 +86,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    setInterval(()=>{this.nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');}, 1000);
     this.checkLoging();
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -214,6 +216,4 @@ checkLoging()
   this.auth = !!localStorage.getItem('email');
 }
 
-nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
-  
 }

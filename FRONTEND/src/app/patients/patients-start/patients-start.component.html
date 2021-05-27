@@ -7,15 +7,15 @@
         <div class="container mg-auto card-body">
             <form [formGroup]="myForm" (ngSubmit)="signup()">
                 <div class="form-group">
-                    <label>Nom</label>
+                    <label>Nom<span class="required">*</span></label>
                     <input type="text" class="form-control" formControlName="nom">
                 </div>
                 <div class="form-group">
-                    <label>Prenom</label>
+                    <label>Prenom<span class="required">*</span></label>
                     <input type="text" class="form-control" formControlName="prenom">
                 </div>
                 <div class="form-group">
-                    <label class="d-block">Sexe :</label>
+                    <label class="d-block">Sexe<span class="required">*</span></label>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender" id="gender_male" value="m" formControlName="sexe">
                         <label class="form-check-label" for="gender_male">Masculin</label>
@@ -26,24 +26,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Date de naissance</label>
+                    <label>Date de naissance<span class="required">*</span></label>
                     <input type="date" class="form-control" formControlName="dateNaiss">
                 </div>
                 <div class="form-group">
-                    <label>Telephone</label>
+                    <label>Telephone<span class="required">*</span></label>
                     <input type="text" class="form-control" formControlName="tele">
                 </div>
                 <div class="form-group">
-                    <label>Pays</label>
+                    <label>Ville<span class="required">*</span></label>
                     <select class="select form-control" formControlName="pays">
-                        <option>Maroc</option>
-                        <option>France</option>
-                        <option>Espagne</option>
-                        <option>U.S.A</option>
+                        <option>Marrakech</option>
+                        <option>Rabat</option>
+                        <option>Casablanca</option>
+                        <option>Fes</option>
                     </select>
                 </div>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-right submit-section">
+                    <button type="submit" class="btn btn-primary submit-btn" [disabled]="!myForm.valid">S'inscrire</button>
                 </div>
             </form>
         </div>

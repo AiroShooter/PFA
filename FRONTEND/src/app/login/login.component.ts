@@ -58,8 +58,15 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('nom',result1['user']['nom']);
                     localStorage.setItem('prenom',result1['user']['prenom']);
                     localStorage.setItem('telePerso',result1['user']['telePerso']);
+                    localStorage.setItem('teleCabinet',result1['user']['teleCabinet']);
+                    localStorage.setItem('tarif',result1['user']['tarif']);
+                    localStorage.setItem('siteWeb',result1['user']['siteWeb']);
+                    localStorage.setItem('adresseCabinet',result1['user']['adresseCabinet']);
+                    localStorage.setItem('duree',result1['user']['duree']);
+                    localStorage.setItem('titre',result1['user']['titre']);
                     localStorage.setItem('ville',result1['user']['ville']);
                     localStorage.setItem('med_id',result1['user']['med_id']);
+                    localStorage.setItem('sexe',result1['user']['sexe']);
                     if(result1['spec'])
                       localStorage.setItem('Spec',result1['spec']['libelle']);
                     this.router.navigate(['/doctor/dashboard']);
@@ -75,6 +82,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('nom',result1['user']['nom']);
                   localStorage.setItem('prenom',result1['user']['prenom']);
                   localStorage.setItem('telePerso',result1['user']['telePerso']);
+                  localStorage.setItem('sexe',result['user']['sexe']);
                  // localStorage.setItem('ville',result1['user']['ville']);
                   localStorage.setItem('patient_id',result1['user']['patient_id']);
                   localStorage.setItem('dateNaiss',result1['user']['dateNaiss']);
