@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
                   else
                   this.router.navigate(['/patients/dashboard']);
                 }
+                else this.router.navigate(['/patients/start']);
               }); 
           }
 
