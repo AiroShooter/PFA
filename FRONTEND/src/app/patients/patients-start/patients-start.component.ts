@@ -19,7 +19,12 @@ export class PatientsStartComponent implements OnInit {
   }
 
   myForm = this.fb.group({
-    prenom:[], nom:[], pays:[], tele:[], dateNaiss:[], sexe:[]
+    prenom:['',[Validators.required]],
+    nom:['',[Validators.required]],
+    pays:['',[Validators.required]],
+    tele:['',[Validators.required]],
+    dateNaiss:['',[Validators.required]],
+    sexe:['',[Validators.required]]
   });
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
@@ -43,6 +48,7 @@ export class PatientsStartComponent implements OnInit {
             localStorage.setItem('prenom',result['user']['prenom']);
             localStorage.setItem('telePerso',result['user']['telePerso']);
             localStorage.setItem('pays',result['user']['pays']);
+            localStorage.setItem('sexe',result['user']['sexe']);
             localStorage.setItem('dateNaiss',result['user']['dateNaiss']);
             localStorage.setItem('patient_id',result['user']['patient_id']);
             if(localStorage.getItem("med_id_selected"))

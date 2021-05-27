@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,12 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
   myForm = this.fb.group({
-    prenom:[], nom:[], pays:[], tele:[], dateNaiss:[], sexe:[]
+    prenom:[localStorage.getItem("prenom"),[Validators.required]],
+    nom:[localStorage.getItem("nom"),[Validators.required]],
+    pays:["",[Validators.required]],
+    tele:[localStorage.getItem("telePerso"),[Validators.required]],
+    dateNaiss:[localStorage.getItem("dateNaiss"),[Validators.required]],
+    sexe:["",[Validators.required]]
   });
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
@@ -43,6 +48,7 @@ export class SettingsComponent implements OnInit {
             localStorage.setItem('nom',result['user']['nom']);
             localStorage.setItem('prenom',result['user']['prenom']);
             localStorage.setItem('telePerso',result['user']['telePerso']);
+            localStorage.setItem('sexe',result['user']['sexe']);
             localStorage.setItem('pays',result['user']['pays']);
             localStorage.setItem('dateNaiss',result['user']['dateNaiss']);
             this.router.navigateByUrl('/change-password');

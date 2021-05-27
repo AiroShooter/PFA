@@ -9,3 +9,20 @@
     background-color: #09e5ab !important;
     border: 1px solid #09e5ab !important;
 }
+.required {
+	color : red;
+	padding-left: 3px;
+}
+.content {
+	padding-bottom: 50px;
+}
+.form-focus .focus-label {
+    font-size: 13px; 
+}
+.form-control {
+    font-size: 14px !important;
+}
+
+input.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
