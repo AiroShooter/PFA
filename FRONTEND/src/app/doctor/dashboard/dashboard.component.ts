@@ -71,19 +71,27 @@ export class DashboardComponent implements OnInit {
     document.getElementById('btn-yes').style.color = "#000";
   }
   
-  openModal(template: TemplateRef<any>,appointment,const_id) {
+  openModal(template: TemplateRef<any>,appointment,const_id,date,heure,prenom,nom) {
     this.appointmentId = appointment;
     this.modalRef = this.modalService.show(template,{class: 'modal-sm modal-dialog-centered'});
     localStorage.setItem('const_id',const_id);
+    localStorage.setItem('date',date);
+    localStorage.setItem('heure',heure);
+    localStorage.setItem('prenom',prenom);
+    localStorage.setItem('nom',nom);
 
   }
   etat:any
   confirm() {
     let const_id = localStorage.getItem('const_id');
+    let nom = localStorage.getItem('nom');
+    let prenom = localStorage.getItem('prenom');
     let form = new FormData();
     this.etat = "Accepter";
     form.append("const_id",const_id);
     form.append("etat",this.etat);
+    form.append("nom",nom);
+    form.append("prenom",prenom);
     this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",form).subscribe(result =>{
        console.log(result);
        this.getApptointementsInfo();
@@ -95,17 +103,23 @@ export class DashboardComponent implements OnInit {
 
   decline() {
     let const_id = localStorage.getItem('const_id');
+    let heure = localStorage.getItem('heure');
+    let date = localStorage.getItem('date');
     let form = new FormData();
     this.etat = "Annuler";
     form.append("const_id",const_id);
     form.append("etat",this.etat);
+    form.append("heure",heure);
+    form.append("date",date);
     console.log(const_id);
     console.log(this.etat);
+    console.log(heure);
+    console.log(date);
     this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",form).subscribe(result =>{
        console.log(result);
-       localStorage.removeItem('const_id');
        this.getApptointementsInfo();
        this.modalRef.hide();
+    
     });
    
   

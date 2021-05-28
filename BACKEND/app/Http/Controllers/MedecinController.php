@@ -69,8 +69,23 @@ class MedecinController extends Controller
     }
     public function updateConsultations(Request $request)
     {
-        $value = DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]); 
-        return $value;
+        if($request->etat == "Annuler"){
+            DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
+            $val = DB::select("select * from consultations where const_id = ?",[$request->const_id]);
+            DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `date`= ? and `heureDebut` = ?', [NULL,NULL,$val[0]->date,$val[0]->heure]);
+            return response()->json([
+                'success' => 'update Consultation and calendar',
+                'data' =>$val,
+                'request'=>$request]);
+        }
+        else if($request->etat == "Accepter"){
+
+            DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
+            DB::insert("insert into dossier_medicals(libelle) values(?)",[$request->nom.' '.$request->prenom]);
+           // DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
+            return response()->json([
+            'success' => 'update Consultation only']);
+        }
     }
     public function PatientInfo(Request $request)
     {
