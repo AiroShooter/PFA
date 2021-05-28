@@ -167,16 +167,22 @@
                     <a class="nav-link header-login"  (click)="Logout()">Logout</a>
                 </li>-->
                 <!-- User Menu -->
-                <li class="nav-item dropdown has-arrow logged-item" *ngIf="this.auth">
+                <div *ngIf="nom != 'null null'">
+                    <li class="nav-item dropdown has-arrow logged-item" *ngIf="this.auth">
                     <a href="javascript:void(0)" class="dropdown-toggle nav-link pointer" data-toggle="dropdown">
-                        <span class="user-img">
-                            <img class="rounded-circle" src="../../../assets/admin/img/profiles/admin.png" width="31" alt="{{nom}}">
+                        <span class="user-img mt-2">
+                            <i class="fas fa-user-cog fa-2x"></i>
                         </span>
-                    </a>
+                     </a>
                     <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
                         <div class="user-header">
-                            <div class="avatar avatar-sm">
-                                <img src="../../../assets/admin/img/profiles/admin.png" alt="User Image" class="avatar-img rounded-circle">
+                            <div class="avatar avatar-sm" *ngIf="type == 'patient'">
+                                <img *ngIf="sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" width="31" alt="Image du patient">
+                                <img *ngIf="sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" width="31" alt="Image du patient">
+                            </div>
+                            <div class="avatar avatar-sm" *ngIf="type == 'medecin'">
+                                <img *ngIf="sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" width="31" alt="Image du médecin">
+                                <img *ngIf="sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" width="31" alt="Image du médecin">
                             </div>
                             <div class="user-text">
                                 <h6>{{nom}}</h6>
@@ -191,6 +197,8 @@
                         <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Se déconnecter</a>
                     </div>
                 </li>
+                </div>
+                
                     <!-- /User Menu -->
                         
             </ul>

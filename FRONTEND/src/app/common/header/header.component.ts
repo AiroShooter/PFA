@@ -33,6 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   base;
   url1;
   nom;
+  type;
+  sexe;
   private subscriptionName: Subscription; //important to create a subscription
     
   constructor(
@@ -86,7 +88,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    setInterval(()=>{this.nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');}, 1000);
+    
+    setInterval(()=>{
+      this.nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+      this.sexe = localStorage.getItem("sexe");
+      this.type = localStorage.getItem('type');
+    }, 1000);
+
     this.checkLoging();
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -183,6 +191,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.auth = false;
     this.isPatient = false;
+    this.sexe = "";
     this.router.navigate(['/login-page']);
   }
 
