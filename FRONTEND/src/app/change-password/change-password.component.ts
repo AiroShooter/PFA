@@ -62,4 +62,5 @@ export class ChangePasswordComponent implements OnInit {
   pays = localStorage.getItem('pays');
   type = localStorage.getItem('type');
   spec = localStorage.getItem('Spec');
+  sexe = localStorage.getItem('sexe');
 }
