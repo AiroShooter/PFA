@@ -82,8 +82,8 @@
 						<p class="text-muted mb-0">Administrateur</p>
 					</div>
 				</div>
-				<a class="dropdown-item" [routerLink]="'doc-profile'">Mon profil</a>
-				<!-- <a class="dropdown-item" [routerLink]="'settings'">Paramètres</a> -->
+				<a class="dropdown-item" [routerLink]="'dashboard'" (click)="user()" [attr.aria-expanded]="!userCollapsed">Tableau de bord</a>
+				<a class="dropdown-item" [routerLink]="'doc-profile'" (click)="user()" [attr.aria-expanded]="!userCollapsed">Mon profil</a>
 				<a class="dropdown-item" (click)="clickLogout()" style="cursor: pointer;">Se déconnecter</a>
 			</div>
 		</li>

@@ -43,7 +43,7 @@ export class ChangePasswordComponent implements OnInit {
         this.success = result['success']
       });
     }
-    else this.error = "Svp confirmer"
+    else this.error = "S'il vous plaît confirmer votre mot de passe"
     
   }
 

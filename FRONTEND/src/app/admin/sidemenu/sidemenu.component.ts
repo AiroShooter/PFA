@@ -50,8 +50,9 @@ export class SidemenuComponent implements OnInit {
   }
   clickLogout() {
     localStorage.clear()
+    this.user();
     this.router.navigateByUrl('/admin/login-form')
-    this.userCollapsed = true;
+    
   }
   bell() {
     this.bellCollapsed = !this.bellCollapsed;

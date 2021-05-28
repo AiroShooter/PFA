@@ -8,7 +8,7 @@ const routes: Routes = [
     component: AdminComponent,
    // canLoad:[AdminGuard],canActivateChild:[AdminGuard],canActivate:[AdminGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'login-form', pathMatch: 'full' },
       {
         path: 'dashboard',
         canActivate:[AdminGuard],
