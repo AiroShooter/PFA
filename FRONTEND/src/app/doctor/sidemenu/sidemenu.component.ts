@@ -55,4 +55,5 @@ export class SidemenuComponent implements OnInit {
   }
   nom = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
   spec = localStorage.getItem('Spec');
+  sexe = localStorage.getItem('sexe');
 }

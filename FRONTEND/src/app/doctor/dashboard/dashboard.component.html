@@ -79,13 +79,13 @@
                                     <table class="table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Patient Nom</th>
-                                                <th>Date</th>
-                                                <th>Raison</th>
-                                                <th>Type</th>
-                                                <th class="text-center">Tarif Payant</th>
+                                                <th class="text-center">Nom du patient</th>
+                                                <th class="text-center">Date</th>
+                                                <th class="text-center">Raison</th>
+                                                <th class="text-center">Type</th>
+                                                <th class="text-center">Tarif payé</th>
                                                 <th class="text-center">Etat courant</th>
-                                                <th class="text-center">Changer l'état</th>
+                                                <th class="text-center">Actions</th>
 
                                                 <th></th>
                                             </tr>
@@ -102,7 +102,7 @@
                                                         <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
-                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info">{{appointment.heure}}</span></td>
+                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure}}</span></td>
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
                                                 <td class="text-center">${{appointment.tarif}}</td>
@@ -119,6 +119,14 @@
                                                         </a> 
                                                         <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom)" class="btn btn-sm bg-danger-light">
                                                             <i class="fas fa-times"></i> Annuler
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="appointment.etat == 'Accepter'" class="text-right" >
+                                                    <div class="table-action">
+                                                        
+														<a class="btn bg-infos-light">
+                                                            <i class="fas fa-check"></i> Réglé
                                                         </a>
                                                     </div>
                                                 </td>

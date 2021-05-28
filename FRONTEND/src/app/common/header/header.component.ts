@@ -183,6 +183,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.auth = false;
     this.isPatient = false;
+    this.sexe = "";
     this.router.navigate(['/login-page']);
   }
 
@@ -215,5 +216,6 @@ checkLoging()
 {
   this.auth = !!localStorage.getItem('email');
 }
-
+sexe = localStorage.getItem("sexe");
+type = localStorage.getItem('type');
 }

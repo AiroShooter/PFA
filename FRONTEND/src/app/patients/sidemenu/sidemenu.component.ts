@@ -40,4 +40,5 @@ export class SidemenuComponent implements OnInit {
   dateNaiss = localStorage.getItem('dateNaiss');
   age = this.ageFromDateOfBirthday(this.dateNaiss);
   pays = localStorage.getItem('pays');
+  sexe = localStorage.getItem('sexe');
 }

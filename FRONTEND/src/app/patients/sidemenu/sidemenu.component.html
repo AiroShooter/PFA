@@ -2,7 +2,8 @@
 	<div class="widget-profile pro-widget-content">
 		<div class="profile-info-widget">
 			<a href="javascript:void(0)" class="booking-doc-img">
-				<img src="https://paramountsprx.com/wp-content/uploads/2017/09/MAN_AVATAR.png" alt="User Image">
+				<img *ngIf="sexe == 'f'" src="../../../assets/admin/img/patients/fpat.png" alt="Image du patient">
+                <img *ngIf="sexe == 'm'" src="../../../assets/admin/img/patients/mpat.png" alt="Image du patient">
 			</a>
 			<div class="profile-det-info">
 				<h3> {{nom}} </h3>
