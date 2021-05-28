@@ -5,7 +5,8 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="javascript:void(0)" class="booking-doc-img">
-                    <img src="../../../assets/admin/img/profiles/admin.png" alt="User Image">
+                    <img *ngIf="sexe == 'f'" src="../../../assets/admin/img/doctors/fdoc.png" alt="Image du médecin">
+                    <img *ngIf="sexe == 'm'" src="../../../assets/admin/img/doctors/mdoc.png" alt="Image du médecin">
                 </a>
                 <div class="profile-det-info">
                     <h3>Dr. {{nom}}</h3>

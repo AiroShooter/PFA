@@ -44,9 +44,17 @@
 									<h4 class="card-title mb-0">Filtre de recherche</h4>
 								</div>
 								<div class="card-body">
-								<div class="filter-widget">
-									
-								</div>
+									<div class="filter-widget">
+										<h4>Par status</h4>
+										<div>
+											<label class="custom_check">
+												<input type="checkbox" (click)="checkStatus($event)"  name="titre"/>
+												<span class="checkmark"></span> <i class="fas fa-user-md"></i>  Professionnels de la santé 
+											</label>
+										</div>
+										
+									</div>
+							
 								<div class="filter-widget">
 									<h4>Par sexe</h4>
 									<div>
@@ -67,7 +75,7 @@
 									<div *ngFor="let doctor of showspecialities">
 										<label class="custom_check">
 											<input type="checkbox" (click)="checkSpeciality($event)"  name="select_specialist" [value]="doctor.spec_id" [checked]="speciality == doctor.spec_id">
-											<span class="checkmark"></span> {{doctor.libelle}}
+											<span class="checkmark"></span><i class="fas fa-notes-medical"></i> {{doctor.libelle}}
 										</label>
 									</div>
 									
@@ -98,7 +106,7 @@
 											</div>
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.nom}} {{doctor.prenom}}</a></h4>
-												<h5 class="doc-department">{{doctor.libelle}}</h5>
+												<h5 class="doc-department"><i class="fas fa-notes-medical"></i> {{doctor.libelle}}</h5>
 												
 												<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Maroc, {{doctor.ville}}</p>

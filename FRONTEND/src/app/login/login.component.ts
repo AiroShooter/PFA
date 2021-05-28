@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('nom',result1['user']['nom']);
                   localStorage.setItem('prenom',result1['user']['prenom']);
                   localStorage.setItem('telePerso',result1['user']['telePerso']);
-                  localStorage.setItem('sexe',result['user']['sexe']);
+                  localStorage.setItem('sexe',result1['user']['sexe']);
                  // localStorage.setItem('ville',result1['user']['ville']);
                   localStorage.setItem('patient_id',result1['user']['patient_id']);
                   localStorage.setItem('dateNaiss',result1['user']['dateNaiss']);

@@ -59,9 +59,10 @@ Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
 Route::any('/patients/addCons',[ConsultationController::class, 'create'] );
 Route::any('/patients/showDoctors',[PatientController::class, 'showDoctors'] );
-Route::any('/patients/showDoctorsbySexeSpec',[PatientController::class, 'showDoctorsbySexeSpec'] );
+Route::any('/patients/showDoctorsbySexeSpecStatus',[PatientController::class, 'showDoctorsbySexeSpecStatus'] );
 Route::any('/patients/showDoctorsbySexe',[PatientController::class, 'showDoctorsbySexe']);
-Route::any('/patients/showDoctorsbySpec',[PatientController::class, 'showDoctorsbySpec'] );
+Route::any('/patients/showDoctorsbySpec',[PatientController::class, 'showDoctorsbySpec']);
+Route::any('/patients/showDoctorsbyTitre',[PatientController::class, 'showDoctorsbyTitre'] );
 Route::any('/patients/update',[PatientController::class, 'edit'] );
 
 
