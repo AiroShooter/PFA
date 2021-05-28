@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class SearchDoctorComponent implements OnInit {
   doctors: any = [];
   specialityList: any = [];
+  status_type="";
   type="";
   specialist = "";
   speciality="";
@@ -73,23 +74,43 @@ export class SearchDoctorComponent implements OnInit {
     }
     console.log(this.speciality);
   }
+  checkStatus(event){
+    if (event.target.checked) {
+      this.status_type = "true";
+    } else {
+      this.status_type = "";
+    }
+    console.log(this.status_type);
+  }
   search() {
-    if(this.type!="" && this.speciality!="") {
-        this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpec",{"ville": this.selectedCity ,"sexe":this.type,"spec_id":this.speciality}).subscribe(result =>{
+    console.log("all selected");
+    console.log(this.speciality);
+      console.log(this.type);
+      console.log(this.status_type);
+    if(this.type!="" && this.speciality!="" && this.status_type=="true") {
+     
+        this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpecStatus",{"ville": this.selectedCity ,"sexe":this.type,"spec_id":this.speciality,"titre":this.status_type}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
     } 
-    else if(this.type!="" && this.speciality=="")
+    else if(this.type!="" && this.speciality=="" && this.status_type=="")
     {
       this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexe",{"ville": this.selectedCity ,"sexe":this.type}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
     }
-    else if(this.type=="" && this.speciality!="")
+    else if(this.type=="" && this.status_type=="" && this.speciality!="")
     {
       this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpec",{"ville": this.selectedCity ,"spec_id":this.speciality}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
+    else if(this.type=="" && this.status_type=="true" && this.speciality=="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbyTitre",{"ville": this.selectedCity ,"titre":this.status_type}).subscribe(result =>{
         console.log(result);
         this.doctorsInfo = result;
       });
