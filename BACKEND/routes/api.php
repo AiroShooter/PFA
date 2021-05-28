@@ -44,6 +44,9 @@ Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationC
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
 Route::any('/doctor/show',[MedecinController::class, 'show'] );
+Route::any('/doctor/getCons',[MedecinController::class, 'getCons'] );
+Route::any('/doctor/Replace',[MedecinController::class, 'Replace'] );
+Route::any('/doctor/showReplace',[MedecinController::class, 'showReplace'] );
 Route::any('/doctor/update',[MedecinController::class, 'edit'] );
 Route::any('/doctor/cityshow',[MedecinController::class, 'cityshow'] );
 
@@ -51,6 +54,7 @@ Route::any('/doctor/cityshow',[MedecinController::class, 'cityshow'] );
 
 //                       ######### PatientController ###########
 Route::any('/patients/getSingle',[PatientController::class, 'PatientInfoByUser'] );
+Route::any('/patients/showDossiers',[MedecinController::class, 'showDossiers'] );
 Route::any('/patients/start',[PatientController::class, 'create'] );
 Route::any('/patients/updateConsultations',[PatientController::class, 'updateConsultations'] );
 Route::any('/patients/addCons',[ConsultationController::class, 'create'] );

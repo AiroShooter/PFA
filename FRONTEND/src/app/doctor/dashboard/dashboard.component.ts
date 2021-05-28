@@ -1,13 +1,10 @@
 import { Component, OnInit,TemplateRef } from '@angular/core';
-
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
 import {CommonServiceService  } from './../../common-service.service';
-
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { FormBuilder,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +24,7 @@ export class DashboardComponent implements OnInit {
   
   constructor(private toastr: ToastrService,
     private http:HttpClient,
+    private fb:FormBuilder,
     public commonService:CommonServiceService,
     private modalService: BsModalService,
     private router: Router
@@ -36,7 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getPatients();
       this.getAppointmentscount();
       this.getApptointementsInfo();
-
+      this.getDoctors()
       if(!(!!localStorage.getItem("med_id")))
       {
         this.router.navigateByUrl('/doctor/start');
@@ -70,8 +68,11 @@ export class DashboardComponent implements OnInit {
     document.getElementById('btn-yes').style.border = "1px solid #fff";
     document.getElementById('btn-yes').style.color = "#000";
   }
+
+  desc:string
   
-  openModal(template: TemplateRef<any>,appointment,const_id,date,heure,prenom,nom) {
+  
+  openModal(template: TemplateRef<any>,appointment,const_id,date,heure,prenom,nom,desc) {
     this.appointmentId = appointment;
     this.modalRef = this.modalService.show(template,{class: 'modal-sm modal-dialog-centered'});
     localStorage.setItem('const_id',const_id);
@@ -79,6 +80,8 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('heure',heure);
     localStorage.setItem('Cprenom',prenom);
     localStorage.setItem('Cnom',nom);
+
+    this.desc = desc;
 
   }
   etat:any
@@ -96,6 +99,13 @@ export class DashboardComponent implements OnInit {
        console.log(result);
        this.getApptointementsInfo();
        this.modalRef.hide();
+
+       localStorage.removeItem('const_id');
+       localStorage.removeItem('date');
+       localStorage.removeItem('heure');
+       localStorage.removeItem('Cprenom');
+       localStorage.removeItem('Cnom');
+   
 
     });
    
@@ -119,12 +129,38 @@ export class DashboardComponent implements OnInit {
        console.log(result);
        this.getApptointementsInfo();
        this.modalRef.hide();
+
+       localStorage.removeItem('const_id');
+       localStorage.removeItem('date');
+       localStorage.removeItem('heure');
+       localStorage.removeItem('Cprenom');
+       localStorage.removeItem('Cnom');
     
     });
    
   
 
   
+  }
+
+  Modifier()
+  {
+    let const_id = localStorage.getItem('const_id');
+    let control = document.getElementById('ord') as HTMLTextAreaElement;
+    let desc = control.value;
+
+    this.http.post("http://127.0.0.1:8000/api/doctor/updateConsultations",{"const_id":const_id, "desc":desc}).subscribe(result =>{
+      console.log(result);
+      this.getApptointementsInfo();
+      this.modalRef.hide();
+
+      localStorage.removeItem('const_id');
+      localStorage.removeItem('date');
+      localStorage.removeItem('heure');
+      localStorage.removeItem('Cprenom');
+      localStorage.removeItem('Cnom');
+   
+   });
   }
 
   getPatients() {
@@ -158,13 +194,68 @@ export class DashboardComponent implements OnInit {
     this.AppointmentsCount = result;
 
     });
+  }
 
-  
-  
+  getDoctors()
+  {
+    this.http.get('http://127.0.0.1:8000/api/doctor/show').subscribe((res)=>{
+      this.docs = res;
+    })
+  }
 
+  docs
+  cons
 
- 
+  myForm = this.fb.group({
+    date:[''],
+    meds:['']
+  });
 
+  date:string;
+  med:string;
+
+  getDate(){
+   
+    this.http.post('http://127.0.0.1:8000/api/doctor/getCons', {"date":this.myForm.value.date}).subscribe((res)=>{
+      this.cons = res;
+    })
+
+  }
+
+  getMed(){
+    this.med = this.myForm.value.meds
+
+    //console.log(this.med)
+  }
+ rep
+  getRemplacent(id)
+  { 
+    console.log(id)
+    
+
+    this.http.post('http://127.0.0.1:8000/api/doctor/showReplace', {"med_id":id}).subscribe((res)=>{
+     this.rep = "Dr. " + res["nom"] + " " + res["prenom"]
+     
+    })
+
+    return this.rep;
+  }
+
+  GetCons(){
+    
     
   }
+
+  Replace(const_id){
+    if(!!this.med)
+    {
+        this.http.post('http://127.0.0.1:8000/api/doctor/Replace', {"const_id":const_id, "replace_id":this.med}).subscribe((res)=>{
+        this.cons = res;
+      //  console.log(res)
+      })
+    }
+
+  }
+
+
 }

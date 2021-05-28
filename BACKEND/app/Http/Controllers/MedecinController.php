@@ -64,11 +64,19 @@ class MedecinController extends Controller
     
     public function showConsultations(Request $request)
     {
-        $value = DB::select("SELECT up.email,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss,c.tarif,c.heure,c.etat,c.type,c.date,c.const_id,c.raison FROM `consultations` c inner join medecins m on m.med_id = c.med_id inner join patients p on p.patient_id = c.patient_id inner join users um on um.user_id = m.user_id inner join users up on up.user_id = p.user_id where um.user_id = (?)",[$request->user_id]); 
+        $value = DB::select("SELECT up.email,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss,c.tarif,c.heure,c.etat,c.type,c.date,c.const_id,c.raison,c.desc FROM `consultations` c inner join medecins m on m.med_id = c.med_id inner join patients p on p.patient_id = c.patient_id inner join users um on um.user_id = m.user_id inner join users up on up.user_id = p.user_id where um.user_id = (?)",[$request->user_id]); 
+        return $value;
+    }
+    public function showDossiers(Request $request)
+    {
+        $value = DB::select("SELECT * FROM `consultations` c inner join dossier_medicals d on c.doss_id = d.doss_id inner join medecins m on c.med_id = m.med_id inner JOIN specialites s on s.spec_id = m.spec_id where c.patient_id = ?",[$request->patient_id]);
         return $value;
     }
     public function updateConsultations(Request $request)
     {
+        if($request->desc){
+            return DB::update("UPDATE `consultations` SET `desc`= ? WHERE `const_id`= ?",[$request->desc,$request->const_id]);
+        }
         if($request->etat == "Annuler"){
             DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
             $val = DB::select("select * from consultations where const_id = ?",[$request->const_id]);
@@ -81,11 +89,15 @@ class MedecinController extends Controller
         else if($request->etat == "Accepter"){
 
             DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
-            DB::insert("insert into dossier_medicals(libelle) values(?)",[$request->nom.' '.$request->prenom]);
-           // DB::update("update consultations set etat = ?, Echanger = 'medecin' where const_id = ?",[$request->etat,$request->const_id]);
+            DB::insert("insert into dossier_medicals(doss_lib) values(?)",[$request->nom.' '.$request->prenom]);
+            $dossier = DB::select("select * from dossier_medicals where doss_lib = ?",[$request->nom.' '.$request->prenom]);
+            DB::update("update consultations set doss_id = ? where const_id = ?",[$dossier[0]->doss_id,$request->const_id]);
             return response()->json([
             'success' => 'update Consultation only']);
         }
+      /*  else if($request->desc){
+            return DB::update("update consultations set desc = ? where const_id = ?",[$request->desc,$request->const_id]);
+        }*/
     }
     public function PatientInfo(Request $request)
     {
@@ -130,6 +142,26 @@ class MedecinController extends Controller
     {
         return  DB::select('select distinct ville from medecins');
     }
+
+    public function getCons(Request $request)
+    {
+        return  DB::select('select * from consultations s inner join patients p on p.patient_id = s.patient_id where date = ?',[$request->date]);
+    }
+
+    public function Replace(Request $request)
+    {
+        return  DB::select('update consultations set replace_id = ? where const_id = ?',[$request->replace_id,$request->const_id]);
+    }
+    public function showReplace(Request $request)
+    {
+        $med =  DB::select('SELECT * FROM `medecins` WHERE `med_id`= ?',[$request->med_id]);
+      return response()->json([
+            'nom' => $med[0]->nom,
+            'prenom' => $med[0]->prenom
+            ]);
+    }
+
+
     
 
     /**

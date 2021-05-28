@@ -58,12 +58,8 @@
 																		<span *ngIf="app.etat == 'Annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span>
 																		<span *ngIf="app.etat == 'En attente'" class="badge badge-pill bg-warning-light">{{app.etat}}</span>
 																	</td>
-																	<td class="text-right">
+																	<td class="text-center">
 																		<div  class="table-action">
-																	
-																			<a (click)="changeState(app.const_id,'Accepter')" class="btn btn-sm bg-success-light mr-4">
-																				<i class="fas fa-check"></i> Accepter
-																			</a> 
 																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'Annuler')" class="btn btn-sm bg-danger-light">
 																				<i class="fas fa-times"></i> Annuler
 																			</a>
@@ -96,7 +92,7 @@
 															<tbody>
 																<tr *ngFor="let app of AppointmentsInfo">
 																	<td>{{app.date}}</td>
-																	<td>{{app.desc}}</td>
+																	<td><textarea class="form-control" name="" id="">{{app.desc}}</textarea></td>
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
@@ -106,14 +102,7 @@
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}}  <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> Voir
-																			</a>
-																		</div>
-																	</td>
+									
 																</tr>
 															</tbody>	
 														</table>
@@ -132,252 +121,26 @@
 															<thead>
 																<tr>
 																	<th>identifiant</th>
-																	<th>date </th>
-																	<th>La description</th>
-																	<th>Attachement</th>
+																	<th>date</th>
+																	<th>Ordonnances</th>
+																	<th>Raison</th>
 																	<th>Créé</th>
-																	<th></th>
 																</tr>     
 															</thead>
 															<tbody>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0010</a></td>
-																	<td>14 Nov 2019</td>
-																	<td>Dental Filling</td>
-																	<td><a href="javascript:void(0);">dental-test.pdf</a></td>
+																<tr *ngFor="let doss of Dossiers">
+																	<td><a href="javascript:void(0);">#DM-{{doss.doss_id}}{{doss.const_id}}</a></td>
+																	<td>{{doss.date}}</td>
+																	<td><textarea disabled name="" id="" class="form-control">{{doss.desc}}</textarea></td>
+																	<td><textarea disabled name="" id="" class="form-control">{{doss.raison}}</textarea></td>
 																	<td>
 																		<h2 class="table-avatar">
 																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+																				<img *ngIf="doss.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+																				<img *ngIf="doss.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{doss.nom}} {{doss.prenom}}<span>{{doss.libelle}}</span></a>
 																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> Voir
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Imprimer
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0009</a></td>
-																	<td>13 Nov 2019</td>
-																	<td>Teeth Cleaning</td>
-																	<td><a href="javascript:void(0);">dental-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="../../../assets/admin/img/profiles/admin.png" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Darren Elder <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0008</a></td>
-																	<td>12 Nov 2019</td>
-																	<td>General Checkup</td>
-																	<td><a href="javascript:void(0);">cardio-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Deborah Angel <span>Cardiology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0007</a></td>
-																	<td>11 Nov 2019</td>
-																	<td>General Test</td>
-																	<td><a href="javascript:void(0);">general-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Sofia Brient <span>Urology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0006</a></td>
-																	<td>10 Nov 2019</td>
-																	<td>Eye Test</td>
-																	<td><a href="javascript:void(0);">eye-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Marvin Campbell <span>Ophthalmology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0005</a></td>
-																	<td>9 Nov 2019</td>
-																	<td>Leg Pain</td>
-																	<td><a href="javascript:void(0);">ortho-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Katharine Berthold <span>Orthopaedics</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0004</a></td>
-																	<td>8 Nov 2019</td>
-																	<td>Head pain</td>
-																	<td><a href="javascript:void(0);">neuro-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Linda Tobin <span>Neurology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0003</a></td>
-																	<td>7 Nov 2019</td>
-																	<td>Skin Alergy</td>
-																	<td><a href="javascript:void(0);">alergy-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Paul Richard <span>Dermatology</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0002</a></td>
-																	<td>6 Nov 2019</td>
-																	<td>Dental Removing</td>
-																	<td><a href="javascript:void(0);">dental-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. John Gibbs <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td><a href="javascript:void(0);">#MR-0001</a></td>
-																	<td>5 Nov 2019</td>
-																	<td>Dental Filling</td>
-																	<td><a href="javascript:void(0);">dental-test.pdf</a></td>
-																	<td>
-																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
-																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. Olga Barlow <span>Dental</span></a>
-																		</h2>
-																	</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
 																	</td>
 																</tr>
 															</tbody>  	
@@ -419,16 +182,6 @@
 																	</td>
 																	<td>${{app.tarif}}</td>
 																	<td>{{app.date}}</td>
-																	<td class="text-right">
-																		<div class="table-action">
-																			<a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
-																				<i class="far fa-eye"></i> View
-																			</a>
-																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-																				<i class="fas fa-print"></i> Print
-																			</a>
-																		</div>
-																	</td>
 																</tr>
 															</tbody>
 														</table>
