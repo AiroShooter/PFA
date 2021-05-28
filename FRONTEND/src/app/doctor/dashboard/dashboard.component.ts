@@ -77,15 +77,15 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('const_id',const_id);
     localStorage.setItem('date',date);
     localStorage.setItem('heure',heure);
-    localStorage.setItem('prenom',prenom);
-    localStorage.setItem('nom',nom);
+    localStorage.setItem('Cprenom',prenom);
+    localStorage.setItem('Cnom',nom);
 
   }
   etat:any
   confirm() {
     let const_id = localStorage.getItem('const_id');
-    let nom = localStorage.getItem('nom');
-    let prenom = localStorage.getItem('prenom');
+    let nom = localStorage.getItem('Cnom');
+    let prenom = localStorage.getItem('Cprenom');
     let form = new FormData();
     this.etat = "Accepter";
     form.append("const_id",const_id);
