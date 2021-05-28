@@ -6,7 +6,7 @@ import { DoctorComponent } from './doctor.component';
 const routes: Routes = [
   {
     path: '',
-   // canLoad:[DoctorGuard],canActivateChild:[DoctorGuard],canActivate:[DoctorGuard],
+    canLoad:[DoctorGuard],canActivateChild:[DoctorGuard],canActivate:[DoctorGuard],
     component: DoctorComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

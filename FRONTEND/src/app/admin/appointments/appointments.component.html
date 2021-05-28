@@ -35,25 +35,30 @@
 									<tr *ngFor="let app of showConsultations">
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/doc-profile'" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
+												<a [routerLink]="'/admin/doc-profile'" class="avatar avatar-sm mr-2">
+													<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
+													<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
+												</a>
 												<a [routerLink]="'/admin/doc-profile'">Dr. {{app.medecinnom}} {{app.medecinprenom}}</a>
 											</h2>
 										</td>
 										<td>{{app.libelle}}</td>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/doc-profile'" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
+												<a [routerLink]="'/admin/doc-profile'" class="avatar avatar-sm mr-2">
+													<img *ngIf="app.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+													<img *ngIf="app.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+												</a>
 												<a [routerLink]="'/admin/doc-profile'">{{app.nom}} {{app.prenom}} </a>
 											</h2>
 										</td>
-										<td> {{app.date}} <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
+										<td> {{app.date}} <span class="text-primary d-block">{{app.heure}}</span></td>
 										<td>
 											<div class="status-toggle">
 
-												<input *ngIf="app.etat=='confirmer'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check" checked>
-												<input *ngIf="app.etat=='annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
-												<input *ngIf="app.etat==''" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="status_1" class="check">
-												<label for="status_1" class="checktoggle">checkbox</label>
+												<input *ngIf="app.etat=='Accepter'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
+												<input *ngIf="app.etat=='Annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
+												<label for="{{app.const_id}}" class="checktoggle">case à cocher</label>
 											</div>
 										</td>
 										<td class="text-right">

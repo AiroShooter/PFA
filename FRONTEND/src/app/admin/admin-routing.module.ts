@@ -11,11 +11,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
         path: 'forgot-pass',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './pages/authendication/forgot-password/forgot-password.module'
@@ -30,6 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'admin-invoice',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./invoice/admin-invoice.module').then(
             (m) => m.AdminInvoiceModule
@@ -37,6 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'doc-profile',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./doc-profile/doc-profile.module').then(
             (m) => m.DocProfileModule
@@ -44,6 +48,7 @@ const routes: Routes = [
       },
       {
         path: 'lock-screen',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./pages/authendication/lock-screen/lock-screen.module').then(
             (m) => m.LockScreenModule
@@ -58,6 +63,7 @@ const routes: Routes = [
       },
       {
         path: 'blank-page',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./pages/blank-page/blank-page.module').then(
             (m) => m.BlankPageModule
@@ -65,6 +71,7 @@ const routes: Routes = [
       },
       {
         path: 'error-first',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./pages/error-pages/error-first/error-first.module').then(
             (m) => m.ErrorFirstModule
@@ -72,6 +79,7 @@ const routes: Routes = [
       },
       {
         path: 'error-second',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./pages/error-pages/error-second/error-second.module').then(
             (m) => m.ErrorSecondModule
@@ -79,6 +87,7 @@ const routes: Routes = [
       },
       {
         path: 'components',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./ui-interface/components/components.module').then(
             (m) => m.ComponentsModule
@@ -86,6 +95,7 @@ const routes: Routes = [
       },
       {
         path: 'basic-input',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./ui-interface/forms/basic-inputs/basic-inputs.module').then(
             (m) => m.BasicInputsModule
@@ -93,6 +103,7 @@ const routes: Routes = [
       },
       {
         path: 'form-validation',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './ui-interface/forms/form-validation/form-validation.module'
@@ -100,6 +111,7 @@ const routes: Routes = [
       },
       {
         path: 'horizondal-form',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './ui-interface/forms/horizondal-form/horizondal-form.module'
@@ -107,6 +119,7 @@ const routes: Routes = [
       },
       {
         path: 'input-groups',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./ui-interface/forms/input-groups/input-groups.module').then(
             (m) => m.InputGroupsModule
@@ -114,6 +127,7 @@ const routes: Routes = [
       },
       {
         path: 'vertical-form',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './ui-interface/forms/vertical-form/vertical-form.module'
@@ -121,6 +135,7 @@ const routes: Routes = [
       },
       {
         path: 'form-mask',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./ui-interface/forms/form-mask/form-mask.module').then(
             (m) => m.FormMaskModule
@@ -128,6 +143,7 @@ const routes: Routes = [
       },
       {
         path: 'basic-tables',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./ui-interface/tables/basic-tables/basic-tables.module').then(
             (m) => m.BasicTablesModule
@@ -135,6 +151,7 @@ const routes: Routes = [
       },
       {
         path: 'admin-data-table',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './ui-interface/tables/admin-data-table/admin-data-table.module'
@@ -142,6 +159,7 @@ const routes: Routes = [
       },
       {
         path: 'appointment',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./appointments/appointments.module').then(
             (m) => m.AppointmentsModule
@@ -149,6 +167,7 @@ const routes: Routes = [
       },
       {
         path: 'specialities',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./specialities/specialities.module').then(
             (m) => m.SpecialitiesModule
@@ -156,51 +175,61 @@ const routes: Routes = [
       },
       {
         path: 'blog',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./blog/blog/blog.module').then((m) => m.BlogModule),
       },
       {
         path: 'blog-details',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./blog/blog-details/blog-details.module').then((m) => m.BlogDetailsModule),
       },
       {
         path: 'add-blog',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./blog/add-blog/add-blog.module').then((m) => m.AddBlogModule),
       },
       {
         path: 'pending-blog',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./blog/pending-blog/pending-blog.module').then((m) => m.PendingBlogModule),
       },
       {
         path: 'edit-blog',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./blog/add-blog/add-blog.module').then((m) => m.AddBlogModule),
       },
       {
         path: 'product-list',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./product-list/product-list.module').then((m) => m.ProductListModule),
       },
       {
         path: 'pharmacy-list',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./pharmacy-list/pharmacy-list.module').then((m) => m.PharmacyListModule),
       },
       {
         path: 'doctor',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./doctors/doctors.module').then((m) => m.DoctorsModule),
       },
       {
         path: 'patients',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./patients/patients.module').then((m) => m.PatientsModule),
       },
       {
         path: 'transactions',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./transactions/transactions.module').then(
             (m) => m.TransactionsModule
@@ -208,16 +237,19 @@ const routes: Routes = [
       },
       {
         path: 'settings',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./settings/settings.module').then((m) => m.SettingsModule),
       },
       {
         path: 'reviews',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./reviews/reviews.module').then((m) => m.ReviewsModule),
       },
       {
         path: 'invoice-reports',
+        canActivate:[AdminGuard],
         loadChildren: () =>
           import('./invoice-reports/invoice-reports.module').then(
             (m) => m.InvoiceReportsModule
