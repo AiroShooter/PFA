@@ -48,6 +48,51 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 2 stats -->
+                    <div class="row mt-2">
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar circle-bar1">
+                                    <div class="circle-graph1" data-percent="75">
+                                        <img src="assets/img/icon-01.png" class="img-fluid" alt="patient">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Taux des Annulation</h6>
+                                    <h3>{{Taux}}%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar circle-bar2">
+                                    <div class="circle-graph2" data-percent="65">
+                                        <img src="assets/img/icon-02.png" class="img-fluid" alt="Patient">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Taux d'Acceptation</h6>
+                                    <h3>{{TauxAccept}}%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget">
+                                <div class="circle-bar circle-bar3">
+                                    <div class="circle-graph3" data-percent="50">
+                                        <img height="39px" width="39px" src="https://image.flaticon.com/icons/png/512/65/65780.png" class="" alt="Patient">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Total profit</h6>
+                                    <h3>{{sumTarif}}DH</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +150,7 @@
                                                 <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure}}</span></td>
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
-                                                <td class="text-center">${{appointment.tarif}}</td>
+                                                <td class="text-center">{{appointment.tarif}}DH</td>
 
                                                 <td *ngIf="appointment.etat == 'Accepter'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
