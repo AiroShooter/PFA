@@ -151,14 +151,12 @@
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
                                                 <!-- <td class="text-center">${{appointment.tarif}}</td> -->
-                                                <td class="text-center">${{appointment.tarif}}</td>
 
                                                 <td *ngIf="appointment.etat == 'Accepter'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'En attente'" class="text-center text-warning"><span _ngcontent-yos-cc204="" class="badge badge-pill bg-warning-light">{{appointment.etat}}</span></td>
 
                                                 <td *ngIf="appointment.etat == 'En attente'" class="text-right p-0" >
-                                                <td *ngIf="appointment.etat != 'Accepter'" class="text-right" >
                                                     <div class="table-action">
                                                         
 														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-success-light mr-2 rounded-pill">
