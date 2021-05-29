@@ -58,6 +58,7 @@ Route::any('/doctor/showStatsByMedP',[MedecinController::class, 'showStatsByMedP
 
 
 
+Route::any('/doctor/DoctorInfoById',[MedecinController::class, 'DoctorInfoById'] );
 
 
 

@@ -379,7 +379,8 @@ export class HomeComponent implements OnInit {
 
   selectEvent(item) {
     let filter = this.countries.filter((a) => a.name === item.name);
-    this.router.navigateByUrl('/patients/doctor-profile?id=' + filter[0].id);
+    localStorage.setItem("selected_id",filter[0].id.toString())
+    this.router.navigateByUrl('/patients/doctor-profile');
     // do something with selected item
   }
 

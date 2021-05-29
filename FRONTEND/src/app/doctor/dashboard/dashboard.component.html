@@ -109,7 +109,7 @@
                         <a class="nav-link active" href="#upcoming" [ngClass]="{ 'active':activeTab==='upcomming'}" (click)="search('upcomming')" data-toggle="tab">A venir</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="search('today')" data-toggle="tab">Medecian Remplacent</a>
+                        <a class="nav-link active" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="search('today')" data-toggle="tab">Medecin Remplacant</a>
                     </li>
                 </ul>
                 <!-- /Appointment Tab -->
@@ -215,7 +215,6 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th>Patient</th>
-                                            <th>Remplacent</th>
                                             <th>Date</th>
                                             <th>Heure</th>
                                             <th>Action</th>
@@ -232,10 +231,9 @@
                                                     <a >{{con.nom}} {{con.prenom}}</a>
                                                 </h2>
                                             </td>
-                                            <td>{{this.getRemplacent(con.replace_id)}}</td>
                                             <td>{{con.date}}</td>
                                             <td>{{con.heure}}</td>
-                                            <td><Button class="btn btn-primary" (click)="Replace(con.const_id)">Remplacer</Button></td>
+                                            <td><Button class="btn btn-primary" (click)="Replace(con.id)">Remplacer</Button></td>
                                         </tr>
                                     </tbody>
                                  </table>

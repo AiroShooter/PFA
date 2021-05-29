@@ -276,10 +276,29 @@ export class DashboardComponent implements OnInit {
 
   getDate(){
    
-    this.http.post('http://127.0.0.1:8000/api/doctor/getCons', {"date":this.myForm.value.date}).subscribe((res)=>{
-      this.cons = res;
-    })
+    this.http.post('http://127.0.0.1:8000/api/doctor/getCons', {"date":this.myForm.value.date, "med_id":localStorage.getItem('med_id')}).subscribe((res:any[])=>{
+    
+    let newRes = []
+    res.forEach(element => {
+       let newOBj = {
+         "id":element.const_id,
+         "sexe":element.sexe,
+         "nom":element.nom,
+         "prenom":element.prenom,
+         "date":element.date,
+         "heure":element.heure
+       }
 
+       newRes.push(newOBj)
+     });
+
+     
+
+     this.cons = newRes
+
+      console.log(this.cons);
+    })
+    
   }
 
   getMed(){
@@ -288,18 +307,7 @@ export class DashboardComponent implements OnInit {
     //console.log(this.med)
   }
  rep
-  getRemplacent(id)
-  { 
-    console.log(id)
-    
-
-    this.http.post('http://127.0.0.1:8000/api/doctor/showReplace', {"med_id":id}).subscribe((res)=>{
-     this.rep = "Dr. " + res["nom"] + " " + res["prenom"]
-     
-    })
-
-    return this.rep;
-  }
+  
 
   GetCons(){
     
@@ -309,12 +317,14 @@ export class DashboardComponent implements OnInit {
   Replace(const_id){
     if(!!this.med)
     {
-        this.http.post('http://127.0.0.1:8000/api/doctor/Replace', {"const_id":const_id, "replace_id":this.med}).subscribe((res)=>{
-        this.cons = res;
-      //  console.log(res)
-      })
-    }
+      this.http.post('http://127.0.0.1:8000/api/doctor/Replace', {"const_id":const_id, "med_id":this.myForm.value.meds}).subscribe((res)=>{
 
+         this.getDate();
+         this.getAppointmentscount();
+      this.getApptointementsInfo();
+         
+    }) 
+    }
   }
 
 
