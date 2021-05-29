@@ -209,13 +209,13 @@ export class DashboardComponent implements OnInit {
   getTaux(){
     console.log(this.med_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMed",{"med_id":this.med_id}).subscribe(result => {
-    this.Taux = result;
+    this.Taux = result.toString();
     });
   }
   getTauxA(){
     console.log(this.med_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMedA",{"med_id":this.med_id}).subscribe(result => {
-    this.TauxAccept = result;
+    this.TauxAccept = result.toString();
     });
   }
   sumTarif:any;
