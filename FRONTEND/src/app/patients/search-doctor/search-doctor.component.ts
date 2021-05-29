@@ -160,6 +160,12 @@ export class SearchDoctorComponent implements OnInit {
     //   this.router.navigate(['/']);
     // }
   }
+
+
+  voir(id){
+    localStorage.setItem("selected_id",id);
+    this.router.navigateByUrl('/patients/doctor-profile');
+  }
   
 
 }

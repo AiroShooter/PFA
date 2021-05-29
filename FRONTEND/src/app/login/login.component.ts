@@ -21,7 +21,14 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-  
+      if(localStorage.getItem("type") == "patient")
+      {
+        this.router.navigate(['/patients/dashboard']);
+      }
+      if(localStorage.getItem("type") == "medecin")
+      {
+        this.router.navigate(['/doctor/dashboard']);
+      }
   }
   error: string = '';
 

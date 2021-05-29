@@ -9,7 +9,7 @@ export class AuthService {
 
   loggedIn():boolean
   {
-    return !!localStorage.getItem('email');
+    return (!!localStorage.getItem('email'));
   }
 
   isDoctor()
