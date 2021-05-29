@@ -131,7 +131,7 @@ class AdminController extends Controller
     }
     public function showPatients()
     {
-        $value = DB::select("SELECT u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date,sum(c.tarif) as tarifs FROM `consultations` c inner join patients p on c.patient_id = c.patient_id inner join users u on u.user_id = p.user_id GROUP BY  u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date"); 
+        $value = DB::select("SELECT distinct u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date,sum(c.tarif) as tarifs FROM `consultations` c inner join patients p on p.patient_id = c.patient_id inner join users u on u.user_id = p.user_id GROUP BY  u.user_id,u.isActive,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.dateNaiss,c.const_id,c.date"); 
         return $value;
     }
     public function showConsultations()
