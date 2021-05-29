@@ -101,6 +101,27 @@ export class SearchDoctorComponent implements OnInit {
         this.doctorsInfo = result;
       });
     }
+    else if(this.type!="" && this.speciality=="" && this.status_type!="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeStatus",{"ville": this.selectedCity ,"sexe":this.type,"titre":this.status_type}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
+    else if(this.type!="" && this.speciality!="" && this.status_type=="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySexeSpec",{"ville": this.selectedCity ,"sexe":this.type,"spec_id":this.speciality}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
+    else if(this.type=="" && this.speciality!="" && this.status_type!="")
+    {
+      this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpecStatus",{"ville": this.selectedCity ,"spec_id":this.speciality,"titre":this.status_type}).subscribe(result =>{
+        console.log(result);
+        this.doctorsInfo = result;
+      });
+    }
     else if(this.type=="" && this.status_type=="" && this.speciality!="")
     {
       this.http.post("http://127.0.0.1:8000/api/patients/showDoctorsbySpec",{"ville": this.selectedCity ,"spec_id":this.speciality}).subscribe(result =>{
