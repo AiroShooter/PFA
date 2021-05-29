@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
 
   search(activeTab){
     this.activeTab = activeTab;
+    this.getDate();
   }
 
   result(activeTab){
