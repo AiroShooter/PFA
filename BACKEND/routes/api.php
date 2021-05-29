@@ -41,6 +41,8 @@ Route::any('/verifyPass',[UserController::class, 'verifyPass'] );
 Route::any('/doctor/start',[MedecinController::class, 'store'] );
 Route::any('/doctor/getSingle',[MedecinController::class, 'DoctorInfoByUser'] );
 Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationCount'] );
+Route::any('/doctor/PatientCount',[MedecinController::class, 'PatientCount'] );
+Route::any('/doctor/PatientTodayCount',[MedecinController::class, 'PatientTodayCount'] );
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
 Route::any('/doctor/show',[MedecinController::class, 'show'] );

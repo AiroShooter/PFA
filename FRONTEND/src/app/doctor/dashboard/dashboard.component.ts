@@ -32,6 +32,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatients();
+    this.getPatientCount();
+    this.getPatientTodayCount();
       this.getAppointmentscount();
       this.getApptointementsInfo();
       this.getDoctors()
@@ -186,12 +188,33 @@ export class DashboardComponent implements OnInit {
     console.log(result);
     });
   }
+
   AppointmentsCount:any;
   getAppointmentscount(){
     this.user_id = localStorage.getItem("user_id");
     console.log(this.user_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/consultationCount",{"user_id":this.user_id}).subscribe(result => {
     this.AppointmentsCount = result;
+
+    });
+  }
+
+  PatientCount:any;
+  getPatientCount(){
+    this.user_id = localStorage.getItem("user_id");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/PatientCount",{"user_id":this.user_id}).subscribe(result => {
+    this.PatientCount = result;
+
+    });
+  }
+
+  PatientTodayCount:any;
+  getPatientTodayCount(){
+    this.user_id = localStorage.getItem("user_id");
+    console.log(this.user_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/PatientTodayCount",{"user_id":this.user_id}).subscribe(result => {
+    this.PatientTodayCount = result;
 
     });
   }

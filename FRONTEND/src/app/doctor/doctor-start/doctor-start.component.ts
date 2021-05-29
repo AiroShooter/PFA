@@ -44,12 +44,16 @@ export class DoctorStartComponent implements OnInit {
     duree:['',[Validators.required]],
     specialite:['',[Validators.required]]
   });
-
+titre;
   signup() {
+    if(this.myForm.value.titre)
+    this.titre = "true";
+    else
+    this.titre = "false";
     let form = new FormData();
     form.append("user_id",localStorage.getItem('user_id'));
     form.append("spec_id",this.myForm.value.specialite);
-    form.append("titre",this.myForm.value.titre);
+    form.append("titre",this.titre);
     form.append("nom",this.myForm.value.nom);
     form.append("prenom",this.myForm.value.prenom);
     form.append("tarif",this.myForm.value.tarif);
@@ -62,7 +66,7 @@ export class DoctorStartComponent implements OnInit {
     form.append("duree",this.myForm.value.duree);
     
 
-    console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
+    console.log(form.get("titre"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
     this.http.post(this.SERVER_URL + 'doctor/start', form).subscribe(result => {
       console.log(result);
       if(result['user'])
@@ -75,6 +79,7 @@ export class DoctorStartComponent implements OnInit {
             localStorage.setItem('siteWeb',result['user']['siteWeb']);
             localStorage.setItem('adresseCabinet',result['user']['adresseCabinet']);
             localStorage.setItem('duree',result['user']['duree']);
+            localStorage.setItem('sexe',result['user']['sexe']);
             localStorage.setItem('titre',result['user']['titre']);
             localStorage.setItem('ville',result['user']['ville']);
             localStorage.setItem('med_id',result['user']['med_id']);
