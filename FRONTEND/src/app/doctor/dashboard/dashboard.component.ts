@@ -35,18 +35,17 @@ export class DashboardComponent implements OnInit {
     this.getApptointementsInfo();
     this.getTaux();
     this.getTauxA();
-      this.getAppointmentscount();
-      this.getSumTarif();
-
+    this.getAppointmentscount();
+    this.getSumTarif();
     this.getPatientCount();
     this.getPatientTodayCount();
-      this.getAppointmentscount();
-      this.getApptointementsInfo();
-      this.getDoctors()
-      if(!(!!localStorage.getItem("med_id")))
-      {
-        this.router.navigateByUrl('/doctor/start');
-      }
+    this.getAppointmentscount();
+    this.getApptointementsInfo();
+    this.getDoctors()
+    if(!(!!localStorage.getItem("med_id")))
+    {
+      this.router.navigateByUrl('/doctor/start');
+    }
   }
 
   search(activeTab){
@@ -202,6 +201,7 @@ export class DashboardComponent implements OnInit {
     console.log(result);
     });
   }
+
   Taux:any;
   TauxAccept:any;
   med_id = localStorage.getItem("med_id");
@@ -224,7 +224,6 @@ export class DashboardComponent implements OnInit {
     this.sumTarif = result;
     });
   }
-  
 
   AppointmentsCount:any;
   getAppointmentscount(){
