@@ -47,7 +47,8 @@ export class RegisterComponent implements OnInit {
 
   myForm = this.fb.group({
     email:['',[Validators.required, Validators.email]],
-    password:['',[Validators.required, Validators.minLength(8)]]
+    password:['',[Validators.required, Validators.minLength(8)]],
+    cpassword:['',[Validators.required, Validators.minLength(8)]]
   });
 
 
@@ -62,8 +63,9 @@ export class RegisterComponent implements OnInit {
     form.append("password",this.myForm.value.password);
     form.append("isPatient",this.isPatient);
 
-    console.log(form.get("email"), form.get("password"), form.get("isPatient"));
-    this.http.post(this.SERVER_URL + 'register', form).subscribe(result => {
+    if(this.myForm.value.password == this.myForm.value.cpassword)
+    {
+      this.http.post(this.SERVER_URL + 'register', form).subscribe(result => {
         if(result['hasError']){
           this.error = result['error'];
         }
@@ -81,5 +83,8 @@ export class RegisterComponent implements OnInit {
           }
           else this.error = "Il y a une erreur de connexion";          
         }});
+    }
+    else this.error = "Veuillez confirmer le mot de passe"
+  
   }
 }
