@@ -32,6 +32,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatients();
+    this.getApptointementsInfo();
+    this.getTaux();
+    this.getTauxA();
+      this.getAppointmentscount();
+      this.getSumTarif();
+
     this.getPatientCount();
     this.getPatientTodayCount();
       this.getAppointmentscount();
@@ -101,6 +107,10 @@ export class DashboardComponent implements OnInit {
        console.log(result);
        this.getApptointementsInfo();
        this.modalRef.hide();
+      this.getTaux();
+    this.getTauxA();
+      this.getAppointmentscount();
+      this.getSumTarif();
 
        localStorage.removeItem('const_id');
        localStorage.removeItem('date');
@@ -131,6 +141,10 @@ export class DashboardComponent implements OnInit {
        console.log(result);
        this.getApptointementsInfo();
        this.modalRef.hide();
+       this.getTaux();
+       this.getTauxA();
+       this.getAppointmentscount();
+       this.getSumTarif();
 
        localStorage.removeItem('const_id');
        localStorage.removeItem('date');
@@ -188,6 +202,29 @@ export class DashboardComponent implements OnInit {
     console.log(result);
     });
   }
+  Taux:any;
+  TauxAccept:any;
+  med_id = localStorage.getItem("med_id");
+  getTaux(){
+    console.log(this.med_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMed",{"med_id":this.med_id}).subscribe(result => {
+    this.Taux = result;
+    });
+  }
+  getTauxA(){
+    console.log(this.med_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMedA",{"med_id":this.med_id}).subscribe(result => {
+    this.TauxAccept = result;
+    });
+  }
+  sumTarif:any;
+  getSumTarif(){
+    console.log(this.med_id);
+    this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMedP",{"med_id":this.med_id}).subscribe(result => {
+    this.sumTarif = result;
+    });
+  }
+  
 
   AppointmentsCount:any;
   getAppointmentscount(){

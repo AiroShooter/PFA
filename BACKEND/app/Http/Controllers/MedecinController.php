@@ -85,6 +85,27 @@ class MedecinController extends Controller
         $value = DB::select("SELECT * FROM `consultations` c inner join dossier_medicals d on c.doss_id = d.doss_id inner join medecins m on c.med_id = m.med_id inner JOIN specialites s on s.spec_id = m.spec_id where c.patient_id = ?",[$request->patient_id]);
         return $value;
     }
+    public function showStatsByMed(Request $request)
+    {
+        
+        $totalConst = DB::select("SELECT  count(*) as count  FROM `consultations` WHERE med_id = ?",[$request->med_id]); 
+        $totalConstA = DB::select("SELECT  count(*) as countA FROM `consultations` WHERE med_id = ? and etat = 'Annuler'",[$request->med_id]);
+        return ($totalConstA[0]->countA/$totalConst[0]->count)*100;
+    }
+    public function showStatsByMedA(Request $request)
+    {
+        
+        $totalConst = DB::select("SELECT  count(*) as count  FROM `consultations` WHERE med_id = ?",[$request->med_id]); 
+        $totalConstA = DB::select("SELECT  count(*) as countA FROM `consultations` WHERE med_id = ? and etat = 'Accepter'",[$request->med_id]);
+        return ($totalConstA[0]->countA/$totalConst[0]->count)*100;
+    }
+    public function showStatsByMedP(Request $request)
+    {
+        
+        $totalConst = DB::select("SELECT  sum(tarif) as count  FROM `consultations` WHERE med_id = ? and etat = 'Accepter'",[$request->med_id]); 
+        return $totalConst[0]->count;
+    }
+
     public function updateConsultations(Request $request)
     {
         if($request->desc){
