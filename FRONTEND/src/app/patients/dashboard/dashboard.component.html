@@ -31,12 +31,12 @@
 														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>Médecin</th>
-																	<th>Date du rendez-vous</th>
-																	<th>Montant</th>
-																	<th>Type</th>
-																	<th>Statut</th>
-																	<th>Changer statut</th>
+																	<th class="text-center">Médecin</th>
+																	<th class="text-center">Date du rendez-vous</th>
+																	<th class="text-center">Montant</th>
+																	<th class="text-center">Type</th>
+																	<th class="text-center">Statut</th>
+																	<th class="text-center">Changer statut</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -58,10 +58,17 @@
 																		<span *ngIf="app.etat == 'Annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span>
 																		<span *ngIf="app.etat == 'En attente'" class="badge badge-pill bg-warning-light">{{app.etat}}</span>
 																	</td>
-																	<td class="text-center">
+																	<td *ngIf="app.etat == 'Accepter'" class="text-center p-0">
 																		<div  class="table-action">
-																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'Annuler')" class="btn btn-sm bg-danger-light">
+																			<a href="javascript:void(0);" (click)="changeState(app.const_id,'Annuler')" class="btn btn-sm bg-danger-light rounded-pill">
 																				<i class="fas fa-times"></i> Annuler
+																			</a>
+																		</div>
+																	</td>
+																	<td *ngIf="app.etat == 'Annuler'">
+																		<div class="table-action text-center">
+																			<a class="btn bg-infos-light">
+																				<i class="fas fa-check"></i> Réglé
 																			</a>
 																		</div>
 																	</td>

@@ -83,7 +83,7 @@
                                                 <th class="text-center">Date</th>
                                                 <th class="text-center">Raison</th>
                                                 <th class="text-center">Type</th>
-                                                <th class="text-center">Tarif payé</th>
+                                                <!-- <th class="text-center">Tarif payé</th> -->
                                                 <th class="text-center">Etat courant</th>
                                                 <th class="text-center">Actions</th>
 
@@ -102,29 +102,28 @@
                                                         <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
-                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure}}</span></td>
+                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure.substring(0,5)}}</span></td>
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
-                                                <td class="text-center">${{appointment.tarif}}</td>
+                                                <!-- <td class="text-center">${{appointment.tarif}}</td> -->
 
                                                 <td *ngIf="appointment.etat == 'Accepter'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'En attente'" class="text-center text-warning"><span _ngcontent-yos-cc204="" class="badge badge-pill bg-warning-light">{{appointment.etat}}</span></td>
 
-                                                <td *ngIf="appointment.etat != 'Accepter'" class="text-right" >
+                                                <td *ngIf="appointment.etat != 'Accepter'" class="text-right p-0" >
                                                     <div class="table-action">
                                                         
-														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-success-light mr-3">
+														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-success-light mr-2 rounded-pill">
                                                             <i class="fas fa-check"></i> Accepter
                                                         </a> 
-                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-danger-light">
+                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-danger-light rounded-pill">
                                                             <i class="fas fa-times"></i> Annuler
                                                         </a>
                                                     </div>
                                                 </td>
-                                                <td *ngIf="appointment.etat == 'Accepter'" class="text-right" >
-                                                    <div class="table-action">
-                                                        
+                                                <td *ngIf="appointment.etat == 'Accepter'">
+                                                    <div class="table-action text-center">
 														<a class="btn bg-infos-light">
                                                             <i class="fas fa-check"></i> Réglé
                                                         </a>

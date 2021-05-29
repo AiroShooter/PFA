@@ -17,7 +17,6 @@ export class SettingsComponent implements OnInit {
     private router: Router,
     private updater: UpdaterService
   ) {}
-
   ngOnInit(): void {
     this.loadSpec();
     if(!(!!localStorage.getItem("med_id")))
@@ -48,7 +47,7 @@ export class SettingsComponent implements OnInit {
   myForm = this.fb.group({
     prenom:[localStorage.getItem('prenom'),[Validators.required]],
     nom:[localStorage.getItem('nom'),[Validators.required]],
-    titre:[localStorage.getItem('titre'),[Validators.required]],
+    titre:["",[Validators.required]],
     tarif:[localStorage.getItem('tarif'),[Validators.required]],
     siteweb:[localStorage.getItem('siteWeb'),[Validators.required]],
     adresse:[localStorage.getItem('adresseCabinet'),[Validators.required]],
@@ -77,7 +76,7 @@ export class SettingsComponent implements OnInit {
     form.append("duree",this.myForm.value.duree);
     
 
-    console.log(form.get("user_id"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
+    console.log(form.get("titre"),form.get("spec_id"),form.get("nom"),form.get("prenom"));
     this.http.post(this.SERVER_URL + 'doctor/update', form).subscribe(result => {
       console.log(result);
       if(result)
@@ -102,4 +101,5 @@ export class SettingsComponent implements OnInit {
           }
     });
   }
+
 }
