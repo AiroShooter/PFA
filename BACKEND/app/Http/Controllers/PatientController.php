@@ -81,6 +81,7 @@ class PatientController extends Controller
         return $value;
         
     } 
+   
      public function showDoctorsbySexeSpecStatus(Request $request){
         $value = DB::select("select m.titre,m.med_id, m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle FROM `medecins` m inner join specialites s on m.spec_id = s.spec_id where m.ville = ? and m.sexe = ? and m.titre = ? and m.spec_id = ?",[$request->ville,$request->sexe,$request->titre,$request->spec_id]); 
         return $value;

@@ -128,6 +128,12 @@ class MedecinController extends Controller
             }
          }
     }
+
+    public function DoctorInfoById(Request $request)
+    {
+        return DB::select('select m.med_id, m.telePerso,m.nom,m.sexe,m.prenom,m.ville,m.tarif,m.adresseCabinet,s.libelle from medecins m inner join specialites s on s.spec_id = m.spec_id where med_id = ?',[$request->med_id]);
+         
+    }
     /**
      * Display the specified resource.
      *
@@ -145,12 +151,12 @@ class MedecinController extends Controller
 
     public function getCons(Request $request)
     {
-        return  DB::select('select * from consultations s inner join patients p on p.patient_id = s.patient_id where date = ?',[$request->date]);
+        return  DB::select('select * from consultations c inner join patients p on p.patient_id = c.patient_id where c.date = ? and c.med_id = ?',[$request->date, $request->med_id]);
     }
 
     public function Replace(Request $request)
     {
-        return  DB::select('update consultations set replace_id = ? where const_id = ?',[$request->replace_id,$request->const_id]);
+        return  DB::update('UPDATE `consultations` SET `med_id`= ? WHERE `const_id`= ?',[$request->med_id,$request->const_id]);
     }
     public function showReplace(Request $request)
     {

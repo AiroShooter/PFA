@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonServiceService } from './../../common-service.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-profile',
   templateUrl: './doctor-profile.component.html',
@@ -12,6 +12,7 @@ export class DoctorProfileComponent implements OnInit {
   id;
   doctorDetails;
   constructor(
+    private http: HttpClient,
     private router:Router,
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
@@ -33,28 +34,29 @@ export class DoctorProfileComponent implements OnInit {
   ];
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.id = this.route.snapshot.queryParams['id'];
-    this.getDoctorsDetails();
-    if(!(!!localStorage.getItem("patient_id")))
+    this.getDoctors();
+  
+  }
+
+  doctorsInfo
+  getDoctors() {
+    this.http.post("http://127.0.0.1:8000/api/doctor/DoctorInfoById",{"med_id":localStorage.getItem('selected_id')}).subscribe(result => {
+      this.doctorsInfo = result;
+      console.log(this.doctorsInfo);
+    });
+  }
+
+  getHours() {
+    this.http.post("http://127.0.0.1:8000/api/doctor/getHours",{"med_id":localStorage.getItem('selected_id')}).subscribe(result => {
+      this.doctorsInfo = result;
+      console.log(this.doctorsInfo);
+    });
+  }
+
+
+    bookAppointment(med_id)
     {
-      this.router.navigateByUrl('/patients/start');
-    }
-  }
 
-  getDoctorsDetails() {
-    if (!this.id) {
-      this.id = 1;
     }
-    this.commonService.getDoctorDetails(this.id).subscribe((res) => {
-      this.doctorDetails = res;
-    });
-  }
-
-  addFav() {
-    this.commonService.createFav(this.doctorDetails).subscribe((res) => {
-      this.toastr.success('', 'Added to favourite successfully!');
-      document.getElementById('fav-btn').style.background = '#fb1612';
-      document.getElementById('fav-btn').style.color = '#fff';
-    });
-  }
+  
 }
