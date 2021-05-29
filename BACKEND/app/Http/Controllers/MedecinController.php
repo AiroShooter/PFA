@@ -185,7 +185,7 @@ class MedecinController extends Controller
 
     public function getCons(Request $request)
     {
-        return  DB::select('select * from consultations c inner join patients p on p.patient_id = c.patient_id where c.date = ? and c.med_id = ?',[$request->date, $request->med_id]);
+        return  DB::select('select * from consultations c inner join patients p on p.patient_id = c.patient_id where c.date = ? and c.med_id = ? and c.etat = ?',[$request->date, $request->med_id,'En attente']);
     }
 
     public function Replace(Request $request)

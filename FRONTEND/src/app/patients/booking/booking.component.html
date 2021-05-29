@@ -25,21 +25,22 @@
 						
 							<div class="card">
 								<div class="card-body">
-									<div class="booking-doc-info" *ngIf="doctorDetails">
+									<div class="booking-doc-info" *ngFor="let doctor of doctorDetails">
 										<a [routerLink]="'patients/doctor-profile'" class="booking-doc-img">
-											<img src={{doctorDetails.profile}} alt="User Image">
+											<img *ngIf="doctor.sexe =='m'" src="../../../assets/admin/img/doctors/mdoc.png" class="img-fluid" alt="User Image">
+											<img *ngIf="doctor.sexe =='f'" src="../../../assets/admin/img/doctors/fdoc.png" class="img-fluid" alt="User Image">
 										</a>
 										<div class="booking-info">
-											<h4><a [routerLink]="'patients/doctor-profile'">{{doctorDetails.doctor_name}}</a></h4>
+											<h4><a [routerLink]="'patients/doctor-profile'">{{doctor.nom}} {{doctor.prenom}}</a></h4>
 											<div class="rating">
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star"></i>
-												<span class="d-inline-block average-rating">35</span>
+												
 											</div>
-											<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{doctorDetails.location}}</p>
+											<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{doctor.ville}}</p>
 										</div>
 									</div>
 								</div>

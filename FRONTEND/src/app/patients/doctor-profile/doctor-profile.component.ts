@@ -35,6 +35,7 @@ export class DoctorProfileComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.getDoctors();
+    this.getHours()
   
   }
 
@@ -46,17 +47,67 @@ export class DoctorProfileComponent implements OnInit {
     });
   }
 
+  
+  lundi = []
+  Mardi = []
+  Mercredi = []
+  Jeudi = []
+  Vendredi = []
+  Samedi = []
+  Dimanche = []
+
   getHours() {
-    this.http.post("http://127.0.0.1:8000/api/doctor/getHours",{"med_id":localStorage.getItem('selected_id')}).subscribe(result => {
-      this.doctorsInfo = result;
-      console.log(this.doctorsInfo);
+    this.http.post("http://127.0.0.1:8000/api/doctor/schedule/check",{"med_id":localStorage.getItem('selected_id')}).subscribe((result:any[]) => {
+      result.forEach(e=>{
+        if(e.jour == "Lundi")
+        {
+          this.lundi.push(e);
+        }
+        if(e.jour == "Mardi")
+        {
+          this.Mardi.push(e);
+        }
+        if(e.jour == "Mercredi")
+        {
+          this.Mercredi.push(e);
+        }
+        if(e.jour == "Jeudi")
+        {
+          this.Jeudi.push(e);
+        }
+        if(e.jour == "Vendredi")
+        {
+          this.Vendredi.push(e);
+        }
+        if(e.jour == "Samedi")
+        {
+          this.Samedi.push(e);
+        }
+        if(e.jour == "Samedi")
+        {
+          this.Dimanche.push(e);
+        }
+      })
     });
+
+
+   
   }
 
 
     bookAppointment(med_id)
     {
-
+      if(localStorage.getItem('type')=="patient")
+      {
+        localStorage.setItem('med_id_selected',med_id);
+        this.router.navigateByUrl('/patients/booking');
+      }
+      else{
+        localStorage.setItem('med_id_selected',med_id);
+        this.router.navigateByUrl('/login-page');
+      }  
     }
+
+  
   
 }

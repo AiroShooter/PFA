@@ -83,53 +83,46 @@
 											<div class="widget business-widget">
 												<div class="widget-content">
 													<div class="listing-hours">
-														<div class="listing-day current">
-															<div class="day">Today <span>5 Nov 2019</span></div>
+														<div class="listing-day" *ngIf="this.lundi[0]">
+															<div class="day">Lundi</div>
 															<div class="time-items">
-																<span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.lundi[0].heureDebut.substring(0,5)}} - {{this.lundi[this.lundi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Monday</div>
+														<div class="listing-day" *ngIf="this.Mardi[0]">
+															<div class="day">Mardi</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.Mardi[0].heureDebut.substring(0,5)}} - {{this.Mardi[this.Mardi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Tuesday</div>
+														<div class="listing-day" *ngIf="this.Mercredi[0]">
+															<div class="day">Mercredi</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.Mercredi[0].heureDebut.substring(0,5)}} - {{this.Mercredi[this.Mercredi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Wednesday</div>
+														<div class="listing-day" *ngIf="this.Jeudi[0]">
+															<div class="day">Jeudi</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.Jeudi[0].heureDebut.substring(0,5)}} - {{this.Jeudi[this.Jeudi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Thursday</div>
+														<div class="listing-day" *ngIf="this.Vendredi[0]">
+															<div class="day">Vendredi</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.Vendredi[0].heureDebut.substring(0,5)}} - {{this.Vendredi[this.Vendredi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Friday</div>
+														<div class="listing-day" *ngIf="this.Samedi[0]">
+															<div class="day">Samedi</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">{{this.Samedi[0].heureDebut.substring(0,5)}} - {{this.Samedi[this.Samedi.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
-														<div class="listing-day">
-															<div class="day">Saturday</div>
+														<div class="listing-day" *ngIf="this.Dimanche[0]">
+															<div class="day">Dimanche</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
-														<div class="listing-day closed">
-															<div class="day">Sunday</div>
-															<div class="time-items">
-																<span class="time"><span class="badge bg-danger-light">Closed</span></span>
+																<span class="time">{{this.Dimanche[0].heureDebut.substring(0,5)}} - {{this.Dimanche[this.Dimanche.length - 1].heureFin.substring(0,5)}}</span>
 															</div>
 														</div>
 													</div>

@@ -137,8 +137,7 @@ export class BookingComponent implements OnInit {
     } else {
       this.doctorId = 1;
     }
-    this.getDoctorsDetails();
-    this.patientDetails();
+  
     this.GetDate();
     this.CheckDatabase(this.med_id);
     console.log(this.datas);
@@ -161,26 +160,15 @@ export class BookingComponent implements OnInit {
     {
       this.router.navigateByUrl('/patients/start');
     }
+
+    this.getDoctor();
    
    
   }
 
-  getDoctorsDetails() {
-    this.commonService.getDoctorDetails(this.doctorId).subscribe((res) => {
-      this.doctorDetails = res;
-    });
-  }
 
-  patientDetails() {
-    let user_id;
-    user_id = localStorage.getItem('id');
-    if (!user_id) {
-      user_id = 1;
-    }
-    this.commonService.getPatientDetails(Number(user_id)).subscribe((res) => {
-      this.userDetails = res;
-    });
-  }
+
+  
 
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   med_id = localStorage.getItem('med_id_selected');
@@ -278,7 +266,7 @@ export class BookingComponent implements OnInit {
 
     checkBook()
     {
-      this.http.post(this.SERVER_URL + 'patient/bookCheck', {"patient_id":this.patient_id}).subscribe((res: string) => {
+      this.http.post(this.SERVER_URL + 'patient/bookCheck', {"patient_id":this.patient_id, "med_id":this.med_id}).subscribe((res: string) => {
        localStorage.setItem("bookCount", res)
       });
     }
@@ -286,6 +274,15 @@ export class BookingComponent implements OnInit {
     confirm(){
     ///  this.toastr.success('', 'Rendez-vous réservé avec succès!');
       this.router.navigate(['/patients/checkout']);
+    }
+
+
+ 
+    getDoctor() {
+      this.http.post("http://127.0.0.1:8000/api/doctor/DoctorInfoById",{"med_id":this.med_id}).subscribe(result => {
+        this.doctorDetails = result;
+        console.log(this.doctorDetails);
+      });
     }
 
  

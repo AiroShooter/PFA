@@ -133,7 +133,7 @@ class CalendrierController extends Controller
 
     public function bookCheck(Request $request)
     {
-        $result = DB::select('SELECT COUNT(*) as count FROM `calendriers` WHERE `patient_id` = ?', [$request->patient_id]);
+        $result = DB::select('SELECT COUNT(*) as count FROM `calendriers` WHERE `patient_id` = ? AND med_id = ?', [$request->patient_id, $request->med_id]);
         return $result[0]->count;
        
     }
