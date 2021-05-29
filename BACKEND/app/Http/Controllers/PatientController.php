@@ -74,6 +74,10 @@ class PatientController extends Controller
     } 
     public function updateConsultations(Request $request){
         $value = DB::update("update consultations set etat = ? , Echanger = 'patient' where const_id = ?",[$request->etat,$request->const_id]); 
+        if($request->etat == "Annuler"){
+            $val = DB::select("select * from consultations where const_id = ?",[$request->const_id]);
+            DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `date`= ? and `heureDebut` = ?', [NULL,NULL,$val[0]->date,$val[0]->heure]);
+        }
         return $value;
     }
     public function showDoctors(Request $request){

@@ -127,7 +127,9 @@ class CalendrierController extends Controller
 
     public function bookCancel(Request $request)
     {
-        return DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `calen_id`= ? AND `patient_id`= ? ', [NUll, NULL, $request->calen_id, $request->patient_id]);
+         $result = DB::select('SELECT * FROM `calendriers` WHERE `calen_id`= ?', [$request->calen_id]);
+         DB::update('UPDATE `calendriers` SET `date`= ?,`patient_id`= ? WHERE `calen_id`= ? AND `patient_id`= ? ', [NUll, NULL, $request->calen_id, $request->patient_id]);
+         DB::delete('DELETE FROM `consultations` WHERE `heure` = ? AND `date` = ?',[$result[0]->heureDebut, $result[0]->date]);
     }
 
 
