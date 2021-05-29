@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.changeState;
     this.getApptointementsInfo();
+    this.getDossiers()
     if(!(!!localStorage.getItem("patient_id")))
     {
       this.router.navigateByUrl('/patients/start');
@@ -26,25 +27,28 @@ export class DashboardComponent implements OnInit {
 
   
   AppointmentsInfo:any;
+  Dossiers:any;
   user_id:any;
   getApptointementsInfo(){
     this.user_id = localStorage.getItem("user_id");
-    console.log(this.user_id);
     this.http.post("http://127.0.0.1:8000/api/patients/showConsultations",{"user_id":this.user_id}).subscribe(result => {
     this.AppointmentsInfo = result;
+    });
+  }
+
+  getDossiers(){
+    let patient_id = localStorage.getItem("patient_id");
+    this.http.post("http://127.0.0.1:8000/api/patients/showDossiers",{"patient_id":patient_id}).subscribe(result => {
+    this.Dossiers = result;
     console.log(result);
     });
   }
 
   changeState(const_id,etat){
-    
     let form = new FormData();
     form.append("const_id",const_id);
     form.append("etat",etat);
-    console.log(const_id);
-    console.log(etat);
     this.http.post("http://127.0.0.1:8000/api/patients/updateConsultations",form).subscribe(result =>{
-       console.log(result);
        this.getApptointementsInfo();
   });
 }

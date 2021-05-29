@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="dash-widget-info">
                                     <h6>Total des patients</h6>
-                                    <h3>{{AppointmentsCount}}</h3>
+                                    <h3>{{PatientTodayCount}}</h3>
                                     <p class="text-muted">À aujourd'hui</p>
                                 </div>
                             </div>
@@ -27,8 +27,8 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Nombre de patients</h6>
-                                    <h3>{{AppointmentsCount}}</h3>
+                                    <h6>Nombre des patients</h6>
+                                    <h3>{{PatientCount}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -108,9 +108,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#upcoming" [ngClass]="{ 'active':activeTab==='upcomming'}" (click)="search('upcomming')" data-toggle="tab">A venir</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="result('today')" data-toggle="tab">Aujourd'hui</a>
-                    </li>  -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#today" [ngClass]="{ 'active':activeTab==='today'}" (click)="search('today')" data-toggle="tab">Medecian Remplacent</a>
+                    </li>
                 </ul>
                 <!-- /Appointment Tab -->
                 
@@ -128,7 +128,7 @@
                                                 <th class="text-center">Date</th>
                                                 <th class="text-center">Raison</th>
                                                 <th class="text-center">Type</th>
-                                                <th class="text-center">Tarif payé</th>
+                                                <!-- <th class="text-center">Tarif payé</th> -->
                                                 <th class="text-center">Etat courant</th>
                                                 <th class="text-center">Actions</th>
 
@@ -147,29 +147,35 @@
                                                         <a >{{appointment.nom}} {{appointment.prenom}}</a>
                                                     </h2>
                                                 </td>
-                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure}}</span></td>
+                                                <td>{{appointment.date | date : 'dd MMM yyyy'}}<span class="d-block text-info text-center">{{appointment.heure.substring(0,5)}}</span></td>
                                                 <td>{{appointment.raison}}</td>
                                                 <td>{{appointment.type}}</td>
-                                                <td class="text-center">{{appointment.tarif}}DH</td>
+                                                <!-- <td class="text-center">${{appointment.tarif}}</td> -->
 
                                                 <td *ngIf="appointment.etat == 'Accepter'" class="text-center text-success"><span _ngcontent-yos-c204="" class="badge badge-pill bg-success-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'En attente'" class="text-center text-warning"><span _ngcontent-yos-cc204="" class="badge badge-pill bg-warning-light">{{appointment.etat}}</span></td>
 
-                                                <td *ngIf="appointment.etat != 'Accepter'" class="text-right" >
+                                                <td *ngIf="appointment.etat == 'En attente'" class="text-right p-0" >
                                                     <div class="table-action">
                                                         
-														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom)" class="btn btn-sm bg-success-light mr-3">
+														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-success-light mr-2 rounded-pill">
                                                             <i class="fas fa-check"></i> Accepter
                                                         </a> 
-                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom)" class="btn btn-sm bg-danger-light">
+                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-danger-light rounded-pill">
                                                             <i class="fas fa-times"></i> Annuler
                                                         </a>
                                                     </div>
                                                 </td>
-                                                <td *ngIf="appointment.etat == 'Accepter'" class="text-right" >
-                                                    <div class="table-action">
-                                                        
+                                                <td *ngIf="appointment.etat == 'Annuler'">
+                                                    <div class="table-action text-center">
+														<a class="btn bg-infos-light">
+                                                            <i class="fas fa-check"></i> Réglé
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="appointment.etat == 'Accepter'">
+                                                    <div class="table-action text-center">
 														<a class="btn bg-infos-light">
                                                             <i class="fas fa-check"></i> Réglé
                                                         </a>
@@ -187,54 +193,56 @@
                     <!-- /Upcoming Appointment Tab -->
                
                     <!-- Today Appointment Tab -->
-                    <!-- <div class="tab-pane" id="today" [ngClass]="{ 'active':activeTab==='today'}">
+                  <div class="tab-pane" id="today" [ngClass]="{ 'active':activeTab==='today'}">
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Patient Name</th>
-                                                <th>Appt Date</th>
-                                                <th>Purpose</th>
-                                                <th>Type</th>
-                                                <th class="text-center">Paid Amount</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let appointment of appointments">
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="appointment?.patients?.img" alt="User Image"></a>
-                                                        <a >{{appointment?.patients?.name}}<span>{{appointment?.patients?.key}}</span></a>
-                                                    </h2>
-                                                </td>
-                                                <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}<span class="d-block text-info">10.00 AM</span></td>
-                                                <td>General</td>
-                                                <td>{{appointment.type}}</td>
-                                                <td class="text-center">{{appointment.amount}}</td>
-                                                <td class="text-right">
-                                                    <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>
-                                                        
-                                                        <a (click)="openModal(template,appointment)" class="btn btn-sm bg-success-light">
-                                                            <i class="fas fa-check"></i> Accept
-                                                        </a>
-                                                        <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment)" class="btn btn-sm bg-danger-light">
-                                                            <i class="fas fa-times"></i> Cancel
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>		
-                                </div>	
+                                    <form [formGroup]="myForm">
+                                        <table class="table table-hover table-center mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="date" name="" id="" class="form-control" (change)="getDate()" formControlName="date"></td>
+                                                    <td> 
+                                                        <select name="" id="" class="form-control" formControlName="meds" (change)="getMed()">
+                                                                <option *ngFor="let doc of docs" value="{{doc.med_id}}">{{doc.nom}} {{doc.prenom}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                   </form>
+                                  <table class="table table-hover table-center mb-0">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Patient</th>
+                                            <th>Remplacent</th>
+                                            <th>Date</th>
+                                            <th>Heure</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center" *ngFor="let con of cons">
+                                        <tr>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a [routerLink]="'/doctor/patients-profile'" class="avatar avatar-sm mr-2">
+                                                        <img *ngIf="con.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+                                                        <img *ngIf="con.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
+                                                    </a>
+                                                    <a >{{con.nom}} {{con.prenom}}</a>
+                                                </h2>
+                                            </td>
+                                            <td>{{this.getRemplacent(con.replace_id)}}</td>
+                                            <td>{{con.date}}</td>
+                                            <td>{{con.heure}}</td>
+                                            <td><Button class="btn btn-primary" (click)="Replace(con.const_id)">Remplacer</Button></td>
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                                </div>
                             </div>	
                         </div>	
-                    </div> -->
+                    </div> 
                     <!-- /Today Appointment Tab -->
                     
                 </div>
@@ -272,6 +280,25 @@
       <div style="margin-top:25px">
         <button type="button" class="btn btn-default" (click)="decline()" >Oui</button>
         <button type="button" class="btn btn-primary" (click)="cancel()" >Non</button>
+     </div>
+    </div>
+  </ng-template>
+
+  <ng-template #PersTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modifier Ordonnance</h4>
+
+    
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+     
+     <textarea name="" id="ord" cols="5" rows="5" class="form-control">{{this.desc}}</textarea>
+      <div style="margin-top:25px">
+        <button type="button" class="btn btn-primary mr-2" (click)="Modifier()" >Modifer</button>
+        <button type="button" class="btn btn-danger" (click)="cancel()" >Annuler</button>
      </div>
     </div>
   </ng-template>
