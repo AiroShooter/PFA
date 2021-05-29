@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="dash-widget-info">
                                     <h6>Total des patients</h6>
-                                    <h3>{{AppointmentsCount}}</h3>
+                                    <h3>{{PatientTodayCount}}</h3>
                                     <p class="text-muted">À aujourd'hui</p>
                                 </div>
                             </div>
@@ -27,8 +27,8 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Nombre de patients</h6>
-                                    <h3>{{AppointmentsCount}}</h3>
+                                    <h6>Nombre des patients</h6>
+                                    <h3>{{PatientCount}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                                 <td *ngIf="appointment.etat == 'Annuler'" class="text-center text-danger"><span _ngcontent-yos-c204="" class="badge badge-pill bg-danger-light">{{appointment.etat}}</span></td>
                                                 <td *ngIf="appointment.etat == 'En attente'" class="text-center text-warning"><span _ngcontent-yos-cc204="" class="badge badge-pill bg-warning-light">{{appointment.etat}}</span></td>
 
-                                                <td *ngIf="appointment.etat != 'Accepter'" class="text-right p-0" >
+                                                <td *ngIf="appointment.etat == 'En attente'" class="text-right p-0" >
                                                     <div class="table-action">
                                                         
 														<a (click)="openModal(template,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-success-light mr-2 rounded-pill">
@@ -119,6 +119,13 @@
                                                         </a> 
                                                         <a href="javascript:void(0);" (click)="openModal(Declinetemplate,appointment,appointment.const_id,appointment.heure,appointment.date,appointment.prenom,appointment.nom,appointment.desc)" class="btn btn-sm bg-danger-light rounded-pill">
                                                             <i class="fas fa-times"></i> Annuler
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="appointment.etat == 'Annuler'">
+                                                    <div class="table-action text-center">
+														<a class="btn bg-infos-light">
+                                                            <i class="fas fa-check"></i> Réglé
                                                         </a>
                                                     </div>
                                                 </td>

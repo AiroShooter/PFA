@@ -51,7 +51,7 @@
 																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>{{app.date |  date}} <span class="d-block text-info">{{app.heure.substring(0,5)}}</span></td>
+																	<td>{{app.date |  date}} <span class="d-block text-info text-center">{{app.heure.substring(0,5)}}</span></td>
 																	<td>${{app.tarif}}</td>
 																	<td>{{app.type}}</td>
 																	<td><span *ngIf="app.etat == 'Accepter'" class="badge badge-pill bg-success-light">{{app.etat}}</span>
@@ -69,6 +69,13 @@
 																		<div class="table-action text-center">
 																			<a class="btn bg-infos-light">
 																				<i class="fas fa-check"></i> Réglé
+																			</a>
+																		</div>
+																	</td>
+																	<td *ngIf="app.etat == 'En attente'">
+																		<div class="table-action text-center">
+																			<a class="btn bg-infos-light">
+																				<i class="fas fa-clock"></i> A réglé
 																			</a>
 																		</div>
 																	</td>

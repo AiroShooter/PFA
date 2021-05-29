@@ -61,6 +61,19 @@ class MedecinController extends Controller
         $count = DB::select("select count(*) as count from consultations c inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = ?",[$request->user_id]);
         return $count[0]->count;
     }
+
+    public function PatientCount(Request $request)
+    {
+        $count = DB::select("select count(DISTINCT c.patient_id) as count from consultations c inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = ?",[$request->user_id]);
+        return $count[0]->count;
+    }
+
+    public function PatientTodayCount(Request $request)
+    {
+        $date = date('Y-m-d', time());
+        $count = DB::select("select count(DISTINCT c.patient_id) as count from consultations c inner join medecins m on m.med_id = c.med_id inner join users u on u.user_id = m.user_id where u.user_id = ? and c.date = ?",[$request->user_id,$date]);
+        return $count[0]->count;
+    }
     
     public function showConsultations(Request $request)
     {
