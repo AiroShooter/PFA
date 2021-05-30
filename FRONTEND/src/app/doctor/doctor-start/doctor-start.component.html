@@ -51,10 +51,7 @@
                             <div class="form-group">
                                 <label>Ville<span class="required">*</span></label>
                                 <select class="select form-control" formControlName="ville">
-                                    <option>Marrakech</option>
-                                    <option>Rabat</option>
-                                    <option>Casablanca</option>
-                                    <option>Fes</option>
+                                   <option *ngFor="let v of villes">{{v.ville}}</option>
                                 </select>
                             </div>
                         </div>

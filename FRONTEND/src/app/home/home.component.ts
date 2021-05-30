@@ -328,9 +328,8 @@ export class HomeComponent implements OnInit {
     });
   }
   CheckVal2(event){
-  this.selectedCity = event.target.value
-
-  localStorage.setItem('selectedCity',this.selectedCity)
+       this.selectedCity = event.target.value
+        localStorage.setItem('selectedCity',this.selectedCity)
   }
   getDoctors() {
     this.http.get(this.SERVER_URL + 'doctor/show').subscribe((res) => {
@@ -382,6 +381,12 @@ export class HomeComponent implements OnInit {
     localStorage.setItem("selected_id",filter[0].id.toString())
     this.router.navigateByUrl('/patients/doctor-profile');
     // do something with selected item
+  }
+
+  Go()
+  {
+    if((!!this.selectedCity) && this.selectedCity != "0")
+       this.router.navigateByUrl('/patients/search-doctor');
   }
 
   onChangeSearch(search: string) {

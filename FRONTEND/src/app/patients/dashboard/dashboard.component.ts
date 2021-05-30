@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       this.getNotifs();
-    }, 30000);
+    }, 10000);
     this.changeState;
     this.getApptointementsInfo();
     this.getDossiers()

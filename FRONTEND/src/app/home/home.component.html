@@ -13,7 +13,7 @@
                     <form>
                         <div class="form-group search-location">
                             <select width="100%"  (change)="CheckVal2($event)" class="form-control">
-                                <option value="" selected>Selectionner une ville</option>
+                                <option value="0" selected>Selectionner une ville</option>
                                 <option *ngFor="let c of city" value="{{c.ville}}">{{c.ville}}</option>
                             </select>
                             <span class="form-text text-center">Basé sur votre emplacement</span>
@@ -39,7 +39,7 @@
 							<span class="form-text text-center">Chercher un médecin par son nom ou prénom</span>                          
                         </div>
                         <button type="submit" class="btn btn-primary search-btn"
-                            [routerLink]="'/patients/search-doctor'"><i class="fas fa-search"></i>
+                           (click)="Go()"><i class="fas fa-search"></i>
                             <span>Rechercher</span></button>
                     </form>
                 </div>
