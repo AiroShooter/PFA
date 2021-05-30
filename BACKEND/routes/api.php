@@ -113,6 +113,7 @@ Route::any('/doctor/schedule/deleteAll',[CalendrierController::class, 'deleteAll
 Route::any('/doctor/schedule/deleteSingle',[CalendrierController::class, 'deleteSingle'] );
 Route::any('/doctor/consultationCount',[MedecinController::class, 'consultationCount'] );
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
+Route::any('/doctor/showPatients',[MedecinController::class, 'showPatients'] );
 Route::any('/patients/showConsultations',[PatientController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
 Route::any('/patient/book',[CalendrierController::class, 'book'] );

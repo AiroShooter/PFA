@@ -32,7 +32,7 @@ export class MypatientsComponent implements OnInit {
   getApptointementsInfo(){
     this.user_id = localStorage.getItem("user_id");
     console.log(this.user_id);
-    this.http.post("http://127.0.0.1:8000/api/doctor/showConsultations",{"user_id":this.user_id}).subscribe(result => {
+    this.http.post("http://127.0.0.1:8000/api/doctor/showPatients",{"med_id":localStorage.getItem("med_id")}).subscribe(result => {
     this.AppointmentsInfo = result;
     console.log(result);
     });
