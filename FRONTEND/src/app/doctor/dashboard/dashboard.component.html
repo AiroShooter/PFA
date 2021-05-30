@@ -252,8 +252,8 @@
                                                     <a >{{con.nom}} {{con.prenom}}</a>
                                                 </h2>
                                             </td>
-                                            <td>{{con.date}}</td>
-                                            <td>{{con.heure}}</td>
+                                            <td>{{con.date | date}}</td>
+                                            <td>{{con.heure.substring(0,5)}}</td>
                                             <td><Button class="btn btn-primary" (click)="Replace(con.id)">Remplacer</Button></td>
                                         </tr>
                                     </tbody>
