@@ -37,10 +37,11 @@
 								<tbody>
 									<tr *ngFor="let patient of showpatients">
 										
-										<td><a href="javascript:void(0)" class="avatar avatar-sm mr-2">
-											<img *ngIf="patient.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fpat.png" alt="User Image">
-											<img *ngIf="patient.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mpat.png" alt="User Image">		
-										</a>#U0{{patient.patient_id}}</td>
+										<td>
+											<a href="javascript:void(0)" class="avatar avatar-sm mr-2">
+											<img *ngIf="patient.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+											<img *ngIf="patient.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
+											</a>#U0{{patient.patient_id}}</td>
 										<td>
 											<h2 class="table-avatar">
 												<a>{{patient.nom}} {{patient.prenom}} </a>
@@ -49,7 +50,7 @@
 										<td>{{patient.telePerso}}</td>
 										<td>{{patient.sexe}}</td>
 										<td>{{patient.date}}</td>
-										<td class="text-right">${{patient.tarifs}}</td>
+										<td class="text-right">DH{{patient.tarifs}}</td>
 										<td>
 											<div class="status-toggle">
 

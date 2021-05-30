@@ -36,7 +36,7 @@
 									<tr *ngFor="let sale of sales">
 										<td>{{sale.invoice_number}}</td>
 										<td>{{sale.machine_name}}</td>
-										<td>${{sale.total_price}}</td>
+										<td>DH{{sale.total_price}}</td>
 										<td>{{sale.date | date: 'd-MMMM-y'}}</td>
 										<td class="text-right">
 											<div class="actions">
