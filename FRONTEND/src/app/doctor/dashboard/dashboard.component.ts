@@ -31,6 +31,9 @@ export class DashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.getNotifs();
+    }, 10000);
     this.getPatients();
     this.getApptointementsInfo();
     this.getTaux();
@@ -330,5 +333,29 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  notifs:[];
+upnot(id: any){
+  let fm = new FormData();
+  fm.append("id",id);
+  fm.append("etat","seen");
+  console.log(fm.get("id"));
+  this.http.post("http://127.0.0.1:8000/api/UPNotifs",fm).subscribe(result =>{
+              console.log(result);
+            })
+}
+
+getNotifs(){
+  let form = new FormData();
+  form.append("user_id",localStorage.getItem("user_id"));
+  this.http.post("http://127.0.0.1:8000/api/showUserNotifs",form).subscribe(result =>{
+    this.notifs =  JSON.parse(JSON.stringify(result));
+      this.notifs.forEach(e => {
+        if(e["etat"] == "unseen")
+          this.toastr.success(e["date"]+" "+e["heure"],e["titre"]+" "+e["message"]).onTap.subscribe(() => {
+            this.upnot(e["notification_id"]);
+          });
+    });
+  });
+}
 
 }

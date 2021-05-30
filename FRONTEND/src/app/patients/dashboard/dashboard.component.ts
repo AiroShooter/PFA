@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       this.getNotifs();
-    }, 3000);
+    }, 10000);
     this.changeState;
     this.getApptointementsInfo();
     this.getDossiers()
@@ -57,8 +57,6 @@ export class DashboardComponent implements OnInit {
   });
 }
 notifs:[];
-notif:[];
-
 upnot(id: any){
   let fm = new FormData();
   fm.append("id",id);
@@ -70,10 +68,8 @@ upnot(id: any){
 }
 
 getNotifs(){
-  
-  this.notif = this.notifs
   let form = new FormData();
-    form.append("user_id",localStorage.getItem("user_id"));
+  form.append("user_id",localStorage.getItem("user_id"));
   this.http.post("http://127.0.0.1:8000/api/showUserNotifs",form).subscribe(result =>{
     this.notifs =  JSON.parse(JSON.stringify(result));
       this.notifs.forEach(e => {
@@ -83,7 +79,6 @@ getNotifs(){
           });
     });
   });
-  
 }
 
 

@@ -20,17 +20,11 @@ class TriggerNotifsMaker extends Migration
         AFTER INSERT ON consultations
         FOR EACH ROW 
         BEGIN 
-            if(new.etat = 'accepter') OR (new.etat = 'annuler') THEN
-                if(new.Echanger = 'medecin') THEN
-                    SELECT concat('Dr. ',concat(nom,concat(' ',prenom))) INTO @titre FROM medecins WHERE med_id = new.med_id;
-                    SELECT user_id INTO @user FROM patients WHERE patient_id = new.patient_id;
-                    SELECT concat('a ',concat(new.etat,' un rendez-vous')) INTO @msg;
-                    INSERT INTO notification_events (titre, message, etat, date, user) VALUES (@titre,@msg,'unseen',new.date, @user);
-                END IF;
+            if(new.etat = 'en attente') THEN
                 IF(new.Echanger = 'patient') THEN
                     SELECT concat('Patient, ',concat(nom,concat(' ',prenom))) INTO @titre FROM patients WHERE patient_id = new.patient_id;
                     SELECT user_id INTO @user FROM medecins WHERE med_id = new.med_id;
-                    SELECT concat('a ',concat(new.etat,' un rendez-vous')) INTO @msg;
+                    SELECT concat('a ',concat('pris',' un rendez-vous')) INTO @msg;
                     INSERT INTO notification_events (titre, message, etat, date, user) VALUES (@titre,@msg,'unseen',new.date, @user);
                 END IF;
             END IF;
