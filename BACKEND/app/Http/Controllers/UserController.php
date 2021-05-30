@@ -156,6 +156,12 @@ class UserController extends Controller
                     'success' => '',
                     'error' => 'Votre compte a été désactivé']);
             }
+            else{
+                return response()->json([
+                    'hasError' => true,
+                    'success' => '',
+                    'error' => "Cet email n'existe pas"]);
+            }
                
         }
     }

@@ -18,23 +18,63 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.commonSerivce.nextmessage('chat');
+    
+   
+
+    if(this.isDoctor)
+    {
+     this.room_id = "room_" + this.user_id + this.us_id 
+    }
+    else{
+     this.room_id  = "room_" + this.us_id +  this.user_id 
+    }
+
+    console.log(this.room_id)
+
+    this.show()
+
+    setInterval( ()=>{this.show()},1000);
+
+   
   }
+
+  
 
   ngOnDestroy() {
     this.commonSerivce.nextmessage('');
   }
 
+  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
+
+  messages = []
   send() {
-    this.http.post(this.SERVER_URL + '', {"message":this.message, "sender":this.user_id}).subscribe((res)=>{
-      
-    })
-    
+
+    if(this.message != '')
+    { 
+      this.http.post(this.SERVER_URL + 'messages/send', {"message":this.message, "receiver":this.us_id, "sender":this.user_id, "room_id":this.room_id}).subscribe((res)=>{
+        this.show()
+      })
+    }
     this.message = ''
   }
 
-  SERVER_URL: string = 'http://127.0.0.1:8000/api/';
 
-   user_id = localStorage.getItem('user_id');
-   user_nom = localStorage.getItem('user_nom');
-   user_prenom = localStorage.getItem('user_prenom');
+
+  show()
+  {
+    this.http.post(this.SERVER_URL + 'messages/show', {"room_id":this.room_id}).subscribe((res:[])=>{
+      this.messages = res;
+    })
+
+    console.log("shhshshs")
+  }
+
+  isDoctor = !!localStorage.getItem('patient_id');
+
+   user_id=localStorage.getItem('user_id');
+   us_id = localStorage.getItem('us_id');
+
+   room_id
+   us_nom = localStorage.getItem('us_nom');
+   us_prenom = localStorage.getItem('us_prenom');
 }

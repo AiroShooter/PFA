@@ -53,5 +53,14 @@ export class DashboardComponent implements OnInit {
   });
 }
 
+
+Go(user_id, nom, prenom){
+
+  localStorage.setItem('us_id',user_id);
+  localStorage.setItem('us_nom',nom);
+  localStorage.setItem('us_prenom',prenom);
+  this.router.navigateByUrl('/doctor/message');
+}
+
  
 }
