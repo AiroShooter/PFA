@@ -22,7 +22,8 @@ export class RegiserComponent implements OnInit {
     nom:['',[Validators.required, Validators.minLength(3)]],
     prenom:['',[Validators.required, Validators.minLength(3)]],
     email:['',[Validators.required, Validators.email,Validators.minLength(5)]],
-    password:['',[Validators.required, Validators.minLength(8)]]
+    password:['',[Validators.required, Validators.minLength(8)]],
+    cpassword:['',[Validators.required, Validators.minLength(8)]]
   });
   SERVER_URL: string = 'http://127.0.0.1:8000/api/';
   error: string = '';
@@ -35,30 +36,34 @@ export class RegiserComponent implements OnInit {
     form.append("type",'admin');
 
 
-    console.log(form.get("email"), form.get("password"), form.get("isPatient"));
+   if(this.myForm.value.password == this.myForm.value.cpassword)
+   {
     this.http.post(this.SERVER_URL + 'register', form).subscribe(result => {
 
 
-        if(result['hasError']){
-          this.error = result['error'];
-        }
-        else{
+      if(result['hasError']){
+        this.error = result['error'];
+      }
+      else{
 
-          if(result['user'] && result['admin'])
-          {
-            localStorage.setItem('email',result['user']['email']);
-            localStorage.setItem('type',result['user']['type']);
-            localStorage.setItem('user_id',result['user']['user_id']);
-            localStorage.setItem('nom',result['admin']['nom']);
-            localStorage.setItem('prenom',result['admin']['prenom']);
-            localStorage.setItem('admin_id',result['admin']['admin_id']);
-            //this.updater.sendUpdate(true);
-            this.router.navigate(['/admin/dashboard']);
-          }
-          else this.error = "Il y a une erreur de connexion";
-          
-          
-        }});
+        if(result['user'] && result['admin'])
+        {
+          localStorage.setItem('email',result['user']['email']);
+          localStorage.setItem('type',result['user']['type']);
+          localStorage.setItem('user_id',result['user']['user_id']);
+          localStorage.setItem('nom',result['admin']['nom']);
+          localStorage.setItem('prenom',result['admin']['prenom']);
+          localStorage.setItem('admin_id',result['admin']['admin_id']);
+          //this.updater.sendUpdate(true);
+          this.router.navigate(['/admin/dashboard']);
+        }
+        else this.error = "Il y a une erreur de connexion";
+        
+        
+      }});
+   }
+   else this.error = "Veuillez confirmer le mot de passe"
+    
   }
 
 }
