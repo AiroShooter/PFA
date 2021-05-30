@@ -47,6 +47,24 @@ class UserController extends Controller
        
     }
 
+    public static function ForgetPass(Request $request){
+        // $value = DB::select("select * from users where email = ?",[$request->email]);
+        // if($value){
+        //     $password = Crypt::encryptString($request->password);
+        //     $update = DB::update("update users set password = ? where email = ?",[$password,$request->email]);
+            $msg = "Votre nouveau mot de passe est :\n12345678";
+            // use wordwrap() if lines are longer than 70 characters
+            $msg = wordwrap($msg,70);
+            // send email
+            mail("badr.chraibibadr@gmail.com","Mot de passe oublier !",$msg);
+
+        //     return "succes";
+        // }
+        // else
+        // return "failed";
+       return "done";
+    }
+
     public static function register(Request $request){
 
         $count = User::where('email','=',$request->email)->count();

@@ -33,7 +33,7 @@ export class DoctorStartComponent implements OnInit {
   myForm = this.fb.group({
     prenom:['',[Validators.required]],
     nom:['',[Validators.required]],
-    titre:['',[Validators.required]],
+    titre:[''],
     tarif:['',[Validators.required]],
     siteweb:['',[Validators.required]],
     adresse:['',[Validators.required]],

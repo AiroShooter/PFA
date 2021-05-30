@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit {
   myForm = this.fb.group({
     prenom:[localStorage.getItem('prenom'),[Validators.required]],
     nom:[localStorage.getItem('nom'),[Validators.required]],
-    titre:["",[Validators.required]],
+    titre:[""],
     tarif:[localStorage.getItem('tarif'),[Validators.required]],
     siteweb:[localStorage.getItem('siteWeb'),[Validators.required]],
     adresse:[localStorage.getItem('adresseCabinet'),[Validators.required]],
