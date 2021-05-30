@@ -53,6 +53,7 @@ Route::any('/doctor/PatientTodayCount',[MedecinController::class, 'PatientTodayC
 Route::any('/doctor/showConsultations',[MedecinController::class, 'showConsultations'] );
 Route::any('/doctor/updateConsultations',[MedecinController::class, 'updateConsultations'] );
 Route::any('/doctor/show',[MedecinController::class, 'show'] );
+Route::any('/doctor/showExeptID',[MedecinController::class, 'showExeptID'] );
 Route::any('/doctor/getCons',[MedecinController::class, 'getCons'] );
 Route::any('/doctor/Replace',[MedecinController::class, 'Replace'] );
 Route::any('/doctor/showReplace',[MedecinController::class, 'showReplace'] );

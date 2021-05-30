@@ -264,7 +264,7 @@ export class DashboardComponent implements OnInit {
 
   getDoctors()
   {
-    this.http.get('http://127.0.0.1:8000/api/doctor/show').subscribe((res)=>{
+    this.http.post('http://127.0.0.1:8000/api/doctor/showExeptID',{"med_id":this.med_id}).subscribe((res)=>{
       this.docs = res;
     })
   }
