@@ -66,4 +66,11 @@ export class MypatientsComponent implements OnInit {
     })
   }
 
+
+  Go(id){
+
+    localStorage.setItem('receiver',id);
+    this.router.navigateByUrl('/doctor/message');
+  }
+
 }
