@@ -70,7 +70,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Total Revenue</h6>
+										<h6 class="text-muted">Total des revenues</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-danger w-50"></div>
 										</div>
@@ -91,7 +91,7 @@
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Total consultations</h6>
+										<h6 class="text-muted">Total des consultations</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-warning w-50"></div>
 										</div>
@@ -234,7 +234,7 @@
 													<th>Nom du médecin</th>
 													<th>Spécialité</th>
 													<th>Nom du patient</th>
-													<th>Heure de rendez-vous</th>
+													<th>Heure du rendez-vous</th>
 													<th>Statut</th>
 													<th class="text-right">Montant</th>
 												</tr>
@@ -259,10 +259,9 @@
 															</a><a href="javascript:void(0)">{{app.nom}} {{app.prenom}}</a>
 														</h2>
 													</td>
-													<td>{{app.date}} <span class="text-primary d-block">{{app.heure}} AM</span></td>
+													<td>{{app.date}} <span class="text-primary d-block">{{app.heure}}</span></td>
 													<td>
 														<div class="status-toggle">
-
 															<input *ngIf="app.etat=='Accepter'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check" checked>
 															<input *ngIf="app.etat=='Annuler'" type="checkbox" (change)="onchange(app.etat,app.const_id)" id="{{app.const_id}}" class="check">
 															<label for="{{app.const_id}}" class="checktoggle">case à cocher</label>

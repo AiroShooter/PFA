@@ -3,9 +3,9 @@
     <div class="header-top" *ngIf="headerTop">
         <div class="left-top ">
             <ul>
-                <li><i class="fas fa-map-marker-alt top-icon"></i>22 Avenue hassan 1</li>
-                <li><i class="fas fa-phone-volume top-icon"></i>+19 123-456-7890</li>
-                <li><i class="fas fa-envelope top-icon"></i>mail@yourdomain.com</li>
+                <li><i class="fas fa-map-marker-alt top-icon"></i>05 lot bouizgaren, Route de Safi Marrakech 40000</li>
+                <li><i class="fas fa-phone-volume top-icon"></i>+2125244-22222</li>
+                <li><i class="fas fa-envelope top-icon"></i>informations@emsi.ma</li>
             </ul>
         </div>
         <div class="right-top ">
@@ -54,11 +54,11 @@
                     </div>
                     <div class="header-contact-detail">
                         <p class="contact-header">Contacter</p>
-                        <p class="contact-info-header"> +212 522433394</p>
+                        <p class="contact-info-header"> +2125244-22222</p>
                     </div>
                 </li>
                 <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!this.auth">
-                    <a class="nav-link header-login"  [routerLink]="'login-page'">connexion / Inscrivez-vous </a>
+                    <a class="nav-link header-login"  [routerLink]="'login-page'">Connexion / Inscription </a>
                 </li>
                 <!--  <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="this.auth">
                     <a class="nav-link header-login"  (click)="Logout()">Logout</a>
@@ -88,9 +88,9 @@
                             </div>
                         </div>
                         <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/dashboard'"  style="cursor: pointer;">Tableau de bord</a>
-                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"  style="cursor: pointer;">Paramètres de profile</a>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"  style="cursor: pointer;">Paramètres de profil</a>
                         <a class="dropdown-item" *ngIf="isPatient"  [routerLink]="'/patients/dashboard'"  style="cursor: pointer;">Tableau de bord</a>
-                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Profile Paramètres</a>
+                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Paramètres de profil</a>
                         <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Se déconnecter</a>
                     </div>
                 </li>
