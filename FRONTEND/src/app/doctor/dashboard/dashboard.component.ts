@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       this.getNotifs();
-    }, 10000);
+    }, 30000);
     this.getPatients();
     this.getApptointementsInfo();
     this.getTaux();

@@ -34,6 +34,13 @@ class TriggerNotifsUpdater extends Migration
                     INSERT INTO notification_events (titre, message, etat, date, user) VALUES (@titre,@msg,'unseen',new.date, @user);
                 END IF;
             END IF;
+            IF(new.etat = 'en attente') THEN
+            	IF(new.Echanger = 'patient') THEN
+                    SELECT concat('Patient, ',concat(nom,concat(' ',prenom))) INTO @titre FROM patients WHERE patient_id = new.patient_id;
+                    SELECT user_id INTO @user FROM medecins WHERE med_id = new.med_id;
+                    INSERT INTO notification_events (titre, message, etat, date, user) VALUES ('Vous avez ete affecter comme médecin remplaçant pour le ',@titre,'unseen',new.date, @user);
+                END IF;
+            END IF;
         END
         ");
     }

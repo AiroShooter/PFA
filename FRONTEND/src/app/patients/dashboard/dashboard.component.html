@@ -57,7 +57,7 @@
 																		<a *ngIf="app.etat == 'Accepter'" (click)="Go(app.user_id, app.nom, app.prenom,app.msexe)" class="btn btn-outline-success ml-4 text-success"><i class="far fa-envelope"></i></a>
 																	</td>
 																	<td class="text-center">{{app.date |  date}} <span class="d-block text-info ">{{app.heure.substring(0,5)}}</span></td>
-																	<td class="text-center">DH{{app.tarif}}</td>
+																	<td class="text-center">{{app.tarif}}DH</td>
 																	<td class="text-center">{{app.type}}</td>
 																	<td class="text-center"><span *ngIf="app.etat == 'Accepter'" class="badge badge-pill bg-success-light">{{app.etat}}</span>
 																		<span *ngIf="app.etat == 'Annuler'" class="badge badge-pill bg-danger-light">{{app.etat}}</span>
@@ -199,7 +199,7 @@
 																			<a >Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
-																	<td>DH{{app.tarif}}</td>
+																	<td>{{app.tarif}}DH</td>
 																	<td>{{app.date}}</td>
 																</tr>
 															</tbody>

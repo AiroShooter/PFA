@@ -201,7 +201,7 @@ class MedecinController extends Controller
 
     public function Replace(Request $request)
     {
-        return  DB::update('UPDATE `consultations` SET `med_id`= ? WHERE `const_id`= ?',[$request->med_id,$request->const_id]);
+        return  DB::update('UPDATE `consultations` SET `med_id`= ?, echanger = ? WHERE `const_id`= ?',[$request->med_id,"patient",$request->const_id]);
     }
     public function showReplace(Request $request)
     {
