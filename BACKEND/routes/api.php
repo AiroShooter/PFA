@@ -34,6 +34,7 @@ Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );
 Route::any('/login',[UserController::class, 'login'] );
 Route::any('/verifyPass',[UserController::class, 'verifyPass'] );
+Route::any('/ForgetPass',[UserController::class, 'ForgetPass'] );
 
 
 

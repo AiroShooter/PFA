@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'forgot-pass',
-        canActivate:[AdminGuard],
+        //canActivate:[AdminGuard],
         loadChildren: () =>
           import(
             './pages/authendication/forgot-password/forgot-password.module'
