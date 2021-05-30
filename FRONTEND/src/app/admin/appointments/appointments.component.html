@@ -47,7 +47,7 @@
 											<h2 class="table-avatar">
 												<a [routerLink]="'/admin/doc-profile'" class="avatar avatar-sm mr-2">
 													<img *ngIf="app.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
-													<img *ngIf="app.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/fpat.png" alt="User Image">
+													<img *ngIf="app.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/patients/mpat.png" alt="User Image">
 												</a>
 												<a [routerLink]="'/admin/doc-profile'">{{app.nom}} {{app.prenom}} </a>
 											</h2>
@@ -62,7 +62,7 @@
 											</div>
 										</td>
 										<td class="text-right">
-											${{app.tarif}}
+											{{app.tarif}} DH
 										</td>
 									</tr>
 							
