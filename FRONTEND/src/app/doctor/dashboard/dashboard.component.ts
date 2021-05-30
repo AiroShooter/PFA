@@ -203,8 +203,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  Taux:any=0;
-  TauxAccept:any=0;
+  Taux:any="0";
+  TauxAccept:any="0";
   med_id = localStorage.getItem("med_id");
   getTaux(){
     console.log(this.med_id);
@@ -220,7 +220,7 @@ export class DashboardComponent implements OnInit {
         this.TauxAccept = result.toString();
     });
   }
-  sumTarif:any=0;
+  sumTarif:any="0";
   getSumTarif(){
     console.log(this.med_id);
     this.http.post("http://127.0.0.1:8000/api/doctor/showStatsByMedP",{"med_id":this.med_id}).subscribe(result => {

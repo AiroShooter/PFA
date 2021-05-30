@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {CommonServiceService  } from './../../common-service.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +14,12 @@ export class DashboardComponent implements OnInit {
   patients ;
   
 
-  constructor(public commonService:CommonServiceService,private http: HttpClient,private router:Router) { }
+  constructor(public commonService:CommonServiceService,private http: HttpClient,private router:Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.getNotifs();
+    }, 5000);
     this.changeState;
     this.getApptointementsInfo();
     this.getDossiers()
@@ -53,5 +57,8 @@ export class DashboardComponent implements OnInit {
   });
 }
 
+getNotifs(){
+  this.toastr.success("12-12-2021 12:31", 'Dr. Ayoub Chafik a rejeter votre rendez-vous');
+}
  
 }
