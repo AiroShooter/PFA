@@ -95,6 +95,8 @@ class MedecinController extends Controller
         
         $totalConst = DB::select("SELECT  count(*) as count  FROM `consultations` WHERE med_id = ?",[$request->med_id]); 
         $totalConstA = DB::select("SELECT  count(*) as countA FROM `consultations` WHERE med_id = ? and etat = 'Annuler'",[$request->med_id]);
+        if($totalConst[0]->count == 0)
+        return 0;
         return ($totalConstA[0]->countA/$totalConst[0]->count)*100;
     }
     public function showStatsByMedA(Request $request)
@@ -102,12 +104,16 @@ class MedecinController extends Controller
         
         $totalConst = DB::select("SELECT  count(*) as count  FROM `consultations` WHERE med_id = ?",[$request->med_id]); 
         $totalConstA = DB::select("SELECT  count(*) as countA FROM `consultations` WHERE med_id = ? and etat = 'Accepter'",[$request->med_id]);
+        if($totalConst[0]->count == 0)
+        return 0;
         return ($totalConstA[0]->countA/$totalConst[0]->count)*100;
     }
     public function showStatsByMedP(Request $request)
     {
         
         $totalConst = DB::select("SELECT  sum(tarif) as count  FROM `consultations` WHERE med_id = ? and etat = 'Accepter'",[$request->med_id]); 
+        if($totalConst[0]->count == null)
+            return 0;
         return $totalConst[0]->count;
     }
 
