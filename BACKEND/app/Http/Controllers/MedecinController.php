@@ -189,6 +189,11 @@ class MedecinController extends Controller
     {
         return  DB::select('select * from medecins');
     }
+
+    public function showExeptID(Request $request)
+    {
+        return  DB::select('select * from medecins where med_id != ?',[$request->med_id]);
+    }
     public function cityshow()
     {
         return  DB::select('select distinct ville from medecins');
