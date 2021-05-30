@@ -228,7 +228,7 @@ export class BookingComponent implements OnInit {
                   this.isBooked = true;
                 });
               }
-              else alert("You Already booked another time slot")
+              else alert("Vous avez déjà réservé un autre créneau horaire")
             }
       }
       else {
@@ -255,10 +255,10 @@ export class BookingComponent implements OnInit {
                 this.isBooked = true;
               });
             }
-            else alert("You Already booked another time slot")
+            else alert("Vous avez déjà réservé un autre créneau horaire")
           }
         }
-        else alert("Already booked from someone else")
+        else alert("Déjà réservé par quelqu'un d'autre")
       }
      
 

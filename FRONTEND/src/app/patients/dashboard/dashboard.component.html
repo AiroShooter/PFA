@@ -54,7 +54,7 @@
 																		</h2>
 
 
-																		<a (click)="Go(app.user_id, app.nom, app.prenom,app.msexe)" class="btn btn-outline-success ml-4 text-success"><i class="far fa-envelope"></i></a>
+																		<a *ngIf="app.etat == 'Accepter'" (click)="Go(app.user_id, app.nom, app.prenom,app.msexe)" class="btn btn-outline-success ml-4 text-success"><i class="far fa-envelope"></i></a>
 																	</td>
 																	<td class="text-center">{{app.date |  date}} <span class="d-block text-info ">{{app.heure.substring(0,5)}}</span></td>
 																	<td class="text-center">DH{{app.tarif}}</td>
