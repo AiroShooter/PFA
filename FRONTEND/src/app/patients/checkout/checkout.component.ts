@@ -44,8 +44,6 @@ export class CheckoutComponent implements OnInit {
     console.log(res); 
    if(res == "1")
      {
-       
-      this.toastr.success('', 'Rendez-vous réservé avec succès!');
       this.router.navigate(['/patients/success']);
      }
    })
