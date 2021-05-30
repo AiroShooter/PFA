@@ -17,9 +17,9 @@ export class DashboardComponent implements OnInit {
   constructor(public commonService:CommonServiceService,private http: HttpClient,private router:Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
+    setInterval(() => {
       this.getNotifs();
-    }, 5000);
+    }, 3000);
     this.changeState;
     this.getApptointementsInfo();
     this.getDossiers()
@@ -56,10 +56,36 @@ export class DashboardComponent implements OnInit {
        this.getApptointementsInfo();
   });
 }
+notifs:[];
+notif:[];
+
+upnot(id: any){
+  let fm = new FormData();
+  fm.append("id",id);
+  fm.append("etat","seen");
+  console.log(fm.get("id"));
+  this.http.post("http://127.0.0.1:8000/api/UPNotifs",fm).subscribe(result =>{
+              console.log(result);
+            })
+}
 
 getNotifs(){
-  this.toastr.success("12-12-2021 12:31", 'Dr. Ayoub Chafik a rejeter votre rendez-vous');
+  
+  this.notif = this.notifs
+  let form = new FormData();
+    form.append("user_id",localStorage.getItem("user_id"));
+  this.http.post("http://127.0.0.1:8000/api/showUserNotifs",form).subscribe(result =>{
+    this.notifs =  JSON.parse(JSON.stringify(result));
+      this.notifs.forEach(e => {
+        if(e["etat"] == "unseen")
+          this.toastr.success(e["date"]+" "+e["heure"],e["titre"]+" "+e["message"]).onTap.subscribe(() => {
+            this.upnot(e["notification_id"]);
+          });
+    });
+  });
+  
 }
+
 
 Go(user_id, nom, prenom, sexe){
 

@@ -133,3 +133,5 @@ Route::any('/patient/bookCheck',[CalendrierController::class, 'bookCheck'] );
 
 //                       ######### NotificationEventController ###########
 Route::any('/notif',[NotificationEventController::class, 'show'] );
+Route::any('/showUserNotifs',[NotificationEventController::class, 'showUserNotifs'] );
+Route::any('/UPNotifs',[NotificationEventController::class, 'UPNotifs'] );

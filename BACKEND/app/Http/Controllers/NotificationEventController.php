@@ -51,6 +51,18 @@ class NotificationEventController extends Controller
         return $value;
     }
 
+    public function showUserNotifs(Request $request)
+    {
+        $value = DB::select("SELECT * from notification_events where user = ? order by date desc, heure desc " , [$request->user_id]); 
+        return $value;
+    }
+
+    public function UPNotifs(Request $request)
+    {
+        $value = DB::update("UPDATE notification_events set etat = ? where notification_id = ? " , [$request->etat,$request->id]); 
+        return $value;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
