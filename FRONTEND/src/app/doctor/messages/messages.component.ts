@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonServiceService } from './../../common-service.service';
 import { HttpClient } from '@angular/common/http';
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -18,7 +19,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.commonSerivce.nextmessage('chat');
-    
+    if( !(!!localStorage.getItem('us_id')))
+    {
+      if(this.isDoctor)  this.router.navigateByUrl('/doctor/dashboard');
+      else  this.router.navigateByUrl('/patients/dashboard');
+    }
    
 
     if(this.isDoctor)
@@ -33,7 +38,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.show()
 
-    setInterval( ()=>{this.show()},1000);
+    setInterval( ()=>{this.show()},5000);
 
    
   }
@@ -66,7 +71,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       this.messages = res;
     })
 
-    console.log("shhshshs")
   }
 
   isDoctor = !!localStorage.getItem('patient_id');
@@ -75,6 +79,22 @@ export class MessagesComponent implements OnInit, OnDestroy {
    us_id = localStorage.getItem('us_id');
 
    room_id
+
+   us_sexe = localStorage.getItem('us_sexe');
    us_nom = localStorage.getItem('us_nom');
    us_prenom = localStorage.getItem('us_prenom');
+
+
+
+
+  
+
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    localStorage.removeItem('us_sexe');
+    localStorage.removeItem('us_id');
+    localStorage.removeItem('us_nom');
+    localStorage.removeItem('us_prenom');
+  }
 }

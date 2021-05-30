@@ -54,8 +54,9 @@ export class DashboardComponent implements OnInit {
 }
 
 
-Go(user_id, nom, prenom){
+Go(user_id, nom, prenom, sexe){
 
+  localStorage.setItem('us_sexe',sexe);
   localStorage.setItem('us_id',user_id);
   localStorage.setItem('us_nom',nom);
   localStorage.setItem('us_prenom',prenom);
