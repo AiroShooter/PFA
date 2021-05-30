@@ -67,9 +67,11 @@ export class MypatientsComponent implements OnInit {
   }
 
 
-  Go(id){
+  Go(user_id, nom, prenom){
 
-    localStorage.setItem('receiver',id);
+    localStorage.setItem('user_id',user_id);
+    localStorage.setItem('user_nom',nom);
+    localStorage.setItem('user_prenom',prenom);
     this.router.navigateByUrl('/doctor/message');
   }
 

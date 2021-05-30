@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { MessagesRoutingModule } from './messages-routing.module';
 import { MessagesComponent } from './messages.component';
@@ -12,7 +12,8 @@ import { MessagesComponent } from './messages.component';
   imports: [
     CommonModule,
     FormsModule,
-    MessagesRoutingModule
+    MessagesRoutingModule,
+    HttpClientModule
   ]
 })
 export class MessagesModule { }
