@@ -11,8 +11,8 @@ import { CommonServiceService } from './../common-service.service';
 export class DoctorComponent implements OnInit {
   splitVal;
   url;
-  base = 'Doctor';
-  page = 'Dashboard';
+  base = 'Médecin';
+  page = 'Tableau de bord';
   doctorSidebar: boolean = true;
   constructor(
     private router: Router,
