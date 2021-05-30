@@ -82,7 +82,7 @@ class MedecinController extends Controller
     }
     public function showPatients(Request $request)
     {
-        $value = DB::select("SELECT distinct p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss FROM patients p inner join consultations c on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id  where m.med_id = (?)",[$request->med_id]); 
+        $value = DB::select("SELECT distinct p.user_id,p.patient_id,p.nom,p.prenom,p.sexe,p.telePerso,p.pays,p.dateNaiss FROM patients p inner join consultations c on c.patient_id = p.patient_id inner join medecins m on m.med_id = c.med_id  where m.med_id = (?)",[$request->med_id]); 
         return $value;
     }
     public function showDossiers(Request $request)

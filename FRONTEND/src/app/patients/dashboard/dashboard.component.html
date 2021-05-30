@@ -43,13 +43,18 @@
 																<tr *ngFor="let app of AppointmentsInfo">
 																	<td>
 																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
+																			<a  class="avatar avatar-sm mr-2">
 																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
 																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
+																			<a >Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
+
+
 																		</h2>
+
+
+																		<a (click)="Go(app.user_id, app.nom, app.prenom,app.msexe)" class="btn btn-outline-success ml-4 text-success"><i class="far fa-envelope"></i></a>
 																	</td>
 																	<td class="text-center">{{app.date |  date}} <span class="d-block text-info ">{{app.heure.substring(0,5)}}</span></td>
 																	<td class="text-center">DH{{app.tarif}}</td>
@@ -109,11 +114,11 @@
 																	<td><textarea class="form-control" name="" id="">{{app.desc}}</textarea></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
+																			<a  class="avatar avatar-sm mr-2">
 																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
 																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}}  <span>{{app.libelle}}</span></a>
+																			<a >Dr. {{app.nom}} {{app.prenom}}  <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
 									
@@ -149,11 +154,11 @@
 																	<td><textarea disabled name="" id="" class="form-control">{{doss.raison}}</textarea></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
+																			<a  class="avatar avatar-sm mr-2">
 																				<img *ngIf="doss.sexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
 																				<img *ngIf="doss.sexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{doss.nom}} {{doss.prenom}}<span>{{doss.libelle}}</span></a>
+																			<a >Dr. {{doss.nom}} {{doss.prenom}}<span>{{doss.libelle}}</span></a>
 																		</h2>
 																	</td>
 																</tr>
@@ -187,11 +192,11 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a [routerLink]="'/patients/doctor-profile'" class="avatar avatar-sm mr-2">
+																			<a  class="avatar avatar-sm mr-2">
 																				<img *ngIf="app.msexe == 'f'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/fdoc.png" alt="User Image">
 																				<img *ngIf="app.msexe == 'm'" class="avatar-img rounded-circle" src="../../../assets/admin/img/doctors/mdoc.png" alt="User Image">
 																			</a>
-																			<a [routerLink]="'/patients/doctor-profile'">Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
+																			<a >Dr. {{app.nom}} {{app.prenom}} <span>{{app.libelle}}</span></a>
 																		</h2>
 																	</td>
 																	<td>DH{{app.tarif}}</td>

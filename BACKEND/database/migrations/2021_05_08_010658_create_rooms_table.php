@@ -14,12 +14,8 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->bigIncrements("room_id");
+            $table->string("room_id");
             $table->unsignedBigInteger("const_id");
-            $table->foreign("const_id")->references("const_id")
-                ->on("consultations")->onDelete("cascade")->onUpdate("cascade");
-
-            
         });
     }
 

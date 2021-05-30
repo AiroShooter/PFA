@@ -131,6 +131,8 @@ class UserController extends Controller
 
         if($users)
         {
+
+            
             $password = Crypt::decryptString($users[0]->password);  
 
             if($password == $request->password)
@@ -164,11 +166,21 @@ class UserController extends Controller
             }
         }
         else{
-                
+            $users = DB::select('select * from users where email = ? and isActive = ?',[$request->email,0]);
+            if($users)
+            {
                 return response()->json([
                     'hasError' => true,
                     'success' => '',
-                    'error' => "Ce compte n'existe pas, veuillez essayer de vous s'inscrire d'abord"]);
+                    'error' => 'Votre compte a été désactivé']);
+            }
+            else{
+                return response()->json([
+                    'hasError' => true,
+                    'success' => '',
+                    'error' => "Cet email n'existe pas"]);
+            }
+               
         }
     }
 }

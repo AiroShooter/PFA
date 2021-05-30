@@ -10,6 +10,7 @@ use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\NotificationEventController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -29,6 +30,11 @@ use App\Http\Controllers\ConsultationController;
     //return $request->user();
 //});
 
+
+                        ######### MessageController ###########
+
+Route::any('/messages/send',[MessageController::class, 'store'] );  
+Route::any('/messages/show',[MessageController::class, 'show'] );  
 //                       ######### UserController ###########
 Route::any('/users',[UserController::class, 'index'] );
 Route::any('/register',[UserController::class, 'register'] );

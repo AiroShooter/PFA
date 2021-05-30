@@ -60,5 +60,15 @@ export class DashboardComponent implements OnInit {
 getNotifs(){
   this.toastr.success("12-12-2021 12:31", 'Dr. Ayoub Chafik a rejeter votre rendez-vous');
 }
+
+Go(user_id, nom, prenom, sexe){
+
+  localStorage.setItem('us_sexe',sexe);
+  localStorage.setItem('us_id',user_id);
+  localStorage.setItem('us_nom',nom);
+  localStorage.setItem('us_prenom',prenom);
+  this.router.navigateByUrl('/doctor/message');
+}
+
  
 }
